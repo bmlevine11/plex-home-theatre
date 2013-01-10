@@ -21,7 +21,7 @@
  */
 
 #include "system.h"
-
+#undef HAS_GL
 #ifdef HAS_GL
   // always define GL_GLEXT_PROTOTYPES before include gl headers
   #if !defined(GL_GLEXT_PROTOTYPES)
@@ -50,6 +50,5 @@
   #else
     #include <GLES2/gl2.h>
     #include <GLES2/gl2ext.h>
-    #include <GL/glew.h>
   #endif
 #endif

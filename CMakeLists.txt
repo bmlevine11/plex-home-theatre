@@ -220,6 +220,7 @@ include_directories(
   ${plexdir}/Utility
   ${plexdir}/Owned
 
+  ${root}/xbmc
   ${root}/xbmc/utils
   ${root}
   ${root}/xbmc/cores/dvdplayer
