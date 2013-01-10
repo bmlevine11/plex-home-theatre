@@ -20,6 +20,8 @@
 
 #include "system.h"
 
+#undef HAS_GL
+
 #if defined(HAS_GL) || HAS_GLES == 2
 #include <string>
 #include <math.h>

@@ -212,7 +212,7 @@ endif()
 #add_subdirectory(tools/TexturePacker)
 
 # add our visualizations
-#add_subdirectory(xbmc/visualizations)
+add_subdirectory(xbmc/visualizations)
 
 # global includes
 include_directories(
