@@ -18,11 +18,6 @@
  *
  */
 
-//hack to get it to build
-#define HAS_BUILTIN_SYNC_ADD_AND_FETCH 1
-#define HAS_BUILTIN_SYNC_SUB_AND_FETCH 1
-#define HAS_BUILTIN_SYNC_VAL_COMPARE_AND_SWAP 1
-
 
 #include "Atomics.h"
 #include "system.h"

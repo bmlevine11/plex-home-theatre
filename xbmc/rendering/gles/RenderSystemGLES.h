@@ -25,8 +25,8 @@
 
 #include "system.h"
 
-#ifdef TARGET_RASPBERRY_PI
-#include "GLES2/gl2.h"
+#ifndef TARGET_RASPBERRY_PI
+#include "GLES/gl.h"
 #else
 #include "system_gl.h"
 #endif

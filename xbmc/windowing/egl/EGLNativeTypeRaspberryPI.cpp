@@ -20,7 +20,6 @@
 #include "system.h"
 
 #include <EGL/egl.h>
-#include <EGL/eglplatform.h>
 #include "EGLNativeTypeRaspberryPI.h"
 #include "utils/log.h"
 #include "guilib/gui3d.h"

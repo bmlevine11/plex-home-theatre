@@ -1062,8 +1062,6 @@ void CLinuxRendererGL::LoadShaders(int field)
           // drop through and try ARB
         }
       }
-      #if HAS_GLES != 2
-
       case RENDER_METHOD_ARB:
       // Try ARB shaders if supported and user requested it or GLSL shaders failed.
       if (glewIsSupported("GL_ARB_fragment_program"))
@@ -1090,7 +1088,6 @@ void CLinuxRendererGL::LoadShaders(int field)
           // drop through and use SW
         }
       }
-      #endif
       case RENDER_METHOD_SOFTWARE:
       default:
       // Use software YUV 2 RGB conversion if user requested it or GLSL and/or ARB shaders failed
