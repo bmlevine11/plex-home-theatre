@@ -31,6 +31,10 @@
     #include <GL/glew.h>
     #include <GL/gl.h>
     #include <GL/glu.h>
+  #elif defined(TARGET_RASPBERRY_PI)
+    #include <GLES/glplatform.h>
+    #include <GLES/gl.h>
+    #include <GLES/glext.h>
   #elif defined(TARGET_LINUX)
     #include <GL/glew.h>
     #include <GL/gl.h>

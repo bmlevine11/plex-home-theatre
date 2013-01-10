@@ -25,11 +25,7 @@
 
 #include "system.h"
 
-#ifndef TARGET_RASPBERRY_PI
-#include "GLES/gl.h"
-#else
 #include "system_gl.h"
-#endif
 
 #include "rendering/RenderSystem.h"
 #include "xbmc/guilib/GUIShader.h"

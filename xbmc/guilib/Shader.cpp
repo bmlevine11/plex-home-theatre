@@ -20,7 +20,8 @@
 
 #include "system.h"
 
-#if defined(HAS_GL) || HAS_GLES == 2
+//#if defined(HAS_GL) || HAS_GLES == 2
+#if defined(HAS_GL) || defined(HAS_GLES)
 
 #include "Shader.h"
 #include "settings/Settings.h"
