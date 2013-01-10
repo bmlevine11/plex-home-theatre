@@ -7,7 +7,6 @@ endif()
 set(LINK_PKG
   FFmpeg
   Freetype
-  OpenGL
   ZLIB
   JPEG
   SQLite3
@@ -118,11 +117,13 @@ add_definitions(
     -D_LINUX 
     -D_ARMEL 
     -DTARGET_RASPBERRY_PI
+    -DHAS_GLES=2
+    -DHAS_EGL
 )
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -isystem/opt/xbmc-bcm/xbmc-bin/include -isystem/usr/include -isystem/opt/vc/include -isystem/opt/vc/include/interface/vcos/pthreads -isystem/opt/vc -isystem/opt/vc/include/interface/vmcs_host/linux/ -isystem/opt/vc/include/EGL -isystem/opt/vc/include/GLES -isystem/opt/vc/include/KHR -isystem/opt/vc/include/VG -isystem/opt/vc/include/WF -isystem/opt/vc/include/vcinclude -isystem/usr/include/afpfs-ng -I/opt/vc/include/EGL -I/opt/vc/include/GLES -I/opt/vc/include/KHR -I/opt/vc/include/VG -I/opt/vc/include/WF -I/opt/vc/include/vc/include -L/opt/xbmc-bcm/xbmc-bin/lib -L/lib -L/usr/lib -L/opt/vc/lib -Wl,-rpath-link,/lib -Wl,-rpath-link,/lib -Wl,-rpath-link,/usr/lib -Wl,-rpath-link,/opt/vc/ -fPIC -DPIC -D_REENTRANT -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -DNDEBUG=1 -pipe -O3 -mcpu=arm1176jzf-s -mtune=arm1176jzf-s -mfloat-abi=hard -mfpu=vfp -mabi=aapcs-linux -Wno-psabi -Wa,-mno-warn-deprecated -Wno-deprecated-declarations")
+set(CMAKE_C_FLAGS " -isystem/usr/include -isystem/opt/vc/include -isystem/opt/vc/include/interface/vcos/pthreads -isystem/opt/vc -isystem/opt/vc/include/interface/vmcs_host/linux/ -isystem/opt/vc/include/EGL -isystem/opt/vc/include/GLES -isystem/opt/vc/include/KHR -isystem/opt/vc/include/VG -I/opt/vc/include/ -I/opt/vc/include/EGL -I/opt/vc/include/GLES -I/opt/vc/include/GLES2 -I/opt/vc/include/KHR -I/opt/vc/include/VG -I/opt/vc/include/WF -I/opt/vc/include/vc/include -L/opt/xbmc-bcm/xbmc-bin/lib -L/lib -L/usr/lib -L/opt/vc/lib -Wl,-rpath-link,/lib -Wl,-rpath-link,/lib -Wl,-rpath-link,/usr/lib -Wl,-rpath-link,/opt/vc/ -fPIC -DPIC -D_REENTRANT -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -DNDEBUG=1 -pipe -O3 -mcpu=arm1176jzf-s -mtune=arm1176jzf-s -mfloat-abi=hard -mfpu=vfp -mabi=aapcs-linux -Wno-psabi -Wa,-mno-warn-deprecated -Wno-deprecated-declarations ")
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -isystem/opt/xbmc-bcm/xbmc-bin/include -isystem/usr/include -isystem/opt/vc/include -isystem/opt/vc/include/interface/vcos/pthreads -isystem/opt/vc -isystem/opt/vc/include/interface/vmcs_host/linux/ -isystem/opt/vc/include/EGL -isystem/opt/vc/include/GLES -isystem/opt/vc/include/KHR -isystem/opt/vc/include/VG -isystem/opt/vc/include/WF -isystem/opt/vc/include/vcinclude -isystem/usr/include/afpfs-ng -I/opt/vc/include/EGL -I/opt/vc/include/GLES -I/opt/vc/include/KHR -I/opt/vc/include/VG -I/opt/vc/include/WF -I/opt/vc/include/vc/include -L/opt/xbmc-bcm/xbmc-bin/lib -L/lib -L/usr/lib -L/opt/vc/lib -Wl,-rpath-link,/lib -Wl,-rpath-link,/lib -Wl,-rpath-link,/usr/lib -Wl,-rpath-link,/opt/vc/ -fPIC -DPIC -D_REENTRANT -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -DNDEBUG=1 -pipe -O3 -mcpu=arm1176jzf-s -mtune=arm1176jzf-s -mfloat-abi=hard -mfpu=vfp -mabi=aapcs-linux -Wno-psabi -Wa,-mno-warn-deprecated -Wno-deprecated-declarations")
+set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS})
 
 set(LIBPATH bin)
 set(BINPATH bin)

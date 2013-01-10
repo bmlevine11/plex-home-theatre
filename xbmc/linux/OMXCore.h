@@ -1,4 +1,3 @@
-#pragma once
 /*
  *      Copyright (C) 2010-2012 Team XBMC
  *      http://www.xbmc.org
@@ -19,6 +18,7 @@
  *
  */
 
+#define HAVE_OMXLIB 1
 #if defined(HAVE_OMXLIB)
 
 #include <string>

@@ -24,7 +24,13 @@
 #pragma once
 
 #include "system.h"
+
+#ifdef TARGET_RASPBERRY_PI
+#include "GLES2/gl2.h"
+#else
 #include "system_gl.h"
+#endif
+
 #include "rendering/RenderSystem.h"
 #include "xbmc/guilib/GUIShader.h"
 
