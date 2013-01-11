@@ -37,7 +37,11 @@ set(LINK_PKG
 foreach(l ${LINK_PKG})
   plex_find_package(${l} 1 1)
 endforeach()
-  
+
+#find_package(OpenGLES2 REQUIRED)
+#include_directories(${OpenGLES2_INCLUDE_DIRS})
+#set(CONFIG_PLEX_LINK_LIBRARIES ${CONFIG_PLEX_LINK_LIBRARIES} ${OpenGLES2_LIBRARIES})
+#  
 find_package(Boost COMPONENTS thread system REQUIRED)
 if(Boost_FOUND)
   include_directories(${Boost_INCLUDE_DIRS})
@@ -141,18 +145,17 @@ include_directories(
 )
 
 
-### Libs for RPI
-set(RPI_LIBS
-    EGL
-    GLESv2
-)
-
-foreach(l ${RPI_LIBS})
-  plex_find_library(${l} 0 1 /opt/vc/lib 0)
-endforeach()
 
 
-set(CMAKE_C_FLAGS " -isystem/usr/include -isystem/opt/vc/include -isystem/opt/vc/include/interface/vcos/pthreads -isystem/opt/vc -isystem/opt/vc/include/interface/vmcs_host/linux/ -isystem/opt/vc/include/EGL -isystem/opt/vc/include/GLES -isystem/opt/vc/include/GLES2 -isystem/opt/vc/include/KHR -isystem/opt/vc/include/VG -L/lib -L/usr/lib -L/opt/vc/lib -lGLEW -lEGL -lGLESv2 -Wl,-rpath-link,/lib -Wl,-rpath-link,/lib -Wl,-rpath-link,/usr/lib -Wl,-rpath-link,/opt/vc/ -fPIC -pipe -O3 -mcpu=arm1176jzf-s -mtune=arm1176jzf-s -mfloat-abi=hard -mfpu=vfp -mabi=aapcs-linux -Wno-psabi -Wa,-mno-warn-deprecated -Wno-deprecated-declarations ")
+
+plex_find_library(GLESv2 0  0 /opt/vc/lib 1)
+plex_find_library(EGL 0 0  /opt/vc/lib 1)
+plex_find_library(vcos 0 0  /opt/vc/lib 1)
+plex_find_library(bcm_host 0 0  /opt/vc/lib 1)
+plex_find_library(vchiq_arm 0 0  /opt/vc/lib 1)
+
+
+set(CMAKE_C_FLAGS " -isystem/usr/include -isystem/opt/vc/include -isystem/opt/vc/include/interface/vcos/pthreads -isystem/opt/vc -isystem/opt/vc/include/interface/vmcs_host/linux/ -isystem/opt/vc/include/EGL -isystem/opt/vc/include/GLES -isystem/opt/vc/include/GLES2 -isystem/opt/vc/include/KHR -isystem/opt/vc/include/VG -L/lib -L/usr/lib -L/opt/vc/lib -Wl,-rpath-link,/lib -Wl,-rpath-link,/lib -Wl,-rpath-link,/usr/lib -Wl,-rpath-link,/opt/vc/ -fPIC -pipe -O3 -mcpu=arm1176jzf-s -mtune=arm1176jzf-s -mfloat-abi=hard -mfpu=vfp -mabi=aapcs-linux -Wno-psabi -Wa,-mno-warn-deprecated -Wno-deprecated-declarations ")
 
 set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS})
 
@@ -168,3 +171,5 @@ set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} /opt/vc/lib )
 set(PLEX_LINK_WHOLEARCHIVE -Wl,--whole-archive)
 set(PLEX_LINK_NOWHOLEARCHIVE -Wl,--no-whole-archive)
 
+
+message(STATUS "CONFIG_PLEX_LINK_LIBRARIES=${CONFIG_PLEX_LINK_LIBRARIES}")
