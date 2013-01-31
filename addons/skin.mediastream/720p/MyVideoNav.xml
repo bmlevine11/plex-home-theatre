@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <window id="6">
-	<defaultcontrol>56</defaultcontrol>
+	<defaultcontrol>50</defaultcontrol>
 	<allowoverlay>yes</allowoverlay>
 	<controls>
-		<include>Background</include>
+		<!--include>Background</include-->
 		<!-- -->
-		<include>InfoList</include>
-		<!--<include>List</include>-->
-		<include>TV</include>
+		<!--include>InfoList</include-->
+		<include>List</include>
+		<!--include>TV</include-->
 		<!-- <include>TVEpisodes</include> -->
 		<!-- <include>Showcase</include> -->
-		<include>MediaPreview</include>
-		<include>PanelStream</include>
+		<!--include>MediaPreview</include-->
+		<!--include>PanelStream</include-->
 		<!--<include>Coverflow</include>-->
 		<!--<include>WallStream</include>-->
-		<include>PluginStream</include>
+		<!--include>PluginStream</include-->
 		<!--<include>GridView</include>-->
 		<!-- -->
 		<control type="group">

@@ -20,7 +20,7 @@
 		</control>
 		<control type="group">
 			<!-- generic autopopulated fanart slideshow -->
-			<control type="multiimage" id="10101">
+			<!--control type="multiimage" id="10101">
 				<posx>0</posx>
 				<posy>0</posy>
 				<width>1280</width>
@@ -37,10 +37,10 @@
 				<animation type="WindowClose">
 					<effect type="fade" start="100" end="0" time="800"/>
 				</animation>
-			</control>
+			</control-->
 			<!-- "new list" focused item fanart while using inside the list -->
 			<!-- on deck -->
-			<control type="multiimage">
+			<!--control type="multiimage">
 				<visible>ControlGroup(7001).HasFocus</visible>
 				<animation effect="fade" end="100" time="300" delay="0">Visible</animation>
 				<animation effect="fade" end="0" time="300" delay="0">Hidden</animation>
@@ -51,9 +51,9 @@
 				<width>1280</width>
 				<height>720</height>
 				<fadetime>400</fadetime>
-			</control>
+			</control-->
 			<!-- recently added -->
-			<control type="multiimage">
+			<!--control type="multiimage">
 				<visible>ControlGroup(7002).HasFocus</visible>
 				<animation effect="fade" end="100" time="300" delay="0">Visible</animation>
 				<animation effect="fade" end="0" time="300" delay="0">Hidden</animation>
@@ -64,9 +64,9 @@
 				<width>1280</width>
 				<height>720</height>
 				<fadetime>400</fadetime>
-			</control>
+			</control-->
 			<!-- recently used -->
-			<control type="multiimage">
+			<!--control type="multiimage">
 				<visible>ControlGroup(7004).HasFocus</visible>
 				<animation effect="fade" end="100" time="300" delay="0">Visible</animation>
 				<animation effect="fade" end="0" time="300" delay="0">Hidden</animation>
@@ -77,9 +77,9 @@
 				<width>1280</width>
 				<height>720</height>
 				<fadetime>400</fadetime>
-			</control>
+			</control-->
 			<!-- queue & recommendations (a dirty, dirty hack this one, not pretty) -->
-			<control type="multiimage">
+			<!--control type="multiimage">
 				<visible>ControlGroup(7003).HasFocus</visible>
 				<animation effect="fade" end="50" time="300" delay="0">Visible</animation>
 				<animation effect="fade" end="0" time="0" delay="0">Hidden</animation>
@@ -102,25 +102,25 @@
 				<width>1280</width>
 				<height>720</height>
 				<fadetime>400</fadetime>
-			</control>
+			</control-->
 			<!-- Fanart Dimming overlay -->
-			<control type="image">
+			<!--control type="image">
 				<width>1280</width>
 				<height>720</height>
 				<texture>black.png</texture>
 				<aspectratio>stretch</aspectratio>
 				<animation effect="fade" start="0" end="10" time="0" condition="true">Conditional</animation>
 				<visible>true</visible>
-			</control>
+			</control-->
 			<!-- second dimmer when new lists are visible -->
-			<control type="image">
+			<!--control type="image">
 				<width>1280</width>
 				<height>720</height>
 				<texture>black.png</texture>
 				<aspectratio>stretch</aspectratio>
 				<animation effect="fade" start="0" end="40" time="0" condition="true">Conditional</animation>
 				<visible>Control.IsVisible(11000) | Control.IsVisible(11001) | Control.IsVisible(11002) | Control.IsVisible(11003) | Control.IsVisible(11004) | Control.IsVisible(12000)</visible>
-			</control>
+			</control-->
 		</control>
 		<!-- SubMenus -->
 		<control type="group" id="500">
@@ -743,6 +743,7 @@
 						<posy>131</posy>
 						<width>870</width>
 						<height>350</height>
+						<preloaditems>6</preloaditems>
 						<itemlayout width="140" height="330">
 							<!-- album -->
 							<control type="image">
@@ -1499,6 +1500,7 @@
 						<posy>0</posy>
 						<width>880</width>
 						<height>400</height>
+						<preloaditems>6</preloaditems>
 						<itemlayout width="140" height="230">
 							<!-- album -->
 							<control type="group">
@@ -2376,6 +2378,7 @@
 						<posy>131</posy>
 						<width>880</width>
 						<height>400</height>
+						<preloaditems>6</preloaditems>
 						<itemlayout width="140" height="230">
 							<!-- when only this list is visible -->
 							<control type="group">
@@ -2871,6 +2874,7 @@
 						<posy>0</posy>
 						<width>880</width>
 						<height>400</height>
+						<preloaditems>6</preloaditems>
 						<itemlayout width="140" height="230">
 							<!-- when only this list is visible -->
 							<control type="group">
@@ -3436,6 +3440,7 @@
 						<posy>250</posy>
 						<width>880</width>
 						<height>230</height>
+						<preloaditems>6</preloaditems>
 						<itemlayout width="140" height="230">
 							<!-- channel -->
 							<control type="group">

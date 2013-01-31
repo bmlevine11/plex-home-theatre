@@ -128,6 +128,7 @@
 				<onright>9009</onright>
 				<onup>50</onup>
 				<ondown>50</ondown>
+				<preloaditems>8</preloaditems>
 				<itemlayout condition="![Skin.HasSetting(HideListViewIcons) | [Skin.HasSetting(HideListViewIconsVideos) + [Window.IsActive(24) | Window.IsVisible(MyVideoPlaylist)]] | [Skin.HasSetting(HideListViewIconsMusic) + [Window.IsVisible(MyMusicFiles) | Window.IsVisible(MyMusicLibrary) | Window.IsVisible(MyMusicPlaylist)]]]" width="840" height="45">
 					<include>ListViewItemLayoutWide</include>
 				</itemlayout>
