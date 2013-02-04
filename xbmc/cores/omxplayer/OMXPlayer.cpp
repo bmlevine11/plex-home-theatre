@@ -655,7 +655,11 @@ bool COMXPlayer::OpenDemuxStream()
     int attempts = 10;
     while(!m_bStop && attempts-- > 0)
     {
-      m_pDemuxer = CDVDFactoryDemuxer::CreateDemuxer(m_pInputStream);
+      /* PLEX */
+      CStdString error;
+      m_pDemuxer = CDVDFactoryDemuxer::CreateDemuxer(m_pInputStream, error);
+      /* END PLEX */
+
       if(!m_pDemuxer && m_pInputStream->IsStreamType(DVDSTREAM_TYPE_PVRMANAGER))
       {
         continue;
