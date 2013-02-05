@@ -269,6 +269,7 @@
 					<onright>9009</onright>
 					<onup>56</onup>
 					<ondown>56</ondown>
+					<preloaditems>8</preloaditems>
 					<!-- generic -->
 					<itemlayout height="45" width="530" condition="!Container.Content(Secondary) + ![Container.Content(songs) | Container.Content(albums)]">
 						<!-- horiz separator -->
@@ -1764,7 +1765,7 @@
 				<visible>Container.Content(plugins)</visible>
 			</control>
 			<!-- new "transparency" overlay for fanart -->
-			<control type="largeimage">
+			<!--control type="largeimage">
 				<posy>0</posy>
 				<posx>0</posx>
 				<width>1280</width>
@@ -1780,7 +1781,7 @@
 				<info background="true">ListItem.Art(thumb)</info>
 				<visible>!IsEmpty(ListItem.Art(thumb)) + Container.Content(clip)</visible>
 				<animation effect="fade" start="0" end="4" time="0" condition="true">Conditional</animation>
-			</control>
+			</control-->
 		</control>
 		<control type="group">
 			<posy>210</posy>
@@ -1794,6 +1795,7 @@
 				<onright>9009</onright>
 				<orientation>vertical</orientation>
 				<include>PanelStreamContentWithDetail</include>
+				<preloaditems>8</preloaditems>
 			</control>
 			<control type="group">
 				<visible>!Skin.HasSetting(HideFocusDetailForPanel)</visible>
@@ -2477,6 +2479,7 @@
 				<ondown>53</ondown>
 				<onleft>Skin.ToggleSetting(HideNowPlayingMusicInfo)</onleft>
 				<onright>9009</onright>
+				<preloaditems>8</preloaditems>
 				<orientation>vertical</orientation>
 				<!-- Generic -->
 				<itemlayout condition="![Container.Content(episodes) | Window.IsVisible(MyMusicFiles) | Window.IsVisible(MyMusicLibrary) | Window.IsVisible(MyMusicPlaylist)]" width="WallStreamPosterWidth" height="WallStreamPosterHeight">
@@ -2621,7 +2624,7 @@
 		<control type="group">
 			<visible>Control.IsVisible(59)</visible>
 			<control type="group">
-				<control type="largeimage">
+				<!--control type="largeimage">
 					<posy>0</posy>
 					<posx>0</posx>
 					<width>1280</width>
@@ -2630,10 +2633,10 @@
 					<texture background="true">$INFO[ListItem.Art(thumb)]</texture>
 					<visible>true</visible>
 					<animation effect="fade" start="0" end="10" time="0" condition="true">Conditional</animation>
-				</control>
+				</control-->
 				<visible>Container.content(plugins)</visible>
 				<include>MediaViewBGOverlay</include>
-				<control type="largeimage">
+				<!--control type="largeimage">
 					<posy>0</posy>
 					<posx>0</posx>
 					<width>1280</width>
@@ -2642,7 +2645,7 @@
 					<texture background="true">$INFO[ListItem.Art(thumb)]</texture>
 					<visible>true</visible>
 					<animation effect="fade" start="0" end="5" time="0" condition="true">Conditional</animation>
-				</control>
+				</control-->
 			</control>
 			<control type="group">
 				<posy>206</posy>
