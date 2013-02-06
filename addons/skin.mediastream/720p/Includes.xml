@@ -846,7 +846,7 @@
 				<control type="largeimage">
 					<description>Fanart background</description>
 					<include>FullScreenBGImage</include>
-					<info>ListItem.Art(fanart)</info>
+					<info background="true">ListItem.Art(fanart)</info>
 					<visible>!IsEmpty(ListItem.Art(fanart))</visible>
 					<include>BackgroundFade</include>
 				</control>
@@ -854,7 +854,7 @@
 					<description>Fanart background (from directory)</description>
 					<include>FullScreenBGImage</include>
 					<visible>IsEmpty(ListItem.Art(fanart)) + !IsEmpty(FanArt.Image)</visible>
-					<info>FanArt.Image</info>
+					<info background="true">FanArt.Image</info>
 					<include>BackgroundFade</include>
 				</control>
 			</control>

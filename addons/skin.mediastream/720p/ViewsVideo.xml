@@ -85,7 +85,7 @@
 						<posx>1</posx>
 						<width>660</width>
 						<height>122</height>
-						<texture diffuse="bannerMask.png">$INFO[ListItem.Art(banner)]</texture>
+						<texture background="true" diffuse="bannerMask.png">$INFO[ListItem.Art(banner)]</texture>
 						<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
 					</control>
 					<control type="label">
@@ -109,8 +109,8 @@
 				<onleft>Skin.ToggleSetting(HideNowPlayingMusicInfo)</onleft>
 				<onright>9009</onright>
 				<onup>57</onup>
-				<ondown>57</ondown>	
-				<preloaditems>8</preloaditems>
+				<ondown>57</ondown>
+				<preloaditems>4</preloaditems>
 				<include>TVSeasonsListAnim</include>
 				<itemlayout condition="!Container.Content(Seasons)" height="45" width="530">
 					<control type="image">
@@ -1087,7 +1087,7 @@
 				<onleft>51</onleft>
 				<onright>51</onright>
 				<onup>9009</onup>
-				<preloaditems>8</preloaditems>
+				<preloaditems>4</preloaditems>
 				<scrolltime>200</scrolltime>
 				<pagecontrol>-</pagecontrol>
 				<orientation>horizontal</orientation>
