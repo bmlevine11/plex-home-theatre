@@ -70,7 +70,7 @@
 			<width>520</width>
 			<height>225</height>
 			<onup>9001</onup>
-			<onleft>9000</onleft>
+			<onleft>300</onleft>
 			<onright>60</onright>
 			<ondown>9001</ondown>
 			<pagecontrol>60</pagecontrol>
@@ -137,11 +137,11 @@
 			<textureslidernib>ScrollBarNib.png</textureslidernib>
 			<textureslidernibfocus>ScrollBarNib.png</textureslidernibfocus>
 			<onleft>10</onleft>
-			<onright>9000</onright>
+			<onright>300</onright>
 			<showonepage>false</showonepage>
 			<orientation>vertical</orientation>
 		</control>
-		<control type="group" id="9000">
+		<control type="group" id="300">
 			<posx>580</posx>
 			<posy>105</posy>
 			<control type="button" id="11">
@@ -200,7 +200,7 @@
 				<aligny>center</aligny>
 				<label>186</label>
 				<font>font12_title</font>
-				<onup>9000</onup>
+				<onup>300</onup>
 				<onleft>20</onleft>
 				<onright>19</onright>
 				<ondown>10</ondown>
@@ -215,7 +215,7 @@
 				<aligny>center</aligny>
 				<label>222</label>
 				<font>font12_title</font>
-				<onup>9000</onup>
+				<onup>300</onup>
 				<onleft>18</onleft>
 				<onright>20</onright>
 				<ondown>10</ondown>

@@ -11,10 +11,8 @@
 			<control type="group">
 				<posx>190</posx>
 				<posy>50</posy>
-				<visible>Library.HasContent(Movies)</visible>
-				<visible>Container(9000).Hasfocus(10) + !Skin.HasSetting(HomepageHideRecentlyAddedVideo)</visible>
 				<include>VisibleFadeEffect</include>
-				<control type="label">
+				<!--control type="label">
 					<description>Title label</description>
 					<posx>180</posx>
 					<posy>220</posy>
@@ -26,18 +24,18 @@
 					<font>font12_title</font>
 					<textcolor>white</textcolor>
 					<shadowcolor>black</shadowcolor>
-				</control>
-				<control type="list" id="8000">
-					<animation effect="slide" start="0,0" end="90,0" time="0" condition="StringCompare(Container(8000).NumItems,4)">conditional</animation>
-					<animation effect="slide" start="0,0" end="180,0" time="0" condition="StringCompare(Container(8000).NumItems,3)">conditional</animation>
-					<animation effect="slide" start="0,0" end="270,0" time="0" condition="StringCompare(Container(8000).NumItems,2)">conditional</animation>
-					<animation effect="slide" start="0,0" end="360,0" time="0" condition="StringCompare(Container(8000).NumItems,1)">conditional</animation>
+				</control-->
+				<control type="list" id="11000">
+					<animation effect="slide" start="0,0" end="90,0" time="0" condition="StringCompare(Container(11000).NumItems,4)">conditional</animation>
+					<animation effect="slide" start="0,0" end="180,0" time="0" condition="StringCompare(Container(11000).NumItems,3)">conditional</animation>
+					<animation effect="slide" start="0,0" end="270,0" time="0" condition="StringCompare(Container(11000).NumItems,2)">conditional</animation>
+					<animation effect="slide" start="0,0" end="360,0" time="0" condition="StringCompare(Container(11000).NumItems,1)">conditional</animation>
 					<posx>0</posx>
 					<posy>0</posy>
 					<width>900</width>
 					<height>220</height>
-					<onleft>8000</onleft>
-					<onright>8000</onright>
+					<onleft>11000</onleft>
+					<onright>11000</onright>
 					<onup>20</onup>
 					<ondown condition="System.HasAddon(script.globalsearch)">608</ondown>
 					<ondown condition="!System.HasAddon(script.globalsearch)">603</ondown>
@@ -94,7 +92,7 @@
 							<texture background="true">$INFO[ListItem.Icon]</texture>
 							<bordertexture border="5">folder-focus.png</bordertexture>
 							<bordersize>5</bordersize>
-							<visible>Control.HasFocus(8000)</visible>
+							<visible>Control.HasFocus(11000)</visible>
 						</control>
 						<control type="image">
 							<posx>10</posx>
@@ -104,7 +102,7 @@
 							<texture>$INFO[ListItem.Icon]</texture>
 							<bordertexture border="5">button-nofocus.png</bordertexture>
 							<bordersize>5</bordersize>
-							<visible>!Control.HasFocus(8000)</visible>
+							<visible>!Control.HasFocus(11000)</visible>
 						</control>
 						<control type="label">
 							<posx>90</posx>
@@ -130,91 +128,10 @@
 							<align>center</align>
 							<aligny>center</aligny>
 							<label>$INFO[ListItem.Label]</label>
-							<visible>Control.HasFocus(8000)</visible>
+							<visible>Control.HasFocus(11000)</visible>
 						</control>
 					</focusedlayout>
-					<content>
-						<item>
-							<label>$INFO[Window.Property(LatestMovie.1.Title)]</label>
-							<label2></label2>
-							<onclick>PlayMedia($ESCINFO[Window.Property(LatestMovie.1.Path)])</onclick>
-							<icon>$INFO[Window.Property(LatestMovie.1.Thumb)]</icon>
-							<thumb>-</thumb>
-							<visible>!IsEmpty(Window.Property(LatestMovie.1.Title))</visible>
-						</item>
-						<item>
-							<label>$INFO[Window.Property(LatestMovie.2.Title)]</label>
-							<label2></label2>
-							<onclick>PlayMedia($ESCINFO[Window.Property(LatestMovie.2.Path)])</onclick>
-							<icon>$INFO[Window.Property(LatestMovie.2.Thumb)]</icon>
-							<thumb>-</thumb>
-							<visible>!IsEmpty(Window.Property(LatestMovie.2.Title))</visible>
-						</item>
-						<item>
-							<label>$INFO[Window.Property(LatestMovie.3.Title)]</label>
-							<label2></label2>
-							<onclick>PlayMedia($ESCINFO[Window.Property(LatestMovie.3.Path)])</onclick>
-							<icon>$INFO[Window.Property(LatestMovie.3.Thumb)]</icon>
-							<thumb>-</thumb>
-							<visible>!IsEmpty(Window.Property(LatestMovie.3.Title))</visible>
-						</item>
-						<item>
-							<label>$INFO[Window.Property(LatestMovie.4.Title)]</label>
-							<label2></label2>
-							<onclick>PlayMedia($ESCINFO[Window.Property(LatestMovie.4.Path)])</onclick>
-							<icon>$INFO[Window.Property(LatestMovie.4.Thumb)]</icon>
-							<thumb>-</thumb>
-							<visible>!IsEmpty(Window.Property(LatestMovie.4.Title))</visible>
-						</item>
-						<item>
-							<label>$INFO[Window.Property(LatestMovie.5.Title)]</label>
-							<label2></label2>
-							<onclick>PlayMedia($ESCINFO[Window.Property(LatestMovie.5.Path)])</onclick>
-							<icon>$INFO[Window.Property(LatestMovie.5.Thumb)]</icon>
-							<thumb>-</thumb>
-							<visible>!IsEmpty(Window.Property(LatestMovie.5.Title))</visible>
-						</item>
-						<item>
-							<label>$INFO[Window.Property(LatestMovie.6.Title)]</label>
-							<label2></label2>
-							<onclick>PlayMedia($ESCINFO[Window.Property(LatestMovie.6.Path)])</onclick>
-							<icon>$INFO[Window.Property(LatestMovie.6.Thumb)]</icon>
-							<thumb>-</thumb>
-							<visible>!IsEmpty(Window.Property(LatestMovie.6.Title))</visible>
-						</item>
-						<item>
-							<label>$INFO[Window.Property(LatestMovie.7.Title)]</label>
-							<label2></label2>
-							<onclick>PlayMedia($ESCINFO[Window.Property(LatestMovie.7.Path)])</onclick>
-							<icon>$INFO[Window.Property(LatestMovie.7.Thumb)]</icon>
-							<thumb>-</thumb>
-							<visible>!IsEmpty(Window.Property(LatestMovie.7.Title))</visible>
-						</item>
-						<item>
-							<label>$INFO[Window.Property(LatestMovie.8.Title)]</label>
-							<label2></label2>
-							<onclick>PlayMedia($ESCINFO[Window.Property(LatestMovie.8.Path)])</onclick>
-							<icon>$INFO[Window.Property(LatestMovie.8.Thumb)]</icon>
-							<thumb>-</thumb>
-							<visible>!IsEmpty(Window.Property(LatestMovie.8.Title))</visible>
-						</item>
-						<item>
-							<label>$INFO[Window.Property(LatestMovie.9.Title)]</label>
-							<label2></label2>
-							<onclick>PlayMedia($ESCINFO[Window.Property(LatestMovie.9.Path)])</onclick>
-							<icon>$INFO[Window.Property(LatestMovie.9.Thumb)]</icon>
-							<thumb>-</thumb>
-							<visible>!IsEmpty(Window.Property(LatestMovie.9.Title))</visible>
-						</item>
-						<item>
-							<label>$INFO[Window.Property(LatestMovie.10.Title)]</label>
-							<label2></label2>
-							<onclick>PlayMedia($ESCINFO[Window.Property(LatestMovie.10.Path)])</onclick>
-							<icon>$INFO[Window.Property(LatestMovie.10.Thumb)]</icon>
-							<thumb>-</thumb>
-							<visible>!IsEmpty(Window.Property(LatestMovie.10.Title))</visible>
-						</item>
-					</content>
+					
 				</control>
 				<control type="button">
 					<description>left Arrow</description>
@@ -224,8 +141,8 @@
 					<height>40</height>
 					<texturefocus>arrow-big-left.png</texturefocus>
 					<texturenofocus>arrow-big-left.png</texturenofocus>
-					<onclick>Control.Move(8000,-1)</onclick>
-					<visible>Control.HasFocus(8000) + Container(8000).HasPrevious</visible>
+					<onclick>Control.Move(11000,-1)</onclick>
+					<visible>Control.HasFocus(11000) + Container(11000).HasPrevious</visible>
 					<include>VisibleFadeEffect</include>
 				</control>
 				<control type="button">
@@ -236,8 +153,8 @@
 					<height>40</height>
 					<texturefocus>arrow-big-right.png</texturefocus>
 					<texturenofocus>arrow-big-right.png</texturenofocus>
-					<onclick>Control.Move(8000,1)</onclick>
-					<visible>Control.HasFocus(8000) + Container(8000).HasNext</visible>
+					<onclick>Control.Move(11000,1)</onclick>
+					<visible>Control.HasFocus(11000) + Container(11000).HasNext</visible>
 					<include>VisibleFadeEffect</include>
 				</control>
 			</control>
@@ -245,7 +162,7 @@
 				<posx>160</posx>
 				<posy>50</posy>
 				<visible>Library.HasContent(TVShows)</visible>
-				<visible>Container(9000).Hasfocus(11) + !Skin.HasSetting(HomepageHideRecentlyAddedVideo)</visible>
+				<visible>Container(300).Hasfocus(11) + !Skin.HasSetting(HomepageHideRecentlyAddedVideo)</visible>
 				<include>VisibleFadeEffect</include>
 				<control type="label">
 					<description>Title label</description>
@@ -508,7 +425,7 @@
 				<posx>240</posx>
 				<posy>50</posy>
 				<visible>Library.HasContent(Music)</visible>
-				<visible>Container(9000).Hasfocus(3) + !Skin.HasSetting(HomepageHideRecentlyAddedAlbums)</visible>
+				<visible>Container(300).Hasfocus(3) + !Skin.HasSetting(HomepageHideRecentlyAddedAlbums)</visible>
 				<include>VisibleFadeEffect</include>
 				<control type="label">
 					<description>Title label</description>

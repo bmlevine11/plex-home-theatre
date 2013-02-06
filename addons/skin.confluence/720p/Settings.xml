@@ -1,5 +1,5 @@
 <window>
-	<defaultcontrol always="true">9000</defaultcontrol>
+	<defaultcontrol always="true">300</defaultcontrol>
 	<allowoverlay>no</allowoverlay>
 	<controls>
 		<include>CommonBackground</include>
@@ -63,15 +63,15 @@
 				<aspectratio>keep</aspectratio>
 				<texture>Confluence_Logo.png</texture>
 			</control>
-			<control type="list" id="9000">
+			<control type="list" id="300">
 				<posx>10</posx>
 				<posy>82</posy>
 				<width>260</width>
 				<height>541</height>
-				<onleft>9000</onleft>
+				<onleft>300</onleft>
 				<onright>9001</onright>
-				<onup>9000</onup>
-				<ondown>9000</ondown>
+				<onup>300</onup>
+				<ondown>300</ondown>
 				<pagecontrol>-</pagecontrol>
 				<scrolltime>300</scrolltime>
 				<itemlayout height="54" width="260">
@@ -238,7 +238,7 @@
 				<width>740</width>
 				<height>100</height>
 				<font>font12</font>
-				<label>$INFO[Container(9000).ListItem.Label2]</label>
+				<label>$INFO[Container(300).ListItem.Label2]</label>
 				<align>left</align>
 				<textcolor>white</textcolor>
 				<shadowcolor>black</shadowcolor>

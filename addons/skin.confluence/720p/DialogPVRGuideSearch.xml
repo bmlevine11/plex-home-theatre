@@ -403,7 +403,7 @@
 				<ondown>26</ondown>
 			</control>
 		</control>
-		<control type="group" id="9000">
+		<control type="group" id="300">
 			<posy>540</posy>
 			<posx>125</posx>
 			<control type="button" id="28">

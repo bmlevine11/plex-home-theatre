@@ -117,8 +117,8 @@
 				<width>550</width>
 				<height>135</height>
 				<onup>12</onup>
-				<onleft>9000</onleft>
-				<onright>9000</onright>
+				<onleft>300</onleft>
+				<onright>300</onright>
 				<ondown>16</ondown>
 				<itemlayout width="560" height="45">
 					<control type="image">
@@ -168,7 +168,7 @@
 					</control>
 				</focusedlayout>
 			</control>
-			<control type="group" id="9000">
+			<control type="group" id="300">
 				<posx>590</posx>
 				<posy>225</posy>
 				<control type="button" id="13">

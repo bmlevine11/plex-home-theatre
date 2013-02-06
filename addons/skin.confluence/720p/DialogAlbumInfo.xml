@@ -24,10 +24,10 @@
 				<onclick>PreviousMenu</onclick>
 				<texturefocus>DialogCloseButton-focus.png</texturefocus>
 				<texturenofocus>DialogCloseButton.png</texturenofocus>
-				<onleft>9000</onleft>
-				<onright>9000</onright>
-				<onup>9000</onup>
-				<ondown>9000</ondown>
+				<onleft>300</onleft>
+				<onright>300</onright>
+				<onup>300</onup>
+				<ondown>300</ondown>
 				<visible>system.getbool(input.enablemouse)</visible>
 			</control>
 			<control type="group">
@@ -128,7 +128,7 @@
 						<height>330</height>
 						<onleft>49</onleft>
 						<onright>49</onright>
-						<onup>9000</onup>
+						<onup>300</onup>
 						<ondown>61</ondown>
 						<pagecontrol>-</pagecontrol>
 						<scrolltime>200</scrolltime>
@@ -197,55 +197,55 @@
 							<item>
 								<label>$LOCALIZE[557]:</label>
 								<label2>$INFO[ListItem.Artist]</label2>
-								<onclick>-</onclick>
+								<onclick>noop</onclick>
 								<visible>!IsEmpty(ListItem.Artist)</visible>
 							</item>
 							<item>
 								<label>$LOCALIZE[515]:</label>
 								<label2>$INFO[ListItem.Genre]</label2>
-								<onclick>-</onclick>
+								<onclick>noop</onclick>
 								<visible>!IsEmpty(ListItem.Genre)</visible>
 							</item>
 							<item>
 								<label>$LOCALIZE[563]:</label>
 								<label2>$INFO[ListItem.Rating]</label2>
-								<onclick>-</onclick>
+								<onclick>noop</onclick>
 								<visible>!IsEmpty(ListItem.Rating)</visible>
 							</item>
 							<item>
 								<label>$LOCALIZE[175]:</label>
 								<label2>$INFO[ListItem.Property(Album_Mood)]</label2>
-								<onclick>-</onclick>
+								<onclick>noop</onclick>
 								<visible>!IsEmpty(ListItem.Property(Album_Mood))</visible>
 							</item>
 							<item>
 								<label>$LOCALIZE[176]:</label>
 								<label2>$INFO[ListItem.Property(Album_Style)]</label2>
-								<onclick>-</onclick>
+								<onclick>noop</onclick>
 								<visible>!IsEmpty(ListItem.Property(Album_Style))</visible>
 							</item>
 							<item>
 								<label>$LOCALIZE[21895]:</label>
 								<label2>$INFO[ListItem.Property(Album_Theme)]</label2>
-								<onclick>-</onclick>
+								<onclick>noop</onclick>
 								<visible>!IsEmpty(ListItem.Property(Album_Theme))</visible>
 							</item>
 							<item>
 								<label>146</label>
 								<label2>$INFO[ListItem.Property(Album_Type)]</label2>
-								<onclick>-</onclick>
+								<onclick>noop</onclick>
 								<visible>!IsEmpty(ListItem.Property(Album_Type))</visible>
 							</item>
 							<item>
 								<label>$LOCALIZE[21899]:</label>
 								<label2>$INFO[ListItem.Property(Album_Label)]</label2>
-								<onclick>-</onclick>
+								<onclick>noop</onclick>
 								<visible>!IsEmpty(ListItem.Property(Album_Label))</visible>
 							</item>
 							<item>
 								<label>$LOCALIZE[562]:</label>
 								<label2>$INFO[ListItem.Year]</label2>
-								<onclick>-</onclick>
+								<onclick>noop</onclick>
 								<visible>!IsEmpty(ListItem.Year)</visible>
 							</item>
 						</content>
@@ -281,7 +281,7 @@
 						<height>330</height>
 						<onleft>49</onleft>
 						<onright>49</onright>
-						<onup>9000</onup>
+						<onup>300</onup>
 						<ondown>61</ondown>
 						<pagecontrol>-</pagecontrol>
 						<scrolltime>200</scrolltime>
@@ -350,55 +350,55 @@
 							<item>
 								<label>$LOCALIZE[21893]:</label>
 								<label2>$INFO[ListItem.Property(Artist_Born)]</label2>
-								<onclick>-</onclick>
+								<onclick>noop</onclick>
 								<visible>!IsEmpty(ListItem.Property(Artist_Born))</visible>
 							</item>
 							<item>
 								<label>$LOCALIZE[21894]:</label>
 								<label2>$INFO[ListItem.Property(Artist_Formed)]</label2>
-								<onclick>-</onclick>
+								<onclick>noop</onclick>
 								<visible>!IsEmpty(ListItem.Property(Artist_Formed))</visible>
 							</item>
 							<item>
 								<label>$LOCALIZE[515]:</label>
 								<label2>$INFO[ListItem.Genre]</label2>
-								<onclick>-</onclick>
+								<onclick>noop</onclick>
 								<visible>!IsEmpty(ListItem.Genre)</visible>
 							</item>
 							<item>
 								<label>$LOCALIZE[175]:</label>
 								<label2>$INFO[ListItem.Property(Artist_Mood)]</label2>
-								<onclick>-</onclick>
+								<onclick>noop</onclick>
 								<visible>!IsEmpty(ListItem.Property(Artist_Mood))</visible>
 							</item>
 							<item>
 								<label>$LOCALIZE[176]:</label>
 								<label2>$INFO[ListItem.Property(Artist_Style)]</label2>
-								<onclick>-</onclick>
+								<onclick>noop</onclick>
 								<visible>!IsEmpty(ListItem.Property(Artist_Style))</visible>
 							</item>
 							<item>
 								<label>$LOCALIZE[21892]:</label>
 								<label2>$INFO[ListItem.Property(Artist_Instrument)]</label2>
-								<onclick>-</onclick>
+								<onclick>noop</onclick>
 								<visible>!IsEmpty(ListItem.Property(Artist_Instrument))</visible>
 							</item>
 							<item>
 								<label>$LOCALIZE[21897]:</label>
 								<label2>$INFO[ListItem.Property(Artist_Died)]</label2>
-								<onclick>-</onclick>
+								<onclick>noop</onclick>
 								<visible>!IsEmpty(ListItem.Property(Artist_Died))</visible>
 							</item>
 							<item>
 								<label>$LOCALIZE[21896]:</label>
 								<label2>$INFO[ListItem.Property(Artist_Disbanded)]</label2>
-								<onclick>-</onclick>
+								<onclick>noop</onclick>
 								<visible>!IsEmpty(ListItem.Property(Artist_Disbanded))</visible>
 							</item>
 							<item>
 								<label>$LOCALIZE[21898]:</label>
 								<label2>$INFO[ListItem.Property(Artist_YearsActive)]</label2>
-								<onclick>-</onclick>
+								<onclick>noop</onclick>
 								<visible>!IsEmpty(ListItem.Property(Artist_YearsActive))</visible>
 							</item>
 						</content>
@@ -462,7 +462,7 @@
 					<font>-</font>
 					<onleft>61</onleft>
 					<onright>61</onright>
-					<ondown>9000</ondown>
+					<ondown>300</ondown>
 					<onup>49</onup>
 					<textcolor>-</textcolor>
 					<showonepage>true</showonepage>
@@ -495,10 +495,10 @@
 					<posy>520</posy>
 					<width>860</width>
 					<height>120</height>
-					<onleft>9000</onleft>
+					<onleft>300</onleft>
 					<onright>61</onright>
 					<onup>61</onup>
-					<ondown>9000</ondown>
+					<ondown>300</ondown>
 					<viewtype label="">list</viewtype>
 					<pagecontrol>61</pagecontrol>
 					<scrolltime>200</scrolltime>
@@ -624,7 +624,7 @@
 						</control>
 					</focusedlayout>
 				</control>
-				<control type="grouplist" id="9000">
+				<control type="grouplist" id="300">
 					<posx>210</posx>
 					<posy>660</posy>
 					<width>1030</width>
@@ -632,8 +632,8 @@
 					<itemgap>2</itemgap>
 					<align>center</align>
 					<orientation>horizontal</orientation>
-					<onleft>9000</onleft>
-					<onright>9000</onright>
+					<onleft>300</onleft>
+					<onright>300</onright>
 					<onup>50</onup>
 					<ondown>49</ondown>
 					<control type="button" id="5">

@@ -1,5 +1,5 @@
 <window>
-	<defaultcontrol always="true">9000</defaultcontrol>
+	<defaultcontrol always="true">300</defaultcontrol>
 	<controls>
 		<include>CommonBackground</include>
 		<control type="image">
@@ -88,15 +88,15 @@
 				<aspectratio>keep</aspectratio>
 				<texture>Confluence_Logo.png</texture>
 			</control>
-			<control type="list" id="9000">
+			<control type="list" id="300">
 				<posx>10</posx>
 				<posy>90</posy>
 				<width>260</width>
 				<height>481</height>
 				<onleft>9010</onleft>
 				<onright>9010</onright>
-				<onup>9000</onup>
-				<ondown>9000</ondown>
+				<onup>300</onup>
+				<ondown>300</ondown>
 				<pagecontrol>-</pagecontrol>
 				<scrolltime>300</scrolltime>
 				<itemlayout height="80" width="260">
@@ -137,7 +137,7 @@
 						<width>260</width>
 						<height>81</height>
 						<texture border="5">MenuItemFO.png</texture>
-						<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus(9000)">Conditional</animation>
+						<animation effect="fade" start="100" end="30" time="100" condition="!Control.HasFocus(300)">Conditional</animation>
 					</control>
 					<control type="label">
 						<posx>250</posx>
@@ -166,22 +166,22 @@
 					<item id="1">
 						<label>128</label>
 						<label2>5</label2>
-						<onclick>-</onclick>
+						<onclick>noop</onclick>
 					</item>
 					<item id="2">
 						<label>513</label>
 						<label2>31112</label2>
-						<onclick>-</onclick>
+						<onclick>noop</onclick>
 					</item>
 					<item id="3">
 						<label>31102</label>
 						<label2>31112</label2>
-						<onclick>-</onclick>
+						<onclick>noop</onclick>
 					</item>
 					<item id="4">
 						<label>24000</label>
 						<label2>31200</label2>
-						<onclick>-</onclick>
+						<onclick>noop</onclick>
 					</item>
 				</content>
 			</control>
@@ -207,7 +207,7 @@
 				<width>740</width>
 				<height>30</height>
 				<font>font16</font>
-				<label>$LOCALIZE[20077] - $INFO[Container(9000).ListItem.Label]</label>
+				<label>$LOCALIZE[20077] - $INFO[Container(300).ListItem.Label]</label>
 				<align>left</align>
 				<aligny>center</aligny>
 				<textcolor>white</textcolor>
@@ -215,14 +215,14 @@
 			</control>
 			<control type="group" id="9010">
 				<control type="grouplist" id="9001">
-					<visible>Container(9000).Hasfocus(1)</visible>
+					<visible>Container(300).Hasfocus(1)</visible>
 					<posx>290</posx>
 					<posy>60</posy>
 					<width>750</width>
 					<height>530</height>
 					<itemgap>-1</itemgap>
 					<pagecontrol>60</pagecontrol>
-					<onleft>9000</onleft>
+					<onleft>300</onleft>
 					<onright>60</onright>
 					<onup>9001</onup>
 					<ondown>9001</ondown>
@@ -356,20 +356,20 @@
 					<textureslidernib>ScrollBarNib.png</textureslidernib>
 					<textureslidernibfocus>ScrollBarNib.png</textureslidernibfocus>
 					<onleft>9001</onleft>
-					<onright>9000</onright>
+					<onright>300</onright>
 					<showonepage>false</showonepage>
 					<orientation>vertical</orientation>
-					<visible>Container(9000).Hasfocus(1)</visible>
+					<visible>Container(300).Hasfocus(1)</visible>
 				</control>
 				<control type="grouplist" id="9002">
-					<visible>Container(9000).Hasfocus(2)</visible>
+					<visible>Container(300).Hasfocus(2)</visible>
 					<posx>290</posx>
 					<posy>60</posy>
 					<width>750</width>
 					<height>530</height>
 					<itemgap>-1</itemgap>
 					<pagecontrol>60</pagecontrol>
-					<onleft>9000</onleft>
+					<onleft>300</onleft>
 					<onright>60</onright>
 					<onup>9002</onup>
 					<ondown>9002</ondown>
@@ -564,20 +564,20 @@
 					<textureslidernib>ScrollBarNib.png</textureslidernib>
 					<textureslidernibfocus>ScrollBarNib.png</textureslidernibfocus>
 					<onleft>9002</onleft>
-					<onright>9000</onright>
+					<onright>300</onright>
 					<showonepage>false</showonepage>
 					<orientation>vertical</orientation>
-					<visible>Container(9000).Hasfocus(2)</visible>
+					<visible>Container(300).Hasfocus(2)</visible>
 				</control>
 				<control type="grouplist" id="9003">
-					<visible>Container(9000).Hasfocus(3)</visible>
+					<visible>Container(300).Hasfocus(3)</visible>
 					<posx>290</posx>
 					<posy>60</posy>
 					<width>750</width>
 					<height>530</height>
 					<itemgap>-1</itemgap>
 					<pagecontrol>60</pagecontrol>
-					<onleft>9000</onleft>
+					<onleft>300</onleft>
 					<onright>60</onright>
 					<onup>9003</onup>
 					<ondown>9003</ondown>
@@ -677,14 +677,14 @@
 				</control>
 				<control type="group">
 					<control type="grouplist" id="9004">
-						<visible>Container(9000).Hasfocus(4)</visible>
+						<visible>Container(300).Hasfocus(4)</visible>
 						<posx>290</posx>
 						<posy>60</posy>
 						<width>750</width>
 						<height>530</height>
 						<itemgap>-1</itemgap>
 						<pagecontrol>61</pagecontrol>
-						<onleft>9000</onleft>
+						<onleft>300</onleft>
 						<onright>61</onright>
 						<onup>9004</onup>
 						<ondown>9004</ondown>
@@ -1065,10 +1065,10 @@
 					<textureslidernib>ScrollBarNib.png</textureslidernib>
 					<textureslidernibfocus>ScrollBarNib.png</textureslidernibfocus>
 					<onleft>9004</onleft>
-					<onright>9000</onright>
+					<onright>300</onright>
 					<showonepage>false</showonepage>
 					<orientation>vertical</orientation>
-					<visible>Container(9000).Hasfocus(4)</visible>
+					<visible>Container(300).Hasfocus(4)</visible>
 				</control>
 			</control>
 		</control>

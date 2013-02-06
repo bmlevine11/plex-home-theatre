@@ -229,8 +229,8 @@
 				<font>-</font>
 				<onleft>60</onleft>
 				<onright>60</onright>
-				<ondown>9000</ondown>
-				<onup>9000</onup>
+				<ondown>300</ondown>
+				<onup>300</onup>
 				<textcolor>-</textcolor>
 				<showonepage>true</showonepage>
 			</control>
@@ -245,7 +245,7 @@
 				<pagecontrol>60</pagecontrol>
 				<label fallback="161">$INFO[ListItem.Plot]</label>
 			</control>
-			<control type="grouplist" id="9000">
+			<control type="grouplist" id="300">
 				<posx>40</posx>
 				<posy>590</posy>
 				<width>640</width>
@@ -253,8 +253,8 @@
 				<itemgap>5</itemgap>
 				<align>center</align>
 				<orientation>horizontal</orientation>
-				<onleft>9000</onleft>
-				<onright>9000</onright>
+				<onleft>300</onleft>
+				<onright>300</onright>
 				<onup>60</onup>
 				<ondown>60</ondown>
 				<control type="button" id="10">

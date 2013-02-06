@@ -25,7 +25,7 @@
 				<aligny>center</aligny>
 				<label>$LOCALIZE[31061]</label>
 			</control>
-			<control type="group" id="9000">
+			<control type="group" id="300">
 				<posx>475</posx>
 				<posy>550</posy>
 				<control type="button" id="6">
@@ -186,7 +186,7 @@
 				<width>400</width>
 				<height>540</height>
 				<onleft>30</onleft>
-				<onright>9000</onright>
+				<onright>300</onright>
 				<onup>50</onup>
 				<ondown>50</ondown>
 				<viewtype label="">list</viewtype>
@@ -325,7 +325,7 @@
 				<posy>100</posy>
 				<width>400</width>
 				<height>550</height>
-				<onleft>9000</onleft>
+				<onleft>300</onleft>
 				<onright>31</onright>
 				<onup>100</onup>
 				<ondown>100</ondown>

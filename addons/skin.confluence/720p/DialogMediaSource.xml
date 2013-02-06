@@ -72,7 +72,7 @@
 			<width>525</width>
 			<height>225</height>
 			<onup>9001</onup>
-			<onleft>9000</onleft>
+			<onleft>300</onleft>
 			<onright>60</onright>
 			<ondown>12</ondown>
 			<pagecontrol>60</pagecontrol>
@@ -139,11 +139,11 @@
 			<textureslidernib>ScrollBarNib.png</textureslidernib>
 			<textureslidernibfocus>ScrollBarNib.png</textureslidernibfocus>
 			<onleft>10</onleft>
-			<onright>9000</onright>
+			<onright>300</onright>
 			<showonepage>false</showonepage>
 			<orientation>vertical</orientation>
 		</control>
-		<control type="group" id="9000">
+		<control type="group" id="300">
 			<posx>580</posx>
 			<posy>105</posy>
 			<control type="button" id="11">

@@ -18,9 +18,9 @@
 			<onfocus>down</onfocus>
 			<texturefocus>-</texturefocus>
 			<texturenofocus>-</texturenofocus>
-			<onleft>9000</onleft>
-			<onright>9000</onright>
-			<onup>9000</onup>
+			<onleft>300</onleft>
+			<onright>300</onright>
+			<onup>300</onup>
 			<ondown>2</ondown>
 		</control>
 		<control type="image">
@@ -30,15 +30,15 @@
 			<height>720</height>
 			<texture>black-back.png</texture>
 		</control>
-		<control type="grouplist" id="9000">
+		<control type="grouplist" id="300">
 			<posx>470</posx>
 			<posy>0</posy>
 			<width>340</width>
 			<height>720</height>
-			<onleft>9000</onleft>
-			<onright>9000</onright>
-			<onup>9000</onup>
-			<ondown>9000</ondown>
+			<onleft>300</onleft>
+			<onright>300</onright>
+			<onup>300</onup>
+			<ondown>300</ondown>
 			<itemgap>0</itemgap>
 			<align>center</align>
 			<control type="group" id="1">

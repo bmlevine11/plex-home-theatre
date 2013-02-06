@@ -179,7 +179,7 @@
 					<scrolltime>200</scrolltime>
 					<onup>200</onup>
 					<ondown>200</ondown>
-					<onleft>9000</onleft>
+					<onleft>300</onleft>
 					<onright>201</onright>
 					<include>TVNextAiredListCommonLayout</include>
 				</control>
@@ -492,15 +492,15 @@
 		<control type="group">
 			<posx>-250</posx>
 			<include>SideBladeLeft</include>
-			<control type="grouplist" id="9000">
+			<control type="grouplist" id="300">
 				<posx>0</posx>
 				<posy>110</posy>
 				<width>250</width>
 				<height>600</height>
-				<onleft>9000</onleft>
+				<onleft>300</onleft>
 				<onright>200</onright>
-				<onup>9000</onup>
-				<ondown>9000</ondown>
+				<onup>300</onup>
+				<ondown>300</ondown>
 				<onback>200</onback>
 				<itemgap>0</itemgap>
 				<control type="image" id="2">

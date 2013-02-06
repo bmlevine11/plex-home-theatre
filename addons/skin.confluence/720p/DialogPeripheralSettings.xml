@@ -141,7 +141,7 @@
 			<texture>separator2.png</texture>
 		</control>
 
-		<control type="group" id="9000">
+		<control type="group" id="300">
 			<posx>40</posx>
 			<posy>505</posy>
 			<control type="button" id="29">

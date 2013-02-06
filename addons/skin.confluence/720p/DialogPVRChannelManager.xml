@@ -288,7 +288,7 @@
 					<label>19074</label>
 					<onleft>20</onleft>
 					<onright>60</onright>
-					<onup>9000</onup>
+					<onup>300</onup>
 					<ondown>8</ondown>
 				</control>
 				<control type="edit" id ="8">
@@ -503,11 +503,11 @@
 					<onleft>20</onleft>
 					<onright>60</onright>
 					<onup>32</onup>
-					<ondown>9000</ondown>
+					<ondown>300</ondown>
 				</control>
 			</control>
 		</control>
-		<control type="group" id="9000">
+		<control type="group" id="300">
 			<posx>70</posx>
 			<posy>590</posy>
 			<control type="button" id ="4">

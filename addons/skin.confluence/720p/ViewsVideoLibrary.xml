@@ -6,7 +6,7 @@
 			<posy>80</posy>
 			<width>1160</width>
 			<height>460</height>
-			<onup>9000</onup>
+			<onup>300</onup>
 			<ondown>61</ondown>
 			<usecontrolcoords>true</usecontrolcoords>
 			<include>VisibleFadeEffect</include>
@@ -91,7 +91,7 @@
 				<textureslidernib>ScrollBarNib.png</textureslidernib>
 				<textureslidernibfocus>ScrollBarNib.png</textureslidernibfocus>
 				<onup>501</onup>
-				<ondown>9000</ondown>
+				<ondown>300</ondown>
 				<showonepage>false</showonepage>
 				<orientation>horizontal</orientation>
 				<visible>Control.IsVisible(501)</visible>
