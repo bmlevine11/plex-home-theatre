@@ -25,6 +25,7 @@
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/thread.hpp>
 #include <boost/thread/locks.hpp>
+#include <boost/shared_ptr.hpp>
 /* END PLEX */
 
 
@@ -35,9 +36,9 @@
 #include "system.h"
 #include <iomanip>
 
-#include "OMXPlayer.h"
 #include "OMXPlayerAudio.h"
 #include "OMXPlayerVideo.h"
+#include "OMXPlayer.h"
 
 
 #include "DVDInputStreams/DVDFactoryInputStream.h"
@@ -102,15 +103,15 @@
 
 
 
-/* PLEX */
-#include "FileSystem/PlexDirectory.h"
 #include "PlexServerManager.h"
+/* PLEX */
+#include "PlexAsyncUrlResolver.h"
+#include "FileSystem/PlexDirectory.h"
 
 #include "hmac_sha2.h"
 
 #include <boost/lexical_cast.hpp>
 #include "Utility/Base64.h"
-#include "PlexAsyncUrlResolver.h"
 
 #include "PlexMediaServerQueue.h"
 #include "ApplicationMessenger.h"
@@ -439,6 +440,12 @@ COMXPlayer::COMXPlayer(IPlayerCallback &callback)
       m_player_audio(&m_av_clock, m_messenger),
       m_player_subtitle(&m_overlayContainer),
       m_player_teletext(),
+      /* PLEX */
+      m_hidingSub(false),
+      m_vobsubToDisplay(-1),
+      m_readRate(0),
+      /* END PLEX */
+
       m_ready(true)
 {
   m_bAbortRequest     = false;
@@ -1669,7 +1676,6 @@ bool COMXPlayer::GetCachingTimes(double& level, double& delay, double& offset)
     level = -1.0;                          /* buffer is full & our read rate is too low  */
   else
 #endif
- 
     level = (cached + queued) / (cache_need + queued);
 
   return true;
@@ -4615,20 +4621,22 @@ bool COMXPlayer::PlexProcess(CStdString& stopURL)
   if (item.GetProperty("IsSynthesized").asBoolean() == false)
   {
     CLog::Log(LOGDEBUG, "DVDPlayer::PlexProcess Item is not synthesized, resolving...");
+    
+
     PlexAsyncUrlResolverPtr resolver = PlexAsyncUrlResolver::ResolveFirst(item);
     // Wait for it to complete.
     for (bool done = false; done == false && m_bAbortRequest == false; )
       done = resolver->WaitForCompletion(100);
 
     // If we cancelled, stop it.
-    if (m_bAbortRequest == true && resolver->Success() == false)
+    if (m_bAbortRequest == true && resolver->success() == false)
     {
       resolver->Cancel();
       m_bAbortRequest = true;
       return false;
     }
 
-    if (resolver->Success() == true)
+    if (resolver->success() == true)
     {
       item = resolver->GetFinalItem();
       m_itemWithDetails = resolver->GetFinalItemPtr();
@@ -4641,6 +4649,7 @@ bool COMXPlayer::PlexProcess(CStdString& stopURL)
   while (isIndirect)
   {
     // Spin up async thread.
+
     PlexAsyncUrlResolverPtr resolver = PlexAsyncUrlResolver::Resolve(item);
 
     // Wait for it to complete.
@@ -4648,7 +4657,7 @@ bool COMXPlayer::PlexProcess(CStdString& stopURL)
       done = resolver->WaitForCompletion(100);
 
     // If we cancelled, stop it.
-    if (m_bAbortRequest == true && resolver->Success() == false)
+    if (m_bAbortRequest == true && resolver->success() == false)
     {
       resolver->Cancel();
       m_bAbortRequest = true;
@@ -4657,13 +4666,13 @@ bool COMXPlayer::PlexProcess(CStdString& stopURL)
 
     // Suck the data out of the resolver and see if it's indirect as well.
     item.SetPath(resolver->GetFinalPath());
-    isIndirect = resolver->IsIndirect();
+    //isIndirect = resolver->IsIndirect();
 
     // If we ran into an indirect, copy the full item, since it might have
     // POST URL and other goodies.
     //
-    if (isIndirect)
-      item = resolver->GetFinalItem();
+//    if (isIndirect)
+ //     item = resolver->GetFinalItem();
   }
 
   m_mimetype = item.GetMimeType();
