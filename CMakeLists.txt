@@ -209,7 +209,7 @@ if(WIN32)
 endif()
 
 # Build the texturepacker
-#add_subdirectory(tools/TexturePacker)
+add_subdirectory(tools/TexturePacker)
 
 # add our visualizations
 add_subdirectory(xbmc/visualizations)
