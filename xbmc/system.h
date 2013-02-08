@@ -268,6 +268,8 @@
 #ifdef HAVE_LIBGLESV2
 #undef HAS_GL
 #define HAS_GLES 2
+#undef HAS_SDL_WIN_EVENTS
+#define HAS_LINUX_EVENTS
 #endif
 
 // GLES1.0 detected. Dont use GL!

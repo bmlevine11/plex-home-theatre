@@ -13,8 +13,6 @@ set(LINK_PKG
   PCRE
   SDL
   SDL_image
-  SDL_mixer
-  X11
   Lzo2
   FriBiDi
   Fontconfig
@@ -158,6 +156,7 @@ plex_find_library(EGL 0 0  /opt/vc/lib 1)
 plex_find_library(vcos 0 0  /opt/vc/lib 1)
 plex_find_library(bcm_host 0 0  /opt/vc/lib 1)
 plex_find_library(vchiq_arm 0 0  /opt/vc/lib 1)
+plex_find_library(X11 0 0  /usr/lib 1)
 
 
 set(CMAKE_C_FLAGS " -isystem/usr/include -isystem/opt/vc/include -isystem/opt/vc/include/interface/vcos/pthreads -isystem/opt/vc -isystem/opt/vc/include/interface/vmcs_host/linux/ -isystem/opt/vc/include/EGL -isystem/opt/vc/include/GLES -isystem/opt/vc/include/GLES2 -isystem/opt/vc/include/KHR -isystem/opt/vc/include/VG -L/lib -L/usr/lib -L/opt/vc/lib -Wl,-rpath-link,/lib -Wl,-rpath-link,/lib -Wl,-rpath-link,/usr/lib -Wl,-rpath-link,/opt/vc/ -fPIC -pipe -O3 -mcpu=arm1176jzf-s -mtune=arm1176jzf-s -mfloat-abi=hard -mfpu=vfp -mabi=aapcs-linux -Wno-psabi -Wa,-mno-warn-deprecated -Wno-deprecated-declarations ")

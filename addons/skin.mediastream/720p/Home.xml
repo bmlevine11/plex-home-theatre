@@ -20,6 +20,7 @@
 		</control>
 		<control type="group">
 			<!-- generic autopopulated fanart slideshow -->
+			<visible>Skin.HasSetting(ShowFanart)</visible>
 			<control type="multiimage" id="10101">
 				<posx>0</posx>
 				<posy>0</posy>
@@ -273,6 +274,12 @@
 							<label> $LOCALIZE[31800] </label>
 							<onclick>XBMC.ActivateWindow(4)</onclick>
 						</item>
+						<item id="7">
+							<description>About Button</description>
+							<label> Show Fanart</label>
+							<onclick>Skin.ToggleSetting(ShowFanart)</onclick>
+							<selected>Skin.HasSetting(ShowFanart)</selected>
+						</item>
 					</content>
 				</control>
 			</control>
@@ -445,6 +452,7 @@
 				<ondown>300</ondown>
 				<onleft>Skin.ToggleSetting(HideNowPlayingMusicInfo)</onleft>
 				<onright>5000</onright>
+				<preloaditems>4</preloaditems>
 				<focusposition>5</focusposition>
 				<scrolltime>200</scrolltime>
 				<include>HomeSlideLeft</include>
@@ -661,8 +669,8 @@
 				<posy>235</posy>
 				<posx>1</posx>
 				<visible>[!Control.IsVisible(11000) + Control.IsVisible(11001)] | [!Control.IsVisible(11001) + Control.IsVisible(11000)] | [Control.IsVisible(11003) + !Control.IsVisible(11004)] | [!Control.IsVisible(11003) + Control.IsVisible(11004)] | Control.IsVisible(11002)</visible>
-				<animation effect="fade" start="0" end="100" time="500" delay="0">Visible</animation>
-				<animation effect="fade" start="100" end="0" time="100" delay="0">Hidden</animation>
+				<!--<animation effect="fade" start="0" end="100" time="500" delay="0">Visible</animation>
+				<animation effect="fade" start="100" end="0" time="100" delay="0">Hidden</animation>-->
 				<control type="image">
 					<texture background="true">newlistsinglebgunfocused1.png</texture>
 				</control>
@@ -1454,7 +1462,7 @@
 						<height>30</height>
 						<posy>347</posy>
 						<align>right</align>
-						<label>$LOCALIZE[31045]</label>
+						<label>Recently Added</label>
 						<visible>Control.IsVisible(11000) + Control.IsVisible(11001)</visible>
 					</control>
 					<visible allowhiddenfocus="false">true</visible>
@@ -1468,7 +1476,7 @@
 						<height>30</height>
 						<posy>249</posy>
 						<align>right</align>
-						<label>$LOCALIZE[31045]</label>
+						<label>Recently Added</label>
 						<visible>Control.IsVisible(11000) + !Control.IsVisible(11001)</visible>
 					</control>
 					<!-- select arrow if only this list is visible -->
@@ -2373,7 +2381,7 @@
 						<ondown>7005</ondown>
 						<onup>-</onup>
 						<onright>-</onright>
-						<onleft>300</onleft>
+						<onleft>300</onleft>	
 						<preloaditems>4</preloaditems>
 						<posx>-14</posx>
 						<posy>131</posy>
