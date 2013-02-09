@@ -1912,7 +1912,7 @@ void CPlexDirectory::Process()
   
   // Build a description of what we support.
   
-  CStdString protocols = "protocols=shoutcast,http-live-streaming,http-mp4-streaming,http-mp4-video,http-mp4-video-720p,http-streaming-video,http-streaming-video-720p;audioDecoders=mp3,aac";
+  CStdString protocols = "protocols=shoutcast,webkit,http-video,http-live-streaming,http-mp4-streaming,http-mp4-video,http-mp4-video-720p,http-streaming-video,http-streaming-video-720p;videoDecoders=mpeg4,h264{profile:high&resolution:1080&level:51};audioDecoders=mp3,aac";
   
   if (AUDIO_IS_BITSTREAM(g_guiSettings.GetInt("audiooutput.mode")))
   {
