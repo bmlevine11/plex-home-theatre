@@ -21,7 +21,6 @@ set(LINK_PKG
   microhttpd
   Crypto
   TinyXML
-  GLEW
   Iconv
   Avahi
   LibDl

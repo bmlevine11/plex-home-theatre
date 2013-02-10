@@ -3,7 +3,7 @@
 	<defaultcontrol>56</defaultcontrol>
 	<allowoverlay>yes</allowoverlay>
 	<controls>
-		<include>Background</include>
+		<include condition="Skin.HasSetting(ShowFanart)">Background</include>
 		<!-- -->
 		<include>InfoList</include>
 		<!--<include>List</include>-->

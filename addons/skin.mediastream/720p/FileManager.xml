@@ -4,8 +4,8 @@
 	<allowoverlay>no</allowoverlay>
 	<controls>
 		<control type="group">
-			<include>Background</include>
-			<include>MediaViewBGOverlay</include>
+			<include condition="Skin.HasSetting(ShowFanart)">Background</include>
+			<include  condition="Skin.HasSetting(ShowFanart)">MediaViewBGOverlay"</include>
 			<control type="group">
 				<include>TopOverlayTitlePos</include>
 				<include>TopOverlayFirstTitleAreaBG</include>

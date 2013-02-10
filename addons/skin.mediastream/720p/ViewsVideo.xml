@@ -4,7 +4,7 @@
 	<include name="TV">
 		<control type="group">
 			<include>TVWideVisible</include>
-			<include>MediaViewBGOverlay</include>
+			<include  condition="Skin.HasSetting(ShowFanart)">MediaViewBGOverlay"</include>
 		</control>
 		<control type="group">
 			<include>TVSeasonsVisible</include>

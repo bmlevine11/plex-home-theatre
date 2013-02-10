@@ -3,7 +3,7 @@
 	<defaultcontrol>9000</defaultcontrol>
 	<allowoverlay>yes</allowoverlay>
 	<controls>
-		<include>Background</include>
+		<include condition="Skin.HasSetting(ShowFanart)">Background</include>
 		<!-- Submenu blade / main menu -->
 		<control type="group" id="302">
 			<include>SettingsSubBlade</include>

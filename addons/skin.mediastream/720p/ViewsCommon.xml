@@ -4,7 +4,7 @@
 		<control type="group">
 			<include>ListViewVisible</include>
 			<include>BackgroundOverlayFade</include>
-			<include>MediaViewBGOverlay</include>
+			<include  condition="Skin.HasSetting(ShowFanart)">MediaViewBGOverlay"</include>
 		</control>
 		<control type="group">
 			<include>ListViewVisible</include>

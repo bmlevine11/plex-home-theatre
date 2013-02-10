@@ -2,7 +2,7 @@
 	<defaultcontrol always="true">101</defaultcontrol>
 	<allowoverlay>no</allowoverlay>
 	<controls>
-		<include>Background</include>
+		<include condition="Skin.HasSetting(ShowFanart)">Background</include>
 		<include>HomeRightOverlay</include>
 		<!-- Submenu blade / main menu -->
 		<control type="group">

@@ -10,7 +10,7 @@ if(NOT WIN32)
 
   add_subdirectory(EGLHelpers)
   add_subdirectory(OpenGLSpectrum)
-  add_subdirectory(XBMCProjectM)
+#  add_subdirectory(XBMCProjectM)
   
   if (NOT APPLE)
     add_subdirectory(Goom)

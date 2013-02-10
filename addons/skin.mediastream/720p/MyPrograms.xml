@@ -4,7 +4,7 @@
 	<views>56,59</views>
 	<allowoverlay>yes</allowoverlay>
 	<controls>
-		<include>Background</include>
+		<include condition="Skin.HasSetting(ShowFanart)">Background</include>
 		<include>PluginStream</include>
 		<!--><include>PanelStream</include>-->
 		<include>InfoList</include>

@@ -28,7 +28,7 @@
 					<align>center</align>
 					<animation effect="fade" start="0" end="15" time="0" condition="true">Conditional</animation>
 				</control>
-				<include>MediaViewBGOverlay</include>
+				<include  condition="Skin.HasSetting(ShowFanart)">MediaViewBGOverlay"</include>
 			</control>
 			<control type="group">
 				<posx>20</posx>

@@ -3,7 +3,7 @@
 	<defaultcontrol always="true">5</defaultcontrol>
 	<allowoverlay>no</allowoverlay>
 	<controls>
-		<include>Background</include>
+		<include condition="Skin.HasSetting(ShowFanart)">Background</include>
 		<control type="image">
 			<description>Overlay for right of screen</description>
 			<posx>1045</posx>
