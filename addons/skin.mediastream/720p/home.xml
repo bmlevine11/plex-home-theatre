@@ -127,7 +127,7 @@
 		<control type="group" id="500">
 			<!--animation effect="fade" start="0" end="100" time="1000" delay="500">WindowOpen</animation-->
 			<animation type="WindowClose" condition="![Window.Next(SettingsCategory.xml) | Window.Next(1001) | Window.Next(7) | Window.Next(34)]">
-				<effect type="fade" time="300"/>
+				<!--effect type="fade" time="300"/-->
 				<effect type="slide" time="200" end="-220,0"/>
 			</animation>
 			<!--animation effect="fade" time="0" condition="[Window.Next(SettingsCategory.xml) | Window.Next(1001) | Window.Next(7) | Window.Next(34)]">WindowClose</animation-->
@@ -206,10 +206,10 @@
 					<ondown>506</ondown>
 					<onleft>300</onleft>
 					<onright>506</onright>
-					<scrolltime>200</scrolltime>
+					<scrolltime>0</scrolltime>
 					<visible allowhiddenfocus="true">Control.HasFocus(506)</visible>
 					<include>HomeSideMenuDims</include>
-					<include>HomeSlideLeft</include>
+					<!--include>HomeSlideLeft</include-->
 					<itemlayout width="HomeSideMenuItemWidth" height="HomeSideMenuItemHeight">
 						<control type="image">
 							<include>HomeSideMenuNFBGImage</include>
@@ -308,10 +308,10 @@
 					<ondown>507</ondown>
 					<onleft>300</onleft>
 					<onright>507</onright>
-					<scrolltime>200</scrolltime>
+					<scrolltime>0</scrolltime>
 					<visible allowhiddenfocus="true">Control.HasFocus(507)</visible>
 					<include>HomeSideMenuDims</include>
-					<include>HomeSlideLeft</include>
+					<!--include>HomeSlideLeft</include-->
 					<itemlayout width="HomeSideMenuItemWidth" height="HomeSideMenuItemHeight">
 						<control type="image">
 							<include>HomeSideMenuNFBGImage</include>
@@ -430,7 +430,7 @@
 				<height>720</height>
 				<texture border="0,0,500,0">HomeBladeLeft.png</texture>
 				<!--animation effect="fade" start="0" end="100" time="0" condition="true">Conditional</animation-->
-				<include>HomeSlideLeft</include>
+				<!--include>HomeSlideLeft</include-->
 			</control>
 			<control type="image">
 				<description>Background Image Left Blade</description>
@@ -441,8 +441,8 @@
 				<height>720</height>
 				<texture border="0,0,500,0">HomeBladeLeft.png</texture>
 				<!--animation effect="fade" start="0" end="100" time="0" condition="true">Conditional</animation-->
-				<animation effect="slide" tween="cubic" start="-865,0" time="500" delay="90" condition="!Window.Previous(SettingsCategory.xml) + !Window.Previous(1001) + !Window.Previous(7) + !Window.Previous(34)">WindowOpen</animation>
-				<animation effect="slide" tween="circle" easing="inout" end="-865,0" delay="300" time="500" condition="!Window.Next(SettingsCategory.xml) + !Window.Next(1001) + !Window.Next(7) + !Window.Next(34)">WindowClose</animation>
+				<!--animation effect="slide" tween="cubic" start="-865,0" time="500" delay="90" condition="!Window.Previous(SettingsCategory.xml) + !Window.Previous(1001) + !Window.Previous(7) + !Window.Previous(34)">WindowOpen</animation>
+				<animation effect="slide" tween="circle" easing="inout" end="-865,0" delay="300" time="500" condition="!Window.Next(SettingsCategory.xml) + !Window.Next(1001) + !Window.Next(7) + !Window.Next(34)">WindowClose</animation-->
 			</control>
 			<control type="image">
 				<posy>372</posy>
@@ -451,8 +451,8 @@
 				<height>1</height>
 				<texture>black.png</texture>
 				<!--animation effect="fade" start="0" end="25" time="0" condition="true">Conditional</animation-->
-				<animation effect="slide" tween="cubic" start="-865,0" time="500" delay="90" condition="!Window.Previous(SettingsCategory.xml) + !Window.Previous(1001) + !Window.Previous(7) + !Window.Previous(34)">WindowOpen</animation>
-				<animation effect="slide" tween="circle" easing="inout" end="-865,0" delay="300" time="500" condition="!Window.Next(SettingsCategory.xml) + !Window.Next(1001) + !Window.Next(7) + !Window.Next(34)">WindowClose</animation>
+				<!--animation effect="slide" tween="cubic" start="-865,0" time="500" delay="90" condition="!Window.Previous(SettingsCategory.xml) + !Window.Previous(1001) + !Window.Previous(7) + !Window.Previous(34)">WindowOpen</animation>
+				<animation effect="slide" tween="circle" easing="inout" end="-865,0" delay="300" time="500" condition="!Window.Next(SettingsCategory.xml) + !Window.Next(1001) + !Window.Next(7) + !Window.Next(34)">WindowClose</animation-->
 			</control>
 			<!-- Main Menu -->
 			<control type="wraplist" id="300">
@@ -467,8 +467,8 @@
 				<onright>5000</onright>
 				<preloaditems>4</preloaditems>
 				<focusposition>5</focusposition>
-				<scrolltime>200</scrolltime>
-				<include>HomeSlideLeft</include>
+				<scrolltime>0</scrolltime>
+				<!--include>HomeSlideLeft</include-->
 				<visible allowhiddenfocus="true">Control.HasFocus(300)</visible>
 				<!--animation effect="fade" start="0" end="100" time="500">Visible</animation-->
 				<!--animation effect="fade" start="0" end="100" time="300">WindowOpen</animation-->
@@ -595,7 +595,7 @@
 			</control>
 			<control type="group">
 				<posy>349</posy>
-				<include>HomeSlideLeft</include>
+				<!--include>HomeSlideLeft</include-->
 				<visible>Skin.HasSetting(HomeBladeCentre)</visible>
 				<control type="label">
 					<info>Container(300).ListItem(0).Label</info>
@@ -644,7 +644,7 @@
 				</control>
 			</control>
 			<control type="group">
-				<include>HomeSlideLeft</include>
+				<!--include>HomeSlideLeft</include-->
 				<control type="image">
 					<posx>330</posx>
 					<posy>0</posy>
@@ -664,7 +664,7 @@
 			<posx>0</posx>
 			<posy>540</posy>
 			<visible>Player.HasAudio + !Skin.HasSetting(HomeAudioNowPlaying)</visible>
-			<include>HomeSlideLeft</include>
+			<!--include>HomeSlideLeft</include-->
 			<include>MusicNowPlaying</include>
 		</control>
 		<include>Clock</include>

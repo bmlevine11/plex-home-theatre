@@ -706,7 +706,7 @@
 	<constant name="HomeSideMenuItemHeight">43</constant>
 	<include name="HomeSideMenu">
 		<include>HomeSideMenuDims</include>
-		<scrolltime>200</scrolltime>
+		<scrolltime>0</scrolltime>
 		<onleft>300</onleft>
 		<onright>301</onright>
 		<itemlayout width="HomeSideMenuItemWidth" height="HomeSideMenuItemHeight">
@@ -830,8 +830,8 @@
 						<posx>-2</posx>
 						<visible>ControlGroup(7002).HasFocus + !Control.IsVisible(11000)</visible>
 						<texture background="true">newlistselector.png</texture>
-						<animation effect="fade" start="0" end="100" time="400" condition="true">Visible</animation>
-						<animation effect="fade" start="100" end="0" time="0" condition="true">Hidden</animation>
+						<!--animation effect="fade" start="0" end="100" time="400" condition="true">Visible</animation>
+						<animation effect="fade" start="100" end="0" time="0" condition="true">Hidden</animation-->
 					</control>
 					<!-- select arrow if both lists are visible -->
 					<control type="image">
@@ -839,8 +839,8 @@
 						<posx>-2</posx>
 						<visible>ControlGroup(7002).HasFocus + Control.IsVisible(11000)</visible>
 						<texture flipy="true">newlistselector.png</texture>
-						<animation effect="fade" start="0" end="100" time="400" condition="true">Visible</animation>
-						<animation effect="fade" start="100" end="0" time="0" condition="true">Hidden</animation>
+						<!--animation effect="fade" start="0" end="100" time="400" condition="true">Visible</animation>
+						<animation effect="fade" start="100" end="0" time="0" condition="true">Hidden</animation-->
 					</control>
 					<control type="fixedlist" id="11001">
 						<visible allowhiddenfocus="false">false</visible>
@@ -850,6 +850,7 @@
 						<onright>-</onright>
 						<onleft>300</onleft>
 						<preloaditems>4</preloaditems>
+						<scrolltime>0</scrolltime>
 						<posx>-14</posx>
 						<posy>131</posy>
 						<width>870</width>
@@ -908,8 +909,8 @@
 									<texture diffuse="posterMaskSmall.png" background="true">posterMaskSmall.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
 									<visible>ControlGroup(7001).HasFocus</visible>
-									<!--animation effect="fade" start="0" end="50" time="400" condition="true">Visible</animation>
-									<animation effect="fade" start="50" end="0" time="300" condition="true">Hidden</animation-->
+									<animation effect="fade" start="0" end="50" time="0" condition="true">Visible</animation>
+									<animation effect="fade" start="50" end="0" time="0" condition="true">Hidden</animation>
 								</control>
 								<control type="image">
 									<posx>36</posx>
@@ -989,8 +990,8 @@
 									<texture diffuse="posterMaskSmall.png" background="true">posterMaskSmall.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
 									<visible>ControlGroup(7001).HasFocus</visible>
-									<!--animation effect="fade" start="0" end="50" time="400" condition="true">Visible</animation>
-									<animation effect="fade" start="50" end="0" time="300" condition="true">Hidden</animation-->
+									<animation effect="fade" start="0" end="50" time="0" condition="true">Visible</animation>
+									<animation effect="fade" start="50" end="0" time="0" condition="true">Hidden</animation>
 								</control>
 								<control type="image">
 									<posx>36</posx>
@@ -1069,8 +1070,8 @@
 									<texture diffuse="posterMaskSmall.png" background="true">posterMaskSmall.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
 									<visible>ListItem.Type(movie) + ControlGroup(7001).HasFocus</visible>
-									<!--animation effect="fade" start="0" end="50" time="400" condition="true">Visible</animation>
-									<animation effect="fade" start="50" end="0" time="300" condition="true">Hidden</animation-->
+									<animation effect="fade" start="0" end="50" time="0" condition="true">Visible</animation>
+									<animation effect="fade" start="50" end="0" time="0" condition="true">Hidden</animation>
 								</control>
 							</control>
 							<!-- movie when only this list is visible -->
@@ -1161,8 +1162,8 @@
 									<texture diffuse="posterMaskSmall.png" background="true">posterMaskSmall.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
 									<visible>ControlGroup(7001).HasFocus</visible>
-									<!--animation effect="fade" start="0" end="50" time="400" condition="true">Visible</animation>
-									<animation effect="fade" start="50" end="0" time="300" condition="true">Hidden</animation-->
+									<animation effect="fade" start="0" end="50" time="0" condition="true">Visible</animation>
+									<animation effect="fade" start="50" end="0" time="0" condition="true">Hidden</animation>
 								</control>
 								<control type="image">
 									<posx>37</posx>
@@ -1244,8 +1245,8 @@
 									<texture diffuse="posterMaskSmall.png" background="true">posterMaskSmall.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
 									<visible>ControlGroup(7001).HasFocus</visible>
-									<!--animation effect="fade" start="0" end="50" time="400" condition="true">Visible</animation>
-									<animation effect="fade" start="50" end="0" time="300" condition="true">Hidden</animation-->
+									<animation effect="fade" start="0" end="50" time="0" condition="true">Visible</animation>
+									<animation effect="fade" start="50" end="0" time="0" condition="true">Hidden</animation>
 								</control>
 								<control type="image">
 									<posx>37</posx>
@@ -1607,6 +1608,7 @@
 						<onright>-</onright>
 						<onleft>300</onleft>
 						<preloaditems>4</preloaditems>
+						<scrolltime>0</scrolltime>
 						<posx>-14</posx>
 						<posy>0</posy>
 						<width>880</width>
@@ -1649,7 +1651,7 @@
 									<height>32</height>
 									<texture border="10">blackwideroundedtflat.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
-									<!--animation effect="fade" start="0" end="40" time="400" condition="true">Conditional</animation-->
+									<animation effect="fade" start="0" end="20" time="0" condition="true">Conditional</animation>
 								</control>
 								<control type="label">
 									<posx>95</posx>
@@ -1688,7 +1690,7 @@
 									<height>50</height>
 									<texture border="10">blackwideroundedtflat.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
-									<!--animation effect="fade" start="0" end="40" time="400" condition="true">Conditional</animation-->
+									<animation effect="fade" start="0" end="20" time="0" condition="true">Conditional</animation>
 								</control>
 								<!-- drop shadow -->
 								<control type="image">
@@ -1752,8 +1754,8 @@
 									<texture diffuse="posterMaskSmall.png" background="true">posterMaskSmall.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
 									<visible>ControlGroup(7002).HasFocus</visible>
-									<!--animation effect="fade" start="0" end="50" time="400" condition="true">Visible</animation>
-									<animation effect="fade" start="50" end="0" time="300" condition="true">Hidden</animation-->
+									<animation effect="fade" start="0" end="50" time="0" condition="true">Visible</animation>
+									<animation effect="fade" start="50" end="0" time="0" condition="true">Hidden</animation>
 								</control>
 								<control type="image">
 									<posx>36</posx>
@@ -1824,8 +1826,8 @@
 									<texture diffuse="posterMaskSmall.png" background="true">posterMaskSmall.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
 									<visible>ControlGroup(7002).HasFocus</visible>
-									<!--animation effect="fade" start="0" end="50" time="400" condition="true">Visible</animation>
-									<animation effect="fade" start="50" end="0" time="300" condition="true">Hidden</animation-->
+									<animation effect="fade" start="0" end="50" time="0" condition="true">Visible</animation>
+									<animation effect="fade" start="50" end="0" time="0" condition="true">Hidden</animation>
 								</control>
 								<control type="image">
 									<posx>36</posx>
@@ -1896,8 +1898,8 @@
 									<texture diffuse="posterMaskSmall.png" background="true">posterMaskSmall.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
 									<visible>ControlGroup(7002).HasFocus</visible>
-									<!--animation effect="fade" start="0" end="50" time="400" condition="true">Visible</animation>
-									<animation effect="fade" start="50" end="0" time="300" condition="true">Hidden</animation-->
+									<animation effect="fade" start="0" end="50" time="0" condition="true">Visible</animation>
+									<animation effect="fade" start="50" end="0" time="0" condition="true">Hidden</animation>
 								</control>
 							</control>
 							<!-- movie when only this list is visible -->
@@ -2052,8 +2054,8 @@
 									<texture diffuse="posterMaskSmall.png" background="true">posterMaskSmall.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
 									<visible>ControlGroup(7002).HasFocus</visible>
-									<!--animation effect="fade" start="0" end="50" time="400" condition="true">Visible</animation>
-									<animation effect="fade" start="50" end="0" time="300" condition="true">Hidden</animation-->
+									<animation effect="fade" start="0" end="50" time="0" condition="true">Visible</animation>
+									<animation effect="fade" start="50" end="0" time="0" condition="true">Hidden</animation>
 								</control>
 								<control type="image">
 									<posx>37</posx>
@@ -2126,8 +2128,8 @@
 									<texture diffuse="posterMaskSmall.png" background="true">posterMaskSmall.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
 									<visible>ControlGroup(7002).HasFocus</visible>
-									<!--animation effect="fade" start="0" end="50" time="400" condition="true">Visible</animation>
-									<animation effect="fade" start="50" end="0" time="300" condition="true">Hidden</animation-->
+									<animation effect="fade" start="0" end="50" time="0" condition="true">Visible</animation>
+									<animation effect="fade" start="50" end="0" time="0" condition="true">Hidden</animation>
 								</control>
 								<control type="image">
 									<posx>37</posx>
@@ -2485,6 +2487,7 @@
 						<onright>-</onright>
 						<onleft>300</onleft>	
 						<preloaditems>4</preloaditems>
+						<scrolltime>0</scrolltime>
 						<posx>-14</posx>
 						<posy>131</posy>
 						<width>880</width>
@@ -2501,7 +2504,7 @@
 									<height>42</height>
 									<texture border="10">BlackTransparent.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
-									<!--animation effect="fade" start="0" end="20" time="400" condition="true">Conditional</animation-->
+									<animation effect="fade" start="0" end="20" time="0" condition="true">Conditional</animation>
 								</control>
 								<!-- drop shadow -->
 								<control type="image">
@@ -2527,7 +2530,7 @@
 									<height>32</height>
 									<texture border="10">blackwideroundedtflat.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
-									<!--animation effect="fade" start="0" end="40" time="400" condition="true">Conditional</animation-->
+									<animation effect="fade" start="0" end="20" time="0" condition="true">Conditional</animation>
 								</control>
 								<control type="label">
 									<posx>95</posx>
@@ -2566,7 +2569,7 @@
 									<height>42</height>
 									<texture border="10">BlackTransparent.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
-									<!--animation effect="fade" start="0" end="20" time="400" condition="true">Conditional</animation-->
+									<animation effect="fade" start="0" end="20" time="0" condition="true">Conditional</animation>
 								</control>
 								<!-- drop shadow -->
 								<control type="image">
@@ -2595,8 +2598,8 @@
 									<texture diffuse="episodeMaskSmall.png" background="true">episodeMaskSmall.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
 									<visible>ControlGroup(7005).HasFocus</visible>
-									<!--animation effect="fade" start="0" end="50" time="400" condition="true">Visible</animation>
-									<animation effect="fade" start="50" end="0" time="300" condition="true">Hidden</animation-->
+									<animation effect="fade" start="0" end="50" time="0" condition="true">Visible</animation>
+									<animation effect="fade" start="50" end="0" time="0" condition="true">Hidden</animation>
 								</control>
 								<control type="image">
 									<posx>36</posx>
@@ -2605,7 +2608,7 @@
 									<height>32</height>
 									<texture border="10">blackwideroundedtflat.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
-									<!--animation effect="fade" start="0" end="40" time="400" condition="true">Conditional</animation-->
+									<animation effect="fade" start="0" end="20" time="0" condition="true">Conditional</animation>
 								</control>
 								<control type="label">
 									<posx>95</posx>
@@ -2981,6 +2984,7 @@
 						<onright>-</onright>
 						<onleft>300</onleft>
 						<preloaditems>4</preloaditems>
+						<scrolltime>0</scrolltime>
 						<posx>-14</posx>
 						<posy>0</posy>
 						<width>880</width>
@@ -2997,7 +3001,7 @@
 									<height>42</height>
 									<texture border="10">BlackTransparent.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
-									<!--animation effect="fade" start="0" end="20" time="400" condition="true">Conditional</animation-->
+									<animation effect="fade" start="0" end="20" time="0" condition="true">Conditional</animation>
 								</control>
 								<!-- drop shadow -->
 								<control type="image">
@@ -3023,7 +3027,7 @@
 									<height>32</height>
 									<texture border="10">blackwideroundedtflat.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
-									<!--animation effect="fade" start="0" end="40" time="400" condition="true">Conditional</animation-->
+									<animation effect="fade" start="0" end="20" time="0" condition="true">Conditional</animation>
 								</control>
 								<control type="label">
 									<posx>95</posx>
@@ -3076,7 +3080,7 @@
 									<height>42</height>
 									<texture border="10">BlackTransparent.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
-									<!--animation effect="fade" start="0" end="20" time="400" condition="true">Conditional</animation-->
+									<animation effect="fade" start="0" end="20" time="0" condition="true">Conditional</animation>
 								</control>
 								<!-- drop shadow -->
 								<control type="image">
@@ -3105,8 +3109,8 @@
 									<texture diffuse="episodeMaskSmall.png" background="true">episodeMaskSmall.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
 									<visible>ControlGroup(7003).HasFocus</visible>
-									<!--animation effect="fade" start="0" end="50" time="400" condition="true">Visible</animation>
-									<animation effect="fade" start="50" end="0" time="300" condition="true">Hidden</animation-->
+									<animation effect="fade" start="0" end="50" time="0" condition="true">Visible</animation>
+									<animation effect="fade" start="50" end="0" time="0" condition="true">Hidden</animation>
 								</control>
 								<control type="image">
 									<posx>36</posx>
@@ -3115,7 +3119,7 @@
 									<height>32</height>
 									<texture border="10">blackwideroundedtflat.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
-									<!--animation effect="fade" start="0" end="40" time="400" condition="true">Conditional</animation-->
+									<animation effect="fade" start="0" end="20" time="0" condition="true">Conditional</animation>
 								</control>
 								<control type="label">
 									<posx>95</posx>
@@ -3547,6 +3551,7 @@
 						<onright>-</onright>
 						<onleft>300</onleft>
 						<preloaditems>4</preloaditems>
+						<scrolltime>0</scrolltime>
 						<posx>-14</posx>
 						<posy>250</posy>
 						<width>880</width>
@@ -3562,7 +3567,7 @@
 									<height>50</height>
 									<texture border="10">blackwideroundedtflat.png</texture>
 									<colordiffuse>FF000000</colordiffuse>
-									<!--animation effect="fade" start="0" end="40" time="400" condition="true">Conditional</animation-->
+									<animation effect="fade" start="0" end="20" time="0" condition="true">Conditional</animation>
 								</control>
 								<!-- drop shadow -->
 								<control type="image">
@@ -6145,7 +6150,7 @@
 		<posy>50</posy>
 		<width>612</width>
 		<height>378</height>
-		<scrolltime>200</scrolltime>
+		<scrolltime>0</scrolltime>
 	</include>
 	<!-- Video OSD -->
 	<include name="VideoOSDSlide">
@@ -7491,7 +7496,7 @@
 	</include>
 	<include name="SettingsSideMenu">
 		<include>SettingsSideMenuDims</include>
-		<scrolltime>200</scrolltime>
+		<scrolltime>0</scrolltime>
 		<itemlayout width="300" height="HomeSideMenuItemHeight">
 			<control type="image">
 				<include>HomeSideMenuNFBGImage</include>
@@ -7517,10 +7522,10 @@
 	</include>
 	<include name="SettingsLeftBlade">
 		<control type="group">
-			<animation effect="slide" tween="cubic" start="0,0" end="180,0" time="300" delay="100" condition="Window.Next(0) + !Window.Next(SettingsCategory.xml) + !Window.Next(1001) + !Skin.HasSetting(HomeBladeCentre)">WindowClose</animation>
+			<!--animation effect="slide" tween="cubic" start="0,0" end="180,0" time="300" delay="100" condition="Window.Next(0) + !Window.Next(SettingsCategory.xml) + !Window.Next(1001) + !Skin.HasSetting(HomeBladeCentre)">WindowClose</animation>
 			<animation effect="slide" tween="cubic" start="0,0" end="620,0" time="300" delay="100" condition="Window.Next(0) + !Window.Next(SettingsCategory.xml) + !Window.Next(1001) + Skin.HasSetting(HomeBladeCentre)">WindowClose</animation>
 			<animation effect="slide" tween="cubic" start="0,0" end="-670,0" time="700" delay="100" condition="!Window.Next(0) + !Window.Next(SettingsCategory.xml) + !Window.Next(1001) + !Skin.HasSetting(HomeBladeCentre)">WindowClose</animation>
-			<animation effect="slide" tween="cubic" start="0,0" end="-230,0" time="800" delay="100" condition="!Window.Next(0) + !Window.Next(SettingsCategory.xml) + !Window.Next(1001) + Skin.HasSetting(HomeBladeCentre)">WindowClose</animation>
+			<animation effect="slide" tween="cubic" start="0,0" end="-230,0" time="800" delay="100" condition="!Window.Next(0) + !Window.Next(SettingsCategory.xml) + !Window.Next(1001) + Skin.HasSetting(HomeBladeCentre)">WindowClose</animation-->
 			<control type="image">
 				<description>Background Image Left Blade</description>
 				<posx>-620</posx>
@@ -7550,9 +7555,9 @@
 	<!-- settings center blade -->
 	<include name="SettingsTextArea">
 		<control type="group">
-			<animation effect="zoom" tween="linear" center="411,0" start="100,100" end="0,100" time="200" delay="100" condition="Window.Next(0) + !Window.Next(SettingsCategory.xml) + !Window.Next(1001) + !Skin.HasSetting(HomeBladeCentre)">WindowClose</animation>
+			<!--animation effect="zoom" tween="linear" center="411,0" start="100,100" end="0,100" time="200" delay="100" condition="Window.Next(0) + !Window.Next(SettingsCategory.xml) + !Window.Next(1001) + !Skin.HasSetting(HomeBladeCentre)">WindowClose</animation>
 			<animation effect="zoom" tween="linear" center="851,0" start="100,100" end="0,100" time="200" delay="100" condition="Window.Next(0) + !Window.Next(SettingsCategory.xml) + !Window.Next(1001) + Skin.HasSetting(HomeBladeCentre)">WindowClose</animation>
-			<animation effect="fade" start="0" end="99" time="0" condition="true">Conditional</animation>
+			<animation effect="fade" start="0" end="99" time="0" condition="true">Conditional</animation-->
 			<!--<control type="image">
 				<include>SettingsCentreBladeBG</include>
 			</control>-->
@@ -7766,7 +7771,7 @@
 		<posy>188</posy>
 		<width>FileMgrDirectoryWidth</width>
 		<height>380</height>
-		<scrolltime>200</scrolltime>
+		<scrolltime>0</scrolltime>
 	</include>
 	<constant name="FileMgrFileItemHeight">32</constant>
 	<include name="FileMgrFileItemLabel">
