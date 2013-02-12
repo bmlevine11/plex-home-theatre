@@ -42,10 +42,10 @@ EQUALS = =
 CMAKE_EDIT_COMMAND = /usr/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999
+CMAKE_SOURCE_DIR = /root/plex-home-theater
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999
+CMAKE_BINARY_DIR = /root/plex-home-theater
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -104,7 +104,7 @@ list_install_components/fast: list_install_components
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /root/plex-home-theater && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -114,7 +114,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && /usr/bin/cpack --config ./CPackSourceConfig.cmake /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/CPackSourceConfig.cmake
+	cd /root/plex-home-theater && /usr/bin/cpack --config ./CPackSourceConfig.cmake /root/plex-home-theater/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -133,14 +133,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(CMAKE_COMMAND) -E cmake_progress_start /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/CMakeFiles /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/lib/cximage-6.0/CxImage/CMakeFiles/progress.marks
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/CxImage/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/CMakeFiles 0
+	cd /root/plex-home-theater && $(CMAKE_COMMAND) -E cmake_progress_start /root/plex-home-theater/CMakeFiles /root/plex-home-theater/lib/cximage-6.0/CxImage/CMakeFiles/progress.marks
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/CxImage/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/plex-home-theater/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/CxImage/clean
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/CxImage/clean
 .PHONY : clean
 
 # The main clean target
@@ -149,22 +149,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/CxImage/preinstall
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/CxImage/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/CxImage/preinstall
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/CxImage/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /root/plex-home-theater && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/rule:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/rule
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/rule
 .PHONY : lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/rule
 
 # Convenience name for target.
@@ -173,7 +173,7 @@ cximage: lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/rule
 
 # fast build rule for target.
 cximage/fast:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build
 .PHONY : cximage/fast
 
 tif_xfile.o: tif_xfile.cpp.o
@@ -181,7 +181,7 @@ tif_xfile.o: tif_xfile.cpp.o
 
 # target to build an object file
 tif_xfile.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/tif_xfile.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/tif_xfile.cpp.o
 .PHONY : tif_xfile.cpp.o
 
 tif_xfile.i: tif_xfile.cpp.i
@@ -189,7 +189,7 @@ tif_xfile.i: tif_xfile.cpp.i
 
 # target to preprocess a source file
 tif_xfile.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/tif_xfile.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/tif_xfile.cpp.i
 .PHONY : tif_xfile.cpp.i
 
 tif_xfile.s: tif_xfile.cpp.s
@@ -197,7 +197,7 @@ tif_xfile.s: tif_xfile.cpp.s
 
 # target to generate assembly for a file
 tif_xfile.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/tif_xfile.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/tif_xfile.cpp.s
 .PHONY : tif_xfile.cpp.s
 
 ximabmp.o: ximabmp.cpp.o
@@ -205,7 +205,7 @@ ximabmp.o: ximabmp.cpp.o
 
 # target to build an object file
 ximabmp.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximabmp.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximabmp.cpp.o
 .PHONY : ximabmp.cpp.o
 
 ximabmp.i: ximabmp.cpp.i
@@ -213,7 +213,7 @@ ximabmp.i: ximabmp.cpp.i
 
 # target to preprocess a source file
 ximabmp.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximabmp.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximabmp.cpp.i
 .PHONY : ximabmp.cpp.i
 
 ximabmp.s: ximabmp.cpp.s
@@ -221,7 +221,7 @@ ximabmp.s: ximabmp.cpp.s
 
 # target to generate assembly for a file
 ximabmp.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximabmp.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximabmp.cpp.s
 .PHONY : ximabmp.cpp.s
 
 ximadsp.o: ximadsp.cpp.o
@@ -229,7 +229,7 @@ ximadsp.o: ximadsp.cpp.o
 
 # target to build an object file
 ximadsp.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximadsp.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximadsp.cpp.o
 .PHONY : ximadsp.cpp.o
 
 ximadsp.i: ximadsp.cpp.i
@@ -237,7 +237,7 @@ ximadsp.i: ximadsp.cpp.i
 
 # target to preprocess a source file
 ximadsp.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximadsp.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximadsp.cpp.i
 .PHONY : ximadsp.cpp.i
 
 ximadsp.s: ximadsp.cpp.s
@@ -245,7 +245,7 @@ ximadsp.s: ximadsp.cpp.s
 
 # target to generate assembly for a file
 ximadsp.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximadsp.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximadsp.cpp.s
 .PHONY : ximadsp.cpp.s
 
 ximaenc.o: ximaenc.cpp.o
@@ -253,7 +253,7 @@ ximaenc.o: ximaenc.cpp.o
 
 # target to build an object file
 ximaenc.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaenc.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaenc.cpp.o
 .PHONY : ximaenc.cpp.o
 
 ximaenc.i: ximaenc.cpp.i
@@ -261,7 +261,7 @@ ximaenc.i: ximaenc.cpp.i
 
 # target to preprocess a source file
 ximaenc.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaenc.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaenc.cpp.i
 .PHONY : ximaenc.cpp.i
 
 ximaenc.s: ximaenc.cpp.s
@@ -269,7 +269,7 @@ ximaenc.s: ximaenc.cpp.s
 
 # target to generate assembly for a file
 ximaenc.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaenc.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaenc.cpp.s
 .PHONY : ximaenc.cpp.s
 
 ximaexif.o: ximaexif.cpp.o
@@ -277,7 +277,7 @@ ximaexif.o: ximaexif.cpp.o
 
 # target to build an object file
 ximaexif.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaexif.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaexif.cpp.o
 .PHONY : ximaexif.cpp.o
 
 ximaexif.i: ximaexif.cpp.i
@@ -285,7 +285,7 @@ ximaexif.i: ximaexif.cpp.i
 
 # target to preprocess a source file
 ximaexif.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaexif.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaexif.cpp.i
 .PHONY : ximaexif.cpp.i
 
 ximaexif.s: ximaexif.cpp.s
@@ -293,7 +293,7 @@ ximaexif.s: ximaexif.cpp.s
 
 # target to generate assembly for a file
 ximaexif.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaexif.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaexif.cpp.s
 .PHONY : ximaexif.cpp.s
 
 ximage.o: ximage.cpp.o
@@ -301,7 +301,7 @@ ximage.o: ximage.cpp.o
 
 # target to build an object file
 ximage.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximage.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximage.cpp.o
 .PHONY : ximage.cpp.o
 
 ximage.i: ximage.cpp.i
@@ -309,7 +309,7 @@ ximage.i: ximage.cpp.i
 
 # target to preprocess a source file
 ximage.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximage.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximage.cpp.i
 .PHONY : ximage.cpp.i
 
 ximage.s: ximage.cpp.s
@@ -317,7 +317,7 @@ ximage.s: ximage.cpp.s
 
 # target to generate assembly for a file
 ximage.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximage.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximage.cpp.s
 .PHONY : ximage.cpp.s
 
 ximagif.o: ximagif.cpp.o
@@ -325,7 +325,7 @@ ximagif.o: ximagif.cpp.o
 
 # target to build an object file
 ximagif.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximagif.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximagif.cpp.o
 .PHONY : ximagif.cpp.o
 
 ximagif.i: ximagif.cpp.i
@@ -333,7 +333,7 @@ ximagif.i: ximagif.cpp.i
 
 # target to preprocess a source file
 ximagif.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximagif.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximagif.cpp.i
 .PHONY : ximagif.cpp.i
 
 ximagif.s: ximagif.cpp.s
@@ -341,7 +341,7 @@ ximagif.s: ximagif.cpp.s
 
 # target to generate assembly for a file
 ximagif.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximagif.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximagif.cpp.s
 .PHONY : ximagif.cpp.s
 
 ximahist.o: ximahist.cpp.o
@@ -349,7 +349,7 @@ ximahist.o: ximahist.cpp.o
 
 # target to build an object file
 ximahist.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximahist.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximahist.cpp.o
 .PHONY : ximahist.cpp.o
 
 ximahist.i: ximahist.cpp.i
@@ -357,7 +357,7 @@ ximahist.i: ximahist.cpp.i
 
 # target to preprocess a source file
 ximahist.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximahist.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximahist.cpp.i
 .PHONY : ximahist.cpp.i
 
 ximahist.s: ximahist.cpp.s
@@ -365,7 +365,7 @@ ximahist.s: ximahist.cpp.s
 
 # target to generate assembly for a file
 ximahist.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximahist.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximahist.cpp.s
 .PHONY : ximahist.cpp.s
 
 ximaico.o: ximaico.cpp.o
@@ -373,7 +373,7 @@ ximaico.o: ximaico.cpp.o
 
 # target to build an object file
 ximaico.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaico.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaico.cpp.o
 .PHONY : ximaico.cpp.o
 
 ximaico.i: ximaico.cpp.i
@@ -381,7 +381,7 @@ ximaico.i: ximaico.cpp.i
 
 # target to preprocess a source file
 ximaico.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaico.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaico.cpp.i
 .PHONY : ximaico.cpp.i
 
 ximaico.s: ximaico.cpp.s
@@ -389,7 +389,7 @@ ximaico.s: ximaico.cpp.s
 
 # target to generate assembly for a file
 ximaico.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaico.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaico.cpp.s
 .PHONY : ximaico.cpp.s
 
 ximainfo.o: ximainfo.cpp.o
@@ -397,7 +397,7 @@ ximainfo.o: ximainfo.cpp.o
 
 # target to build an object file
 ximainfo.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximainfo.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximainfo.cpp.o
 .PHONY : ximainfo.cpp.o
 
 ximainfo.i: ximainfo.cpp.i
@@ -405,7 +405,7 @@ ximainfo.i: ximainfo.cpp.i
 
 # target to preprocess a source file
 ximainfo.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximainfo.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximainfo.cpp.i
 .PHONY : ximainfo.cpp.i
 
 ximainfo.s: ximainfo.cpp.s
@@ -413,7 +413,7 @@ ximainfo.s: ximainfo.cpp.s
 
 # target to generate assembly for a file
 ximainfo.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximainfo.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximainfo.cpp.s
 .PHONY : ximainfo.cpp.s
 
 ximaint.o: ximaint.cpp.o
@@ -421,7 +421,7 @@ ximaint.o: ximaint.cpp.o
 
 # target to build an object file
 ximaint.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaint.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaint.cpp.o
 .PHONY : ximaint.cpp.o
 
 ximaint.i: ximaint.cpp.i
@@ -429,7 +429,7 @@ ximaint.i: ximaint.cpp.i
 
 # target to preprocess a source file
 ximaint.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaint.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaint.cpp.i
 .PHONY : ximaint.cpp.i
 
 ximaint.s: ximaint.cpp.s
@@ -437,7 +437,7 @@ ximaint.s: ximaint.cpp.s
 
 # target to generate assembly for a file
 ximaint.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaint.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaint.cpp.s
 .PHONY : ximaint.cpp.s
 
 ximajas.o: ximajas.cpp.o
@@ -445,7 +445,7 @@ ximajas.o: ximajas.cpp.o
 
 # target to build an object file
 ximajas.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximajas.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximajas.cpp.o
 .PHONY : ximajas.cpp.o
 
 ximajas.i: ximajas.cpp.i
@@ -453,7 +453,7 @@ ximajas.i: ximajas.cpp.i
 
 # target to preprocess a source file
 ximajas.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximajas.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximajas.cpp.i
 .PHONY : ximajas.cpp.i
 
 ximajas.s: ximajas.cpp.s
@@ -461,7 +461,7 @@ ximajas.s: ximajas.cpp.s
 
 # target to generate assembly for a file
 ximajas.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximajas.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximajas.cpp.s
 .PHONY : ximajas.cpp.s
 
 ximajbg.o: ximajbg.cpp.o
@@ -469,7 +469,7 @@ ximajbg.o: ximajbg.cpp.o
 
 # target to build an object file
 ximajbg.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximajbg.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximajbg.cpp.o
 .PHONY : ximajbg.cpp.o
 
 ximajbg.i: ximajbg.cpp.i
@@ -477,7 +477,7 @@ ximajbg.i: ximajbg.cpp.i
 
 # target to preprocess a source file
 ximajbg.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximajbg.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximajbg.cpp.i
 .PHONY : ximajbg.cpp.i
 
 ximajbg.s: ximajbg.cpp.s
@@ -485,7 +485,7 @@ ximajbg.s: ximajbg.cpp.s
 
 # target to generate assembly for a file
 ximajbg.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximajbg.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximajbg.cpp.s
 .PHONY : ximajbg.cpp.s
 
 ximajpg.o: ximajpg.cpp.o
@@ -493,7 +493,7 @@ ximajpg.o: ximajpg.cpp.o
 
 # target to build an object file
 ximajpg.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximajpg.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximajpg.cpp.o
 .PHONY : ximajpg.cpp.o
 
 ximajpg.i: ximajpg.cpp.i
@@ -501,7 +501,7 @@ ximajpg.i: ximajpg.cpp.i
 
 # target to preprocess a source file
 ximajpg.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximajpg.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximajpg.cpp.i
 .PHONY : ximajpg.cpp.i
 
 ximajpg.s: ximajpg.cpp.s
@@ -509,7 +509,7 @@ ximajpg.s: ximajpg.cpp.s
 
 # target to generate assembly for a file
 ximajpg.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximajpg.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximajpg.cpp.s
 .PHONY : ximajpg.cpp.s
 
 ximalpha.o: ximalpha.cpp.o
@@ -517,7 +517,7 @@ ximalpha.o: ximalpha.cpp.o
 
 # target to build an object file
 ximalpha.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximalpha.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximalpha.cpp.o
 .PHONY : ximalpha.cpp.o
 
 ximalpha.i: ximalpha.cpp.i
@@ -525,7 +525,7 @@ ximalpha.i: ximalpha.cpp.i
 
 # target to preprocess a source file
 ximalpha.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximalpha.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximalpha.cpp.i
 .PHONY : ximalpha.cpp.i
 
 ximalpha.s: ximalpha.cpp.s
@@ -533,7 +533,7 @@ ximalpha.s: ximalpha.cpp.s
 
 # target to generate assembly for a file
 ximalpha.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximalpha.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximalpha.cpp.s
 .PHONY : ximalpha.cpp.s
 
 ximalyr.o: ximalyr.cpp.o
@@ -541,7 +541,7 @@ ximalyr.o: ximalyr.cpp.o
 
 # target to build an object file
 ximalyr.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximalyr.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximalyr.cpp.o
 .PHONY : ximalyr.cpp.o
 
 ximalyr.i: ximalyr.cpp.i
@@ -549,7 +549,7 @@ ximalyr.i: ximalyr.cpp.i
 
 # target to preprocess a source file
 ximalyr.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximalyr.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximalyr.cpp.i
 .PHONY : ximalyr.cpp.i
 
 ximalyr.s: ximalyr.cpp.s
@@ -557,7 +557,7 @@ ximalyr.s: ximalyr.cpp.s
 
 # target to generate assembly for a file
 ximalyr.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximalyr.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximalyr.cpp.s
 .PHONY : ximalyr.cpp.s
 
 ximamng.o: ximamng.cpp.o
@@ -565,7 +565,7 @@ ximamng.o: ximamng.cpp.o
 
 # target to build an object file
 ximamng.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximamng.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximamng.cpp.o
 .PHONY : ximamng.cpp.o
 
 ximamng.i: ximamng.cpp.i
@@ -573,7 +573,7 @@ ximamng.i: ximamng.cpp.i
 
 # target to preprocess a source file
 ximamng.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximamng.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximamng.cpp.i
 .PHONY : ximamng.cpp.i
 
 ximamng.s: ximamng.cpp.s
@@ -581,7 +581,7 @@ ximamng.s: ximamng.cpp.s
 
 # target to generate assembly for a file
 ximamng.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximamng.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximamng.cpp.s
 .PHONY : ximamng.cpp.s
 
 ximapal.o: ximapal.cpp.o
@@ -589,7 +589,7 @@ ximapal.o: ximapal.cpp.o
 
 # target to build an object file
 ximapal.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximapal.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximapal.cpp.o
 .PHONY : ximapal.cpp.o
 
 ximapal.i: ximapal.cpp.i
@@ -597,7 +597,7 @@ ximapal.i: ximapal.cpp.i
 
 # target to preprocess a source file
 ximapal.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximapal.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximapal.cpp.i
 .PHONY : ximapal.cpp.i
 
 ximapal.s: ximapal.cpp.s
@@ -605,7 +605,7 @@ ximapal.s: ximapal.cpp.s
 
 # target to generate assembly for a file
 ximapal.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximapal.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximapal.cpp.s
 .PHONY : ximapal.cpp.s
 
 ximapcx.o: ximapcx.cpp.o
@@ -613,7 +613,7 @@ ximapcx.o: ximapcx.cpp.o
 
 # target to build an object file
 ximapcx.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximapcx.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximapcx.cpp.o
 .PHONY : ximapcx.cpp.o
 
 ximapcx.i: ximapcx.cpp.i
@@ -621,7 +621,7 @@ ximapcx.i: ximapcx.cpp.i
 
 # target to preprocess a source file
 ximapcx.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximapcx.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximapcx.cpp.i
 .PHONY : ximapcx.cpp.i
 
 ximapcx.s: ximapcx.cpp.s
@@ -629,7 +629,7 @@ ximapcx.s: ximapcx.cpp.s
 
 # target to generate assembly for a file
 ximapcx.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximapcx.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximapcx.cpp.s
 .PHONY : ximapcx.cpp.s
 
 ximapng.o: ximapng.cpp.o
@@ -637,7 +637,7 @@ ximapng.o: ximapng.cpp.o
 
 # target to build an object file
 ximapng.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximapng.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximapng.cpp.o
 .PHONY : ximapng.cpp.o
 
 ximapng.i: ximapng.cpp.i
@@ -645,7 +645,7 @@ ximapng.i: ximapng.cpp.i
 
 # target to preprocess a source file
 ximapng.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximapng.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximapng.cpp.i
 .PHONY : ximapng.cpp.i
 
 ximapng.s: ximapng.cpp.s
@@ -653,7 +653,7 @@ ximapng.s: ximapng.cpp.s
 
 # target to generate assembly for a file
 ximapng.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximapng.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximapng.cpp.s
 .PHONY : ximapng.cpp.s
 
 ximaraw.o: ximaraw.cpp.o
@@ -661,7 +661,7 @@ ximaraw.o: ximaraw.cpp.o
 
 # target to build an object file
 ximaraw.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaraw.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaraw.cpp.o
 .PHONY : ximaraw.cpp.o
 
 ximaraw.i: ximaraw.cpp.i
@@ -669,7 +669,7 @@ ximaraw.i: ximaraw.cpp.i
 
 # target to preprocess a source file
 ximaraw.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaraw.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaraw.cpp.i
 .PHONY : ximaraw.cpp.i
 
 ximaraw.s: ximaraw.cpp.s
@@ -677,7 +677,7 @@ ximaraw.s: ximaraw.cpp.s
 
 # target to generate assembly for a file
 ximaraw.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaraw.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaraw.cpp.s
 .PHONY : ximaraw.cpp.s
 
 ximasel.o: ximasel.cpp.o
@@ -685,7 +685,7 @@ ximasel.o: ximasel.cpp.o
 
 # target to build an object file
 ximasel.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximasel.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximasel.cpp.o
 .PHONY : ximasel.cpp.o
 
 ximasel.i: ximasel.cpp.i
@@ -693,7 +693,7 @@ ximasel.i: ximasel.cpp.i
 
 # target to preprocess a source file
 ximasel.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximasel.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximasel.cpp.i
 .PHONY : ximasel.cpp.i
 
 ximasel.s: ximasel.cpp.s
@@ -701,7 +701,7 @@ ximasel.s: ximasel.cpp.s
 
 # target to generate assembly for a file
 ximasel.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximasel.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximasel.cpp.s
 .PHONY : ximasel.cpp.s
 
 ximaska.o: ximaska.cpp.o
@@ -709,7 +709,7 @@ ximaska.o: ximaska.cpp.o
 
 # target to build an object file
 ximaska.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaska.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaska.cpp.o
 .PHONY : ximaska.cpp.o
 
 ximaska.i: ximaska.cpp.i
@@ -717,7 +717,7 @@ ximaska.i: ximaska.cpp.i
 
 # target to preprocess a source file
 ximaska.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaska.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaska.cpp.i
 .PHONY : ximaska.cpp.i
 
 ximaska.s: ximaska.cpp.s
@@ -725,7 +725,7 @@ ximaska.s: ximaska.cpp.s
 
 # target to generate assembly for a file
 ximaska.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaska.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximaska.cpp.s
 .PHONY : ximaska.cpp.s
 
 ximatga.o: ximatga.cpp.o
@@ -733,7 +733,7 @@ ximatga.o: ximatga.cpp.o
 
 # target to build an object file
 ximatga.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximatga.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximatga.cpp.o
 .PHONY : ximatga.cpp.o
 
 ximatga.i: ximatga.cpp.i
@@ -741,7 +741,7 @@ ximatga.i: ximatga.cpp.i
 
 # target to preprocess a source file
 ximatga.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximatga.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximatga.cpp.i
 .PHONY : ximatga.cpp.i
 
 ximatga.s: ximatga.cpp.s
@@ -749,7 +749,7 @@ ximatga.s: ximatga.cpp.s
 
 # target to generate assembly for a file
 ximatga.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximatga.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximatga.cpp.s
 .PHONY : ximatga.cpp.s
 
 ximath.o: ximath.cpp.o
@@ -757,7 +757,7 @@ ximath.o: ximath.cpp.o
 
 # target to build an object file
 ximath.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximath.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximath.cpp.o
 .PHONY : ximath.cpp.o
 
 ximath.i: ximath.cpp.i
@@ -765,7 +765,7 @@ ximath.i: ximath.cpp.i
 
 # target to preprocess a source file
 ximath.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximath.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximath.cpp.i
 .PHONY : ximath.cpp.i
 
 ximath.s: ximath.cpp.s
@@ -773,7 +773,7 @@ ximath.s: ximath.cpp.s
 
 # target to generate assembly for a file
 ximath.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximath.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximath.cpp.s
 .PHONY : ximath.cpp.s
 
 ximatif.o: ximatif.cpp.o
@@ -781,7 +781,7 @@ ximatif.o: ximatif.cpp.o
 
 # target to build an object file
 ximatif.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximatif.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximatif.cpp.o
 .PHONY : ximatif.cpp.o
 
 ximatif.i: ximatif.cpp.i
@@ -789,7 +789,7 @@ ximatif.i: ximatif.cpp.i
 
 # target to preprocess a source file
 ximatif.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximatif.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximatif.cpp.i
 .PHONY : ximatif.cpp.i
 
 ximatif.s: ximatif.cpp.s
@@ -797,7 +797,7 @@ ximatif.s: ximatif.cpp.s
 
 # target to generate assembly for a file
 ximatif.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximatif.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximatif.cpp.s
 .PHONY : ximatif.cpp.s
 
 ximatran.o: ximatran.cpp.o
@@ -805,7 +805,7 @@ ximatran.o: ximatran.cpp.o
 
 # target to build an object file
 ximatran.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximatran.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximatran.cpp.o
 .PHONY : ximatran.cpp.o
 
 ximatran.i: ximatran.cpp.i
@@ -813,7 +813,7 @@ ximatran.i: ximatran.cpp.i
 
 # target to preprocess a source file
 ximatran.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximatran.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximatran.cpp.i
 .PHONY : ximatran.cpp.i
 
 ximatran.s: ximatran.cpp.s
@@ -821,7 +821,7 @@ ximatran.s: ximatran.cpp.s
 
 # target to generate assembly for a file
 ximatran.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximatran.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximatran.cpp.s
 .PHONY : ximatran.cpp.s
 
 ximawbmp.o: ximawbmp.cpp.o
@@ -829,7 +829,7 @@ ximawbmp.o: ximawbmp.cpp.o
 
 # target to build an object file
 ximawbmp.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximawbmp.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximawbmp.cpp.o
 .PHONY : ximawbmp.cpp.o
 
 ximawbmp.i: ximawbmp.cpp.i
@@ -837,7 +837,7 @@ ximawbmp.i: ximawbmp.cpp.i
 
 # target to preprocess a source file
 ximawbmp.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximawbmp.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximawbmp.cpp.i
 .PHONY : ximawbmp.cpp.i
 
 ximawbmp.s: ximawbmp.cpp.s
@@ -845,7 +845,7 @@ ximawbmp.s: ximawbmp.cpp.s
 
 # target to generate assembly for a file
 ximawbmp.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximawbmp.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximawbmp.cpp.s
 .PHONY : ximawbmp.cpp.s
 
 ximawmf.o: ximawmf.cpp.o
@@ -853,7 +853,7 @@ ximawmf.o: ximawmf.cpp.o
 
 # target to build an object file
 ximawmf.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximawmf.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximawmf.cpp.o
 .PHONY : ximawmf.cpp.o
 
 ximawmf.i: ximawmf.cpp.i
@@ -861,7 +861,7 @@ ximawmf.i: ximawmf.cpp.i
 
 # target to preprocess a source file
 ximawmf.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximawmf.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximawmf.cpp.i
 .PHONY : ximawmf.cpp.i
 
 ximawmf.s: ximawmf.cpp.s
@@ -869,7 +869,7 @@ ximawmf.s: ximawmf.cpp.s
 
 # target to generate assembly for a file
 ximawmf.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximawmf.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximawmf.cpp.s
 .PHONY : ximawmf.cpp.s
 
 ximawnd.o: ximawnd.cpp.o
@@ -877,7 +877,7 @@ ximawnd.o: ximawnd.cpp.o
 
 # target to build an object file
 ximawnd.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximawnd.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximawnd.cpp.o
 .PHONY : ximawnd.cpp.o
 
 ximawnd.i: ximawnd.cpp.i
@@ -885,7 +885,7 @@ ximawnd.i: ximawnd.cpp.i
 
 # target to preprocess a source file
 ximawnd.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximawnd.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximawnd.cpp.i
 .PHONY : ximawnd.cpp.i
 
 ximawnd.s: ximawnd.cpp.s
@@ -893,7 +893,7 @@ ximawnd.s: ximawnd.cpp.s
 
 # target to generate assembly for a file
 ximawnd.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximawnd.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/ximawnd.cpp.s
 .PHONY : ximawnd.cpp.s
 
 xmemfile.o: xmemfile.cpp.o
@@ -901,7 +901,7 @@ xmemfile.o: xmemfile.cpp.o
 
 # target to build an object file
 xmemfile.cpp.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/xmemfile.cpp.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/xmemfile.cpp.o
 .PHONY : xmemfile.cpp.o
 
 xmemfile.i: xmemfile.cpp.i
@@ -909,7 +909,7 @@ xmemfile.i: xmemfile.cpp.i
 
 # target to preprocess a source file
 xmemfile.cpp.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/xmemfile.cpp.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/xmemfile.cpp.i
 .PHONY : xmemfile.cpp.i
 
 xmemfile.s: xmemfile.cpp.s
@@ -917,7 +917,7 @@ xmemfile.s: xmemfile.cpp.s
 
 # target to generate assembly for a file
 xmemfile.cpp.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/xmemfile.cpp.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/build.make lib/cximage-6.0/CxImage/CMakeFiles/cximage.dir/xmemfile.cpp.s
 .PHONY : xmemfile.cpp.s
 
 # Help Target
@@ -1039,6 +1039,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /root/plex-home-theater && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

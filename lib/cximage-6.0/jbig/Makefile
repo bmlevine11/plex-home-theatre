@@ -42,10 +42,10 @@ EQUALS = =
 CMAKE_EDIT_COMMAND = /usr/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999
+CMAKE_SOURCE_DIR = /root/plex-home-theater
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999
+CMAKE_BINARY_DIR = /root/plex-home-theater
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -104,7 +104,7 @@ list_install_components/fast: list_install_components
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /root/plex-home-theater && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -114,7 +114,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && /usr/bin/cpack --config ./CPackSourceConfig.cmake /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/CPackSourceConfig.cmake
+	cd /root/plex-home-theater && /usr/bin/cpack --config ./CPackSourceConfig.cmake /root/plex-home-theater/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -133,14 +133,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(CMAKE_COMMAND) -E cmake_progress_start /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/CMakeFiles /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/lib/cximage-6.0/jbig/CMakeFiles/progress.marks
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jbig/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/CMakeFiles 0
+	cd /root/plex-home-theater && $(CMAKE_COMMAND) -E cmake_progress_start /root/plex-home-theater/CMakeFiles /root/plex-home-theater/lib/cximage-6.0/jbig/CMakeFiles/progress.marks
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jbig/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/plex-home-theater/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jbig/clean
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jbig/clean
 .PHONY : clean
 
 # The main clean target
@@ -149,22 +149,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jbig/preinstall
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jbig/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jbig/preinstall
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jbig/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /root/plex-home-theater && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/rule:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/rule
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/rule
 .PHONY : lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/rule
 
 # Convenience name for target.
@@ -173,7 +173,7 @@ cx_jbig: lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/rule
 
 # fast build rule for target.
 cx_jbig/fast:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/build.make lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/build
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/build.make lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/build
 .PHONY : cx_jbig/fast
 
 jbig.o: jbig.c.o
@@ -181,7 +181,7 @@ jbig.o: jbig.c.o
 
 # target to build an object file
 jbig.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/build.make lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/jbig.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/build.make lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/jbig.c.o
 .PHONY : jbig.c.o
 
 jbig.i: jbig.c.i
@@ -189,7 +189,7 @@ jbig.i: jbig.c.i
 
 # target to preprocess a source file
 jbig.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/build.make lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/jbig.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/build.make lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/jbig.c.i
 .PHONY : jbig.c.i
 
 jbig.s: jbig.c.s
@@ -197,7 +197,7 @@ jbig.s: jbig.c.s
 
 # target to generate assembly for a file
 jbig.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/build.make lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/jbig.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/build.make lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/jbig.c.s
 .PHONY : jbig.c.s
 
 jbig_tab.o: jbig_tab.c.o
@@ -205,7 +205,7 @@ jbig_tab.o: jbig_tab.c.o
 
 # target to build an object file
 jbig_tab.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/build.make lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/jbig_tab.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/build.make lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/jbig_tab.c.o
 .PHONY : jbig_tab.c.o
 
 jbig_tab.i: jbig_tab.c.i
@@ -213,7 +213,7 @@ jbig_tab.i: jbig_tab.c.i
 
 # target to preprocess a source file
 jbig_tab.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/build.make lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/jbig_tab.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/build.make lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/jbig_tab.c.i
 .PHONY : jbig_tab.c.i
 
 jbig_tab.s: jbig_tab.c.s
@@ -221,7 +221,7 @@ jbig_tab.s: jbig_tab.c.s
 
 # target to generate assembly for a file
 jbig_tab.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/build.make lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/jbig_tab.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/build.make lib/cximage-6.0/jbig/CMakeFiles/cx_jbig.dir/jbig_tab.c.s
 .PHONY : jbig_tab.c.s
 
 # Help Target
@@ -256,6 +256,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /root/plex-home-theater && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -42,10 +42,10 @@ EQUALS = =
 CMAKE_EDIT_COMMAND = /usr/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999
+CMAKE_SOURCE_DIR = /root/plex-home-theater
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999
+CMAKE_BINARY_DIR = /root/plex-home-theater
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -104,7 +104,7 @@ list_install_components/fast: list_install_components
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /root/plex-home-theater && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -114,7 +114,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && /usr/bin/cpack --config ./CPackSourceConfig.cmake /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/CPackSourceConfig.cmake
+	cd /root/plex-home-theater && /usr/bin/cpack --config ./CPackSourceConfig.cmake /root/plex-home-theater/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -133,14 +133,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(CMAKE_COMMAND) -E cmake_progress_start /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/CMakeFiles /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/lib/cximage-6.0/jasper/CMakeFiles/progress.marks
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jasper/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/CMakeFiles 0
+	cd /root/plex-home-theater && $(CMAKE_COMMAND) -E cmake_progress_start /root/plex-home-theater/CMakeFiles /root/plex-home-theater/lib/cximage-6.0/jasper/CMakeFiles/progress.marks
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jasper/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/plex-home-theater/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jasper/clean
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jasper/clean
 .PHONY : clean
 
 # The main clean target
@@ -149,22 +149,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jasper/preinstall
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jasper/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jasper/preinstall
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jasper/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /root/plex-home-theater && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/rule:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/rule
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/rule
 .PHONY : lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/rule
 
 # Convenience name for target.
@@ -173,7 +173,7 @@ cx_jasper: lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/rule
 
 # fast build rule for target.
 cx_jasper/fast:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build
 .PHONY : cx_jasper/fast
 
 base/jas_cm.o: base/jas_cm.c.o
@@ -181,7 +181,7 @@ base/jas_cm.o: base/jas_cm.c.o
 
 # target to build an object file
 base/jas_cm.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_cm.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_cm.c.o
 .PHONY : base/jas_cm.c.o
 
 base/jas_cm.i: base/jas_cm.c.i
@@ -189,7 +189,7 @@ base/jas_cm.i: base/jas_cm.c.i
 
 # target to preprocess a source file
 base/jas_cm.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_cm.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_cm.c.i
 .PHONY : base/jas_cm.c.i
 
 base/jas_cm.s: base/jas_cm.c.s
@@ -197,7 +197,7 @@ base/jas_cm.s: base/jas_cm.c.s
 
 # target to generate assembly for a file
 base/jas_cm.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_cm.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_cm.c.s
 .PHONY : base/jas_cm.c.s
 
 base/jas_debug.o: base/jas_debug.c.o
@@ -205,7 +205,7 @@ base/jas_debug.o: base/jas_debug.c.o
 
 # target to build an object file
 base/jas_debug.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_debug.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_debug.c.o
 .PHONY : base/jas_debug.c.o
 
 base/jas_debug.i: base/jas_debug.c.i
@@ -213,7 +213,7 @@ base/jas_debug.i: base/jas_debug.c.i
 
 # target to preprocess a source file
 base/jas_debug.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_debug.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_debug.c.i
 .PHONY : base/jas_debug.c.i
 
 base/jas_debug.s: base/jas_debug.c.s
@@ -221,7 +221,7 @@ base/jas_debug.s: base/jas_debug.c.s
 
 # target to generate assembly for a file
 base/jas_debug.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_debug.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_debug.c.s
 .PHONY : base/jas_debug.c.s
 
 base/jas_getopt.o: base/jas_getopt.c.o
@@ -229,7 +229,7 @@ base/jas_getopt.o: base/jas_getopt.c.o
 
 # target to build an object file
 base/jas_getopt.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_getopt.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_getopt.c.o
 .PHONY : base/jas_getopt.c.o
 
 base/jas_getopt.i: base/jas_getopt.c.i
@@ -237,7 +237,7 @@ base/jas_getopt.i: base/jas_getopt.c.i
 
 # target to preprocess a source file
 base/jas_getopt.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_getopt.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_getopt.c.i
 .PHONY : base/jas_getopt.c.i
 
 base/jas_getopt.s: base/jas_getopt.c.s
@@ -245,7 +245,7 @@ base/jas_getopt.s: base/jas_getopt.c.s
 
 # target to generate assembly for a file
 base/jas_getopt.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_getopt.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_getopt.c.s
 .PHONY : base/jas_getopt.c.s
 
 base/jas_icc.o: base/jas_icc.c.o
@@ -253,7 +253,7 @@ base/jas_icc.o: base/jas_icc.c.o
 
 # target to build an object file
 base/jas_icc.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_icc.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_icc.c.o
 .PHONY : base/jas_icc.c.o
 
 base/jas_icc.i: base/jas_icc.c.i
@@ -261,7 +261,7 @@ base/jas_icc.i: base/jas_icc.c.i
 
 # target to preprocess a source file
 base/jas_icc.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_icc.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_icc.c.i
 .PHONY : base/jas_icc.c.i
 
 base/jas_icc.s: base/jas_icc.c.s
@@ -269,7 +269,7 @@ base/jas_icc.s: base/jas_icc.c.s
 
 # target to generate assembly for a file
 base/jas_icc.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_icc.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_icc.c.s
 .PHONY : base/jas_icc.c.s
 
 base/jas_iccdata.o: base/jas_iccdata.c.o
@@ -277,7 +277,7 @@ base/jas_iccdata.o: base/jas_iccdata.c.o
 
 # target to build an object file
 base/jas_iccdata.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_iccdata.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_iccdata.c.o
 .PHONY : base/jas_iccdata.c.o
 
 base/jas_iccdata.i: base/jas_iccdata.c.i
@@ -285,7 +285,7 @@ base/jas_iccdata.i: base/jas_iccdata.c.i
 
 # target to preprocess a source file
 base/jas_iccdata.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_iccdata.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_iccdata.c.i
 .PHONY : base/jas_iccdata.c.i
 
 base/jas_iccdata.s: base/jas_iccdata.c.s
@@ -293,7 +293,7 @@ base/jas_iccdata.s: base/jas_iccdata.c.s
 
 # target to generate assembly for a file
 base/jas_iccdata.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_iccdata.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_iccdata.c.s
 .PHONY : base/jas_iccdata.c.s
 
 base/jas_image.o: base/jas_image.c.o
@@ -301,7 +301,7 @@ base/jas_image.o: base/jas_image.c.o
 
 # target to build an object file
 base/jas_image.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_image.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_image.c.o
 .PHONY : base/jas_image.c.o
 
 base/jas_image.i: base/jas_image.c.i
@@ -309,7 +309,7 @@ base/jas_image.i: base/jas_image.c.i
 
 # target to preprocess a source file
 base/jas_image.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_image.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_image.c.i
 .PHONY : base/jas_image.c.i
 
 base/jas_image.s: base/jas_image.c.s
@@ -317,7 +317,7 @@ base/jas_image.s: base/jas_image.c.s
 
 # target to generate assembly for a file
 base/jas_image.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_image.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_image.c.s
 .PHONY : base/jas_image.c.s
 
 base/jas_init.o: base/jas_init.c.o
@@ -325,7 +325,7 @@ base/jas_init.o: base/jas_init.c.o
 
 # target to build an object file
 base/jas_init.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_init.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_init.c.o
 .PHONY : base/jas_init.c.o
 
 base/jas_init.i: base/jas_init.c.i
@@ -333,7 +333,7 @@ base/jas_init.i: base/jas_init.c.i
 
 # target to preprocess a source file
 base/jas_init.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_init.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_init.c.i
 .PHONY : base/jas_init.c.i
 
 base/jas_init.s: base/jas_init.c.s
@@ -341,7 +341,7 @@ base/jas_init.s: base/jas_init.c.s
 
 # target to generate assembly for a file
 base/jas_init.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_init.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_init.c.s
 .PHONY : base/jas_init.c.s
 
 base/jas_malloc.o: base/jas_malloc.c.o
@@ -349,7 +349,7 @@ base/jas_malloc.o: base/jas_malloc.c.o
 
 # target to build an object file
 base/jas_malloc.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_malloc.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_malloc.c.o
 .PHONY : base/jas_malloc.c.o
 
 base/jas_malloc.i: base/jas_malloc.c.i
@@ -357,7 +357,7 @@ base/jas_malloc.i: base/jas_malloc.c.i
 
 # target to preprocess a source file
 base/jas_malloc.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_malloc.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_malloc.c.i
 .PHONY : base/jas_malloc.c.i
 
 base/jas_malloc.s: base/jas_malloc.c.s
@@ -365,7 +365,7 @@ base/jas_malloc.s: base/jas_malloc.c.s
 
 # target to generate assembly for a file
 base/jas_malloc.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_malloc.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_malloc.c.s
 .PHONY : base/jas_malloc.c.s
 
 base/jas_seq.o: base/jas_seq.c.o
@@ -373,7 +373,7 @@ base/jas_seq.o: base/jas_seq.c.o
 
 # target to build an object file
 base/jas_seq.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_seq.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_seq.c.o
 .PHONY : base/jas_seq.c.o
 
 base/jas_seq.i: base/jas_seq.c.i
@@ -381,7 +381,7 @@ base/jas_seq.i: base/jas_seq.c.i
 
 # target to preprocess a source file
 base/jas_seq.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_seq.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_seq.c.i
 .PHONY : base/jas_seq.c.i
 
 base/jas_seq.s: base/jas_seq.c.s
@@ -389,7 +389,7 @@ base/jas_seq.s: base/jas_seq.c.s
 
 # target to generate assembly for a file
 base/jas_seq.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_seq.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_seq.c.s
 .PHONY : base/jas_seq.c.s
 
 base/jas_stream.o: base/jas_stream.c.o
@@ -397,7 +397,7 @@ base/jas_stream.o: base/jas_stream.c.o
 
 # target to build an object file
 base/jas_stream.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_stream.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_stream.c.o
 .PHONY : base/jas_stream.c.o
 
 base/jas_stream.i: base/jas_stream.c.i
@@ -405,7 +405,7 @@ base/jas_stream.i: base/jas_stream.c.i
 
 # target to preprocess a source file
 base/jas_stream.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_stream.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_stream.c.i
 .PHONY : base/jas_stream.c.i
 
 base/jas_stream.s: base/jas_stream.c.s
@@ -413,7 +413,7 @@ base/jas_stream.s: base/jas_stream.c.s
 
 # target to generate assembly for a file
 base/jas_stream.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_stream.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_stream.c.s
 .PHONY : base/jas_stream.c.s
 
 base/jas_string.o: base/jas_string.c.o
@@ -421,7 +421,7 @@ base/jas_string.o: base/jas_string.c.o
 
 # target to build an object file
 base/jas_string.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_string.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_string.c.o
 .PHONY : base/jas_string.c.o
 
 base/jas_string.i: base/jas_string.c.i
@@ -429,7 +429,7 @@ base/jas_string.i: base/jas_string.c.i
 
 # target to preprocess a source file
 base/jas_string.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_string.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_string.c.i
 .PHONY : base/jas_string.c.i
 
 base/jas_string.s: base/jas_string.c.s
@@ -437,7 +437,7 @@ base/jas_string.s: base/jas_string.c.s
 
 # target to generate assembly for a file
 base/jas_string.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_string.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_string.c.s
 .PHONY : base/jas_string.c.s
 
 base/jas_tvp.o: base/jas_tvp.c.o
@@ -445,7 +445,7 @@ base/jas_tvp.o: base/jas_tvp.c.o
 
 # target to build an object file
 base/jas_tvp.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_tvp.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_tvp.c.o
 .PHONY : base/jas_tvp.c.o
 
 base/jas_tvp.i: base/jas_tvp.c.i
@@ -453,7 +453,7 @@ base/jas_tvp.i: base/jas_tvp.c.i
 
 # target to preprocess a source file
 base/jas_tvp.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_tvp.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_tvp.c.i
 .PHONY : base/jas_tvp.c.i
 
 base/jas_tvp.s: base/jas_tvp.c.s
@@ -461,7 +461,7 @@ base/jas_tvp.s: base/jas_tvp.c.s
 
 # target to generate assembly for a file
 base/jas_tvp.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_tvp.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_tvp.c.s
 .PHONY : base/jas_tvp.c.s
 
 base/jas_version.o: base/jas_version.c.o
@@ -469,7 +469,7 @@ base/jas_version.o: base/jas_version.c.o
 
 # target to build an object file
 base/jas_version.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_version.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_version.c.o
 .PHONY : base/jas_version.c.o
 
 base/jas_version.i: base/jas_version.c.i
@@ -477,7 +477,7 @@ base/jas_version.i: base/jas_version.c.i
 
 # target to preprocess a source file
 base/jas_version.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_version.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_version.c.i
 .PHONY : base/jas_version.c.i
 
 base/jas_version.s: base/jas_version.c.s
@@ -485,7 +485,7 @@ base/jas_version.s: base/jas_version.c.s
 
 # target to generate assembly for a file
 base/jas_version.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_version.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/base/jas_version.c.s
 .PHONY : base/jas_version.c.s
 
 bmp/bmp_cod.o: bmp/bmp_cod.c.o
@@ -493,7 +493,7 @@ bmp/bmp_cod.o: bmp/bmp_cod.c.o
 
 # target to build an object file
 bmp/bmp_cod.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/bmp/bmp_cod.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/bmp/bmp_cod.c.o
 .PHONY : bmp/bmp_cod.c.o
 
 bmp/bmp_cod.i: bmp/bmp_cod.c.i
@@ -501,7 +501,7 @@ bmp/bmp_cod.i: bmp/bmp_cod.c.i
 
 # target to preprocess a source file
 bmp/bmp_cod.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/bmp/bmp_cod.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/bmp/bmp_cod.c.i
 .PHONY : bmp/bmp_cod.c.i
 
 bmp/bmp_cod.s: bmp/bmp_cod.c.s
@@ -509,7 +509,7 @@ bmp/bmp_cod.s: bmp/bmp_cod.c.s
 
 # target to generate assembly for a file
 bmp/bmp_cod.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/bmp/bmp_cod.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/bmp/bmp_cod.c.s
 .PHONY : bmp/bmp_cod.c.s
 
 bmp/bmp_dec.o: bmp/bmp_dec.c.o
@@ -517,7 +517,7 @@ bmp/bmp_dec.o: bmp/bmp_dec.c.o
 
 # target to build an object file
 bmp/bmp_dec.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/bmp/bmp_dec.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/bmp/bmp_dec.c.o
 .PHONY : bmp/bmp_dec.c.o
 
 bmp/bmp_dec.i: bmp/bmp_dec.c.i
@@ -525,7 +525,7 @@ bmp/bmp_dec.i: bmp/bmp_dec.c.i
 
 # target to preprocess a source file
 bmp/bmp_dec.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/bmp/bmp_dec.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/bmp/bmp_dec.c.i
 .PHONY : bmp/bmp_dec.c.i
 
 bmp/bmp_dec.s: bmp/bmp_dec.c.s
@@ -533,7 +533,7 @@ bmp/bmp_dec.s: bmp/bmp_dec.c.s
 
 # target to generate assembly for a file
 bmp/bmp_dec.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/bmp/bmp_dec.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/bmp/bmp_dec.c.s
 .PHONY : bmp/bmp_dec.c.s
 
 bmp/bmp_enc.o: bmp/bmp_enc.c.o
@@ -541,7 +541,7 @@ bmp/bmp_enc.o: bmp/bmp_enc.c.o
 
 # target to build an object file
 bmp/bmp_enc.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/bmp/bmp_enc.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/bmp/bmp_enc.c.o
 .PHONY : bmp/bmp_enc.c.o
 
 bmp/bmp_enc.i: bmp/bmp_enc.c.i
@@ -549,7 +549,7 @@ bmp/bmp_enc.i: bmp/bmp_enc.c.i
 
 # target to preprocess a source file
 bmp/bmp_enc.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/bmp/bmp_enc.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/bmp/bmp_enc.c.i
 .PHONY : bmp/bmp_enc.c.i
 
 bmp/bmp_enc.s: bmp/bmp_enc.c.s
@@ -557,7 +557,7 @@ bmp/bmp_enc.s: bmp/bmp_enc.c.s
 
 # target to generate assembly for a file
 bmp/bmp_enc.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/bmp/bmp_enc.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/bmp/bmp_enc.c.s
 .PHONY : bmp/bmp_enc.c.s
 
 jp2/jp2_cod.o: jp2/jp2_cod.c.o
@@ -565,7 +565,7 @@ jp2/jp2_cod.o: jp2/jp2_cod.c.o
 
 # target to build an object file
 jp2/jp2_cod.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jp2/jp2_cod.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jp2/jp2_cod.c.o
 .PHONY : jp2/jp2_cod.c.o
 
 jp2/jp2_cod.i: jp2/jp2_cod.c.i
@@ -573,7 +573,7 @@ jp2/jp2_cod.i: jp2/jp2_cod.c.i
 
 # target to preprocess a source file
 jp2/jp2_cod.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jp2/jp2_cod.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jp2/jp2_cod.c.i
 .PHONY : jp2/jp2_cod.c.i
 
 jp2/jp2_cod.s: jp2/jp2_cod.c.s
@@ -581,7 +581,7 @@ jp2/jp2_cod.s: jp2/jp2_cod.c.s
 
 # target to generate assembly for a file
 jp2/jp2_cod.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jp2/jp2_cod.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jp2/jp2_cod.c.s
 .PHONY : jp2/jp2_cod.c.s
 
 jp2/jp2_dec.o: jp2/jp2_dec.c.o
@@ -589,7 +589,7 @@ jp2/jp2_dec.o: jp2/jp2_dec.c.o
 
 # target to build an object file
 jp2/jp2_dec.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jp2/jp2_dec.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jp2/jp2_dec.c.o
 .PHONY : jp2/jp2_dec.c.o
 
 jp2/jp2_dec.i: jp2/jp2_dec.c.i
@@ -597,7 +597,7 @@ jp2/jp2_dec.i: jp2/jp2_dec.c.i
 
 # target to preprocess a source file
 jp2/jp2_dec.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jp2/jp2_dec.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jp2/jp2_dec.c.i
 .PHONY : jp2/jp2_dec.c.i
 
 jp2/jp2_dec.s: jp2/jp2_dec.c.s
@@ -605,7 +605,7 @@ jp2/jp2_dec.s: jp2/jp2_dec.c.s
 
 # target to generate assembly for a file
 jp2/jp2_dec.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jp2/jp2_dec.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jp2/jp2_dec.c.s
 .PHONY : jp2/jp2_dec.c.s
 
 jp2/jp2_enc.o: jp2/jp2_enc.c.o
@@ -613,7 +613,7 @@ jp2/jp2_enc.o: jp2/jp2_enc.c.o
 
 # target to build an object file
 jp2/jp2_enc.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jp2/jp2_enc.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jp2/jp2_enc.c.o
 .PHONY : jp2/jp2_enc.c.o
 
 jp2/jp2_enc.i: jp2/jp2_enc.c.i
@@ -621,7 +621,7 @@ jp2/jp2_enc.i: jp2/jp2_enc.c.i
 
 # target to preprocess a source file
 jp2/jp2_enc.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jp2/jp2_enc.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jp2/jp2_enc.c.i
 .PHONY : jp2/jp2_enc.c.i
 
 jp2/jp2_enc.s: jp2/jp2_enc.c.s
@@ -629,7 +629,7 @@ jp2/jp2_enc.s: jp2/jp2_enc.c.s
 
 # target to generate assembly for a file
 jp2/jp2_enc.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jp2/jp2_enc.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jp2/jp2_enc.c.s
 .PHONY : jp2/jp2_enc.c.s
 
 jpc/jpc_bs.o: jpc/jpc_bs.c.o
@@ -637,7 +637,7 @@ jpc/jpc_bs.o: jpc/jpc_bs.c.o
 
 # target to build an object file
 jpc/jpc_bs.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_bs.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_bs.c.o
 .PHONY : jpc/jpc_bs.c.o
 
 jpc/jpc_bs.i: jpc/jpc_bs.c.i
@@ -645,7 +645,7 @@ jpc/jpc_bs.i: jpc/jpc_bs.c.i
 
 # target to preprocess a source file
 jpc/jpc_bs.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_bs.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_bs.c.i
 .PHONY : jpc/jpc_bs.c.i
 
 jpc/jpc_bs.s: jpc/jpc_bs.c.s
@@ -653,7 +653,7 @@ jpc/jpc_bs.s: jpc/jpc_bs.c.s
 
 # target to generate assembly for a file
 jpc/jpc_bs.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_bs.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_bs.c.s
 .PHONY : jpc/jpc_bs.c.s
 
 jpc/jpc_cs.o: jpc/jpc_cs.c.o
@@ -661,7 +661,7 @@ jpc/jpc_cs.o: jpc/jpc_cs.c.o
 
 # target to build an object file
 jpc/jpc_cs.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_cs.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_cs.c.o
 .PHONY : jpc/jpc_cs.c.o
 
 jpc/jpc_cs.i: jpc/jpc_cs.c.i
@@ -669,7 +669,7 @@ jpc/jpc_cs.i: jpc/jpc_cs.c.i
 
 # target to preprocess a source file
 jpc/jpc_cs.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_cs.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_cs.c.i
 .PHONY : jpc/jpc_cs.c.i
 
 jpc/jpc_cs.s: jpc/jpc_cs.c.s
@@ -677,7 +677,7 @@ jpc/jpc_cs.s: jpc/jpc_cs.c.s
 
 # target to generate assembly for a file
 jpc/jpc_cs.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_cs.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_cs.c.s
 .PHONY : jpc/jpc_cs.c.s
 
 jpc/jpc_dec.o: jpc/jpc_dec.c.o
@@ -685,7 +685,7 @@ jpc/jpc_dec.o: jpc/jpc_dec.c.o
 
 # target to build an object file
 jpc/jpc_dec.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_dec.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_dec.c.o
 .PHONY : jpc/jpc_dec.c.o
 
 jpc/jpc_dec.i: jpc/jpc_dec.c.i
@@ -693,7 +693,7 @@ jpc/jpc_dec.i: jpc/jpc_dec.c.i
 
 # target to preprocess a source file
 jpc/jpc_dec.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_dec.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_dec.c.i
 .PHONY : jpc/jpc_dec.c.i
 
 jpc/jpc_dec.s: jpc/jpc_dec.c.s
@@ -701,7 +701,7 @@ jpc/jpc_dec.s: jpc/jpc_dec.c.s
 
 # target to generate assembly for a file
 jpc/jpc_dec.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_dec.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_dec.c.s
 .PHONY : jpc/jpc_dec.c.s
 
 jpc/jpc_enc.o: jpc/jpc_enc.c.o
@@ -709,7 +709,7 @@ jpc/jpc_enc.o: jpc/jpc_enc.c.o
 
 # target to build an object file
 jpc/jpc_enc.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_enc.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_enc.c.o
 .PHONY : jpc/jpc_enc.c.o
 
 jpc/jpc_enc.i: jpc/jpc_enc.c.i
@@ -717,7 +717,7 @@ jpc/jpc_enc.i: jpc/jpc_enc.c.i
 
 # target to preprocess a source file
 jpc/jpc_enc.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_enc.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_enc.c.i
 .PHONY : jpc/jpc_enc.c.i
 
 jpc/jpc_enc.s: jpc/jpc_enc.c.s
@@ -725,7 +725,7 @@ jpc/jpc_enc.s: jpc/jpc_enc.c.s
 
 # target to generate assembly for a file
 jpc/jpc_enc.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_enc.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_enc.c.s
 .PHONY : jpc/jpc_enc.c.s
 
 jpc/jpc_math.o: jpc/jpc_math.c.o
@@ -733,7 +733,7 @@ jpc/jpc_math.o: jpc/jpc_math.c.o
 
 # target to build an object file
 jpc/jpc_math.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_math.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_math.c.o
 .PHONY : jpc/jpc_math.c.o
 
 jpc/jpc_math.i: jpc/jpc_math.c.i
@@ -741,7 +741,7 @@ jpc/jpc_math.i: jpc/jpc_math.c.i
 
 # target to preprocess a source file
 jpc/jpc_math.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_math.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_math.c.i
 .PHONY : jpc/jpc_math.c.i
 
 jpc/jpc_math.s: jpc/jpc_math.c.s
@@ -749,7 +749,7 @@ jpc/jpc_math.s: jpc/jpc_math.c.s
 
 # target to generate assembly for a file
 jpc/jpc_math.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_math.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_math.c.s
 .PHONY : jpc/jpc_math.c.s
 
 jpc/jpc_mct.o: jpc/jpc_mct.c.o
@@ -757,7 +757,7 @@ jpc/jpc_mct.o: jpc/jpc_mct.c.o
 
 # target to build an object file
 jpc/jpc_mct.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mct.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mct.c.o
 .PHONY : jpc/jpc_mct.c.o
 
 jpc/jpc_mct.i: jpc/jpc_mct.c.i
@@ -765,7 +765,7 @@ jpc/jpc_mct.i: jpc/jpc_mct.c.i
 
 # target to preprocess a source file
 jpc/jpc_mct.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mct.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mct.c.i
 .PHONY : jpc/jpc_mct.c.i
 
 jpc/jpc_mct.s: jpc/jpc_mct.c.s
@@ -773,7 +773,7 @@ jpc/jpc_mct.s: jpc/jpc_mct.c.s
 
 # target to generate assembly for a file
 jpc/jpc_mct.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mct.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mct.c.s
 .PHONY : jpc/jpc_mct.c.s
 
 jpc/jpc_mqcod.o: jpc/jpc_mqcod.c.o
@@ -781,7 +781,7 @@ jpc/jpc_mqcod.o: jpc/jpc_mqcod.c.o
 
 # target to build an object file
 jpc/jpc_mqcod.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mqcod.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mqcod.c.o
 .PHONY : jpc/jpc_mqcod.c.o
 
 jpc/jpc_mqcod.i: jpc/jpc_mqcod.c.i
@@ -789,7 +789,7 @@ jpc/jpc_mqcod.i: jpc/jpc_mqcod.c.i
 
 # target to preprocess a source file
 jpc/jpc_mqcod.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mqcod.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mqcod.c.i
 .PHONY : jpc/jpc_mqcod.c.i
 
 jpc/jpc_mqcod.s: jpc/jpc_mqcod.c.s
@@ -797,7 +797,7 @@ jpc/jpc_mqcod.s: jpc/jpc_mqcod.c.s
 
 # target to generate assembly for a file
 jpc/jpc_mqcod.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mqcod.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mqcod.c.s
 .PHONY : jpc/jpc_mqcod.c.s
 
 jpc/jpc_mqdec.o: jpc/jpc_mqdec.c.o
@@ -805,7 +805,7 @@ jpc/jpc_mqdec.o: jpc/jpc_mqdec.c.o
 
 # target to build an object file
 jpc/jpc_mqdec.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mqdec.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mqdec.c.o
 .PHONY : jpc/jpc_mqdec.c.o
 
 jpc/jpc_mqdec.i: jpc/jpc_mqdec.c.i
@@ -813,7 +813,7 @@ jpc/jpc_mqdec.i: jpc/jpc_mqdec.c.i
 
 # target to preprocess a source file
 jpc/jpc_mqdec.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mqdec.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mqdec.c.i
 .PHONY : jpc/jpc_mqdec.c.i
 
 jpc/jpc_mqdec.s: jpc/jpc_mqdec.c.s
@@ -821,7 +821,7 @@ jpc/jpc_mqdec.s: jpc/jpc_mqdec.c.s
 
 # target to generate assembly for a file
 jpc/jpc_mqdec.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mqdec.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mqdec.c.s
 .PHONY : jpc/jpc_mqdec.c.s
 
 jpc/jpc_mqenc.o: jpc/jpc_mqenc.c.o
@@ -829,7 +829,7 @@ jpc/jpc_mqenc.o: jpc/jpc_mqenc.c.o
 
 # target to build an object file
 jpc/jpc_mqenc.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mqenc.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mqenc.c.o
 .PHONY : jpc/jpc_mqenc.c.o
 
 jpc/jpc_mqenc.i: jpc/jpc_mqenc.c.i
@@ -837,7 +837,7 @@ jpc/jpc_mqenc.i: jpc/jpc_mqenc.c.i
 
 # target to preprocess a source file
 jpc/jpc_mqenc.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mqenc.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mqenc.c.i
 .PHONY : jpc/jpc_mqenc.c.i
 
 jpc/jpc_mqenc.s: jpc/jpc_mqenc.c.s
@@ -845,7 +845,7 @@ jpc/jpc_mqenc.s: jpc/jpc_mqenc.c.s
 
 # target to generate assembly for a file
 jpc/jpc_mqenc.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mqenc.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_mqenc.c.s
 .PHONY : jpc/jpc_mqenc.c.s
 
 jpc/jpc_qmfb.o: jpc/jpc_qmfb.c.o
@@ -853,7 +853,7 @@ jpc/jpc_qmfb.o: jpc/jpc_qmfb.c.o
 
 # target to build an object file
 jpc/jpc_qmfb.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_qmfb.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_qmfb.c.o
 .PHONY : jpc/jpc_qmfb.c.o
 
 jpc/jpc_qmfb.i: jpc/jpc_qmfb.c.i
@@ -861,7 +861,7 @@ jpc/jpc_qmfb.i: jpc/jpc_qmfb.c.i
 
 # target to preprocess a source file
 jpc/jpc_qmfb.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_qmfb.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_qmfb.c.i
 .PHONY : jpc/jpc_qmfb.c.i
 
 jpc/jpc_qmfb.s: jpc/jpc_qmfb.c.s
@@ -869,7 +869,7 @@ jpc/jpc_qmfb.s: jpc/jpc_qmfb.c.s
 
 # target to generate assembly for a file
 jpc/jpc_qmfb.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_qmfb.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_qmfb.c.s
 .PHONY : jpc/jpc_qmfb.c.s
 
 jpc/jpc_t1cod.o: jpc/jpc_t1cod.c.o
@@ -877,7 +877,7 @@ jpc/jpc_t1cod.o: jpc/jpc_t1cod.c.o
 
 # target to build an object file
 jpc/jpc_t1cod.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t1cod.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t1cod.c.o
 .PHONY : jpc/jpc_t1cod.c.o
 
 jpc/jpc_t1cod.i: jpc/jpc_t1cod.c.i
@@ -885,7 +885,7 @@ jpc/jpc_t1cod.i: jpc/jpc_t1cod.c.i
 
 # target to preprocess a source file
 jpc/jpc_t1cod.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t1cod.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t1cod.c.i
 .PHONY : jpc/jpc_t1cod.c.i
 
 jpc/jpc_t1cod.s: jpc/jpc_t1cod.c.s
@@ -893,7 +893,7 @@ jpc/jpc_t1cod.s: jpc/jpc_t1cod.c.s
 
 # target to generate assembly for a file
 jpc/jpc_t1cod.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t1cod.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t1cod.c.s
 .PHONY : jpc/jpc_t1cod.c.s
 
 jpc/jpc_t1dec.o: jpc/jpc_t1dec.c.o
@@ -901,7 +901,7 @@ jpc/jpc_t1dec.o: jpc/jpc_t1dec.c.o
 
 # target to build an object file
 jpc/jpc_t1dec.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t1dec.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t1dec.c.o
 .PHONY : jpc/jpc_t1dec.c.o
 
 jpc/jpc_t1dec.i: jpc/jpc_t1dec.c.i
@@ -909,7 +909,7 @@ jpc/jpc_t1dec.i: jpc/jpc_t1dec.c.i
 
 # target to preprocess a source file
 jpc/jpc_t1dec.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t1dec.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t1dec.c.i
 .PHONY : jpc/jpc_t1dec.c.i
 
 jpc/jpc_t1dec.s: jpc/jpc_t1dec.c.s
@@ -917,7 +917,7 @@ jpc/jpc_t1dec.s: jpc/jpc_t1dec.c.s
 
 # target to generate assembly for a file
 jpc/jpc_t1dec.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t1dec.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t1dec.c.s
 .PHONY : jpc/jpc_t1dec.c.s
 
 jpc/jpc_t1enc.o: jpc/jpc_t1enc.c.o
@@ -925,7 +925,7 @@ jpc/jpc_t1enc.o: jpc/jpc_t1enc.c.o
 
 # target to build an object file
 jpc/jpc_t1enc.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t1enc.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t1enc.c.o
 .PHONY : jpc/jpc_t1enc.c.o
 
 jpc/jpc_t1enc.i: jpc/jpc_t1enc.c.i
@@ -933,7 +933,7 @@ jpc/jpc_t1enc.i: jpc/jpc_t1enc.c.i
 
 # target to preprocess a source file
 jpc/jpc_t1enc.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t1enc.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t1enc.c.i
 .PHONY : jpc/jpc_t1enc.c.i
 
 jpc/jpc_t1enc.s: jpc/jpc_t1enc.c.s
@@ -941,7 +941,7 @@ jpc/jpc_t1enc.s: jpc/jpc_t1enc.c.s
 
 # target to generate assembly for a file
 jpc/jpc_t1enc.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t1enc.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t1enc.c.s
 .PHONY : jpc/jpc_t1enc.c.s
 
 jpc/jpc_t2cod.o: jpc/jpc_t2cod.c.o
@@ -949,7 +949,7 @@ jpc/jpc_t2cod.o: jpc/jpc_t2cod.c.o
 
 # target to build an object file
 jpc/jpc_t2cod.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t2cod.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t2cod.c.o
 .PHONY : jpc/jpc_t2cod.c.o
 
 jpc/jpc_t2cod.i: jpc/jpc_t2cod.c.i
@@ -957,7 +957,7 @@ jpc/jpc_t2cod.i: jpc/jpc_t2cod.c.i
 
 # target to preprocess a source file
 jpc/jpc_t2cod.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t2cod.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t2cod.c.i
 .PHONY : jpc/jpc_t2cod.c.i
 
 jpc/jpc_t2cod.s: jpc/jpc_t2cod.c.s
@@ -965,7 +965,7 @@ jpc/jpc_t2cod.s: jpc/jpc_t2cod.c.s
 
 # target to generate assembly for a file
 jpc/jpc_t2cod.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t2cod.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t2cod.c.s
 .PHONY : jpc/jpc_t2cod.c.s
 
 jpc/jpc_t2dec.o: jpc/jpc_t2dec.c.o
@@ -973,7 +973,7 @@ jpc/jpc_t2dec.o: jpc/jpc_t2dec.c.o
 
 # target to build an object file
 jpc/jpc_t2dec.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t2dec.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t2dec.c.o
 .PHONY : jpc/jpc_t2dec.c.o
 
 jpc/jpc_t2dec.i: jpc/jpc_t2dec.c.i
@@ -981,7 +981,7 @@ jpc/jpc_t2dec.i: jpc/jpc_t2dec.c.i
 
 # target to preprocess a source file
 jpc/jpc_t2dec.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t2dec.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t2dec.c.i
 .PHONY : jpc/jpc_t2dec.c.i
 
 jpc/jpc_t2dec.s: jpc/jpc_t2dec.c.s
@@ -989,7 +989,7 @@ jpc/jpc_t2dec.s: jpc/jpc_t2dec.c.s
 
 # target to generate assembly for a file
 jpc/jpc_t2dec.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t2dec.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t2dec.c.s
 .PHONY : jpc/jpc_t2dec.c.s
 
 jpc/jpc_t2enc.o: jpc/jpc_t2enc.c.o
@@ -997,7 +997,7 @@ jpc/jpc_t2enc.o: jpc/jpc_t2enc.c.o
 
 # target to build an object file
 jpc/jpc_t2enc.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t2enc.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t2enc.c.o
 .PHONY : jpc/jpc_t2enc.c.o
 
 jpc/jpc_t2enc.i: jpc/jpc_t2enc.c.i
@@ -1005,7 +1005,7 @@ jpc/jpc_t2enc.i: jpc/jpc_t2enc.c.i
 
 # target to preprocess a source file
 jpc/jpc_t2enc.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t2enc.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t2enc.c.i
 .PHONY : jpc/jpc_t2enc.c.i
 
 jpc/jpc_t2enc.s: jpc/jpc_t2enc.c.s
@@ -1013,7 +1013,7 @@ jpc/jpc_t2enc.s: jpc/jpc_t2enc.c.s
 
 # target to generate assembly for a file
 jpc/jpc_t2enc.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t2enc.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_t2enc.c.s
 .PHONY : jpc/jpc_t2enc.c.s
 
 jpc/jpc_tagtree.o: jpc/jpc_tagtree.c.o
@@ -1021,7 +1021,7 @@ jpc/jpc_tagtree.o: jpc/jpc_tagtree.c.o
 
 # target to build an object file
 jpc/jpc_tagtree.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_tagtree.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_tagtree.c.o
 .PHONY : jpc/jpc_tagtree.c.o
 
 jpc/jpc_tagtree.i: jpc/jpc_tagtree.c.i
@@ -1029,7 +1029,7 @@ jpc/jpc_tagtree.i: jpc/jpc_tagtree.c.i
 
 # target to preprocess a source file
 jpc/jpc_tagtree.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_tagtree.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_tagtree.c.i
 .PHONY : jpc/jpc_tagtree.c.i
 
 jpc/jpc_tagtree.s: jpc/jpc_tagtree.c.s
@@ -1037,7 +1037,7 @@ jpc/jpc_tagtree.s: jpc/jpc_tagtree.c.s
 
 # target to generate assembly for a file
 jpc/jpc_tagtree.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_tagtree.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_tagtree.c.s
 .PHONY : jpc/jpc_tagtree.c.s
 
 jpc/jpc_tsfb.o: jpc/jpc_tsfb.c.o
@@ -1045,7 +1045,7 @@ jpc/jpc_tsfb.o: jpc/jpc_tsfb.c.o
 
 # target to build an object file
 jpc/jpc_tsfb.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_tsfb.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_tsfb.c.o
 .PHONY : jpc/jpc_tsfb.c.o
 
 jpc/jpc_tsfb.i: jpc/jpc_tsfb.c.i
@@ -1053,7 +1053,7 @@ jpc/jpc_tsfb.i: jpc/jpc_tsfb.c.i
 
 # target to preprocess a source file
 jpc/jpc_tsfb.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_tsfb.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_tsfb.c.i
 .PHONY : jpc/jpc_tsfb.c.i
 
 jpc/jpc_tsfb.s: jpc/jpc_tsfb.c.s
@@ -1061,7 +1061,7 @@ jpc/jpc_tsfb.s: jpc/jpc_tsfb.c.s
 
 # target to generate assembly for a file
 jpc/jpc_tsfb.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_tsfb.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_tsfb.c.s
 .PHONY : jpc/jpc_tsfb.c.s
 
 jpc/jpc_util.o: jpc/jpc_util.c.o
@@ -1069,7 +1069,7 @@ jpc/jpc_util.o: jpc/jpc_util.c.o
 
 # target to build an object file
 jpc/jpc_util.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_util.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_util.c.o
 .PHONY : jpc/jpc_util.c.o
 
 jpc/jpc_util.i: jpc/jpc_util.c.i
@@ -1077,7 +1077,7 @@ jpc/jpc_util.i: jpc/jpc_util.c.i
 
 # target to preprocess a source file
 jpc/jpc_util.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_util.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_util.c.i
 .PHONY : jpc/jpc_util.c.i
 
 jpc/jpc_util.s: jpc/jpc_util.c.s
@@ -1085,7 +1085,7 @@ jpc/jpc_util.s: jpc/jpc_util.c.s
 
 # target to generate assembly for a file
 jpc/jpc_util.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_util.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpc/jpc_util.c.s
 .PHONY : jpc/jpc_util.c.s
 
 jpg/jpg_dummy.o: jpg/jpg_dummy.c.o
@@ -1093,7 +1093,7 @@ jpg/jpg_dummy.o: jpg/jpg_dummy.c.o
 
 # target to build an object file
 jpg/jpg_dummy.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpg/jpg_dummy.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpg/jpg_dummy.c.o
 .PHONY : jpg/jpg_dummy.c.o
 
 jpg/jpg_dummy.i: jpg/jpg_dummy.c.i
@@ -1101,7 +1101,7 @@ jpg/jpg_dummy.i: jpg/jpg_dummy.c.i
 
 # target to preprocess a source file
 jpg/jpg_dummy.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpg/jpg_dummy.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpg/jpg_dummy.c.i
 .PHONY : jpg/jpg_dummy.c.i
 
 jpg/jpg_dummy.s: jpg/jpg_dummy.c.s
@@ -1109,7 +1109,7 @@ jpg/jpg_dummy.s: jpg/jpg_dummy.c.s
 
 # target to generate assembly for a file
 jpg/jpg_dummy.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpg/jpg_dummy.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpg/jpg_dummy.c.s
 .PHONY : jpg/jpg_dummy.c.s
 
 jpg/jpg_val.o: jpg/jpg_val.c.o
@@ -1117,7 +1117,7 @@ jpg/jpg_val.o: jpg/jpg_val.c.o
 
 # target to build an object file
 jpg/jpg_val.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpg/jpg_val.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpg/jpg_val.c.o
 .PHONY : jpg/jpg_val.c.o
 
 jpg/jpg_val.i: jpg/jpg_val.c.i
@@ -1125,7 +1125,7 @@ jpg/jpg_val.i: jpg/jpg_val.c.i
 
 # target to preprocess a source file
 jpg/jpg_val.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpg/jpg_val.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpg/jpg_val.c.i
 .PHONY : jpg/jpg_val.c.i
 
 jpg/jpg_val.s: jpg/jpg_val.c.s
@@ -1133,7 +1133,7 @@ jpg/jpg_val.s: jpg/jpg_val.c.s
 
 # target to generate assembly for a file
 jpg/jpg_val.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpg/jpg_val.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/jpg/jpg_val.c.s
 .PHONY : jpg/jpg_val.c.s
 
 mif/mif_cod.o: mif/mif_cod.c.o
@@ -1141,7 +1141,7 @@ mif/mif_cod.o: mif/mif_cod.c.o
 
 # target to build an object file
 mif/mif_cod.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/mif/mif_cod.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/mif/mif_cod.c.o
 .PHONY : mif/mif_cod.c.o
 
 mif/mif_cod.i: mif/mif_cod.c.i
@@ -1149,7 +1149,7 @@ mif/mif_cod.i: mif/mif_cod.c.i
 
 # target to preprocess a source file
 mif/mif_cod.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/mif/mif_cod.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/mif/mif_cod.c.i
 .PHONY : mif/mif_cod.c.i
 
 mif/mif_cod.s: mif/mif_cod.c.s
@@ -1157,7 +1157,7 @@ mif/mif_cod.s: mif/mif_cod.c.s
 
 # target to generate assembly for a file
 mif/mif_cod.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/mif/mif_cod.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/mif/mif_cod.c.s
 .PHONY : mif/mif_cod.c.s
 
 pgx/pgx_cod.o: pgx/pgx_cod.c.o
@@ -1165,7 +1165,7 @@ pgx/pgx_cod.o: pgx/pgx_cod.c.o
 
 # target to build an object file
 pgx/pgx_cod.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pgx/pgx_cod.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pgx/pgx_cod.c.o
 .PHONY : pgx/pgx_cod.c.o
 
 pgx/pgx_cod.i: pgx/pgx_cod.c.i
@@ -1173,7 +1173,7 @@ pgx/pgx_cod.i: pgx/pgx_cod.c.i
 
 # target to preprocess a source file
 pgx/pgx_cod.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pgx/pgx_cod.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pgx/pgx_cod.c.i
 .PHONY : pgx/pgx_cod.c.i
 
 pgx/pgx_cod.s: pgx/pgx_cod.c.s
@@ -1181,7 +1181,7 @@ pgx/pgx_cod.s: pgx/pgx_cod.c.s
 
 # target to generate assembly for a file
 pgx/pgx_cod.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pgx/pgx_cod.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pgx/pgx_cod.c.s
 .PHONY : pgx/pgx_cod.c.s
 
 pgx/pgx_dec.o: pgx/pgx_dec.c.o
@@ -1189,7 +1189,7 @@ pgx/pgx_dec.o: pgx/pgx_dec.c.o
 
 # target to build an object file
 pgx/pgx_dec.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pgx/pgx_dec.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pgx/pgx_dec.c.o
 .PHONY : pgx/pgx_dec.c.o
 
 pgx/pgx_dec.i: pgx/pgx_dec.c.i
@@ -1197,7 +1197,7 @@ pgx/pgx_dec.i: pgx/pgx_dec.c.i
 
 # target to preprocess a source file
 pgx/pgx_dec.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pgx/pgx_dec.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pgx/pgx_dec.c.i
 .PHONY : pgx/pgx_dec.c.i
 
 pgx/pgx_dec.s: pgx/pgx_dec.c.s
@@ -1205,7 +1205,7 @@ pgx/pgx_dec.s: pgx/pgx_dec.c.s
 
 # target to generate assembly for a file
 pgx/pgx_dec.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pgx/pgx_dec.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pgx/pgx_dec.c.s
 .PHONY : pgx/pgx_dec.c.s
 
 pgx/pgx_enc.o: pgx/pgx_enc.c.o
@@ -1213,7 +1213,7 @@ pgx/pgx_enc.o: pgx/pgx_enc.c.o
 
 # target to build an object file
 pgx/pgx_enc.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pgx/pgx_enc.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pgx/pgx_enc.c.o
 .PHONY : pgx/pgx_enc.c.o
 
 pgx/pgx_enc.i: pgx/pgx_enc.c.i
@@ -1221,7 +1221,7 @@ pgx/pgx_enc.i: pgx/pgx_enc.c.i
 
 # target to preprocess a source file
 pgx/pgx_enc.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pgx/pgx_enc.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pgx/pgx_enc.c.i
 .PHONY : pgx/pgx_enc.c.i
 
 pgx/pgx_enc.s: pgx/pgx_enc.c.s
@@ -1229,7 +1229,7 @@ pgx/pgx_enc.s: pgx/pgx_enc.c.s
 
 # target to generate assembly for a file
 pgx/pgx_enc.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pgx/pgx_enc.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pgx/pgx_enc.c.s
 .PHONY : pgx/pgx_enc.c.s
 
 pnm/pnm_cod.o: pnm/pnm_cod.c.o
@@ -1237,7 +1237,7 @@ pnm/pnm_cod.o: pnm/pnm_cod.c.o
 
 # target to build an object file
 pnm/pnm_cod.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pnm/pnm_cod.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pnm/pnm_cod.c.o
 .PHONY : pnm/pnm_cod.c.o
 
 pnm/pnm_cod.i: pnm/pnm_cod.c.i
@@ -1245,7 +1245,7 @@ pnm/pnm_cod.i: pnm/pnm_cod.c.i
 
 # target to preprocess a source file
 pnm/pnm_cod.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pnm/pnm_cod.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pnm/pnm_cod.c.i
 .PHONY : pnm/pnm_cod.c.i
 
 pnm/pnm_cod.s: pnm/pnm_cod.c.s
@@ -1253,7 +1253,7 @@ pnm/pnm_cod.s: pnm/pnm_cod.c.s
 
 # target to generate assembly for a file
 pnm/pnm_cod.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pnm/pnm_cod.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pnm/pnm_cod.c.s
 .PHONY : pnm/pnm_cod.c.s
 
 pnm/pnm_dec.o: pnm/pnm_dec.c.o
@@ -1261,7 +1261,7 @@ pnm/pnm_dec.o: pnm/pnm_dec.c.o
 
 # target to build an object file
 pnm/pnm_dec.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pnm/pnm_dec.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pnm/pnm_dec.c.o
 .PHONY : pnm/pnm_dec.c.o
 
 pnm/pnm_dec.i: pnm/pnm_dec.c.i
@@ -1269,7 +1269,7 @@ pnm/pnm_dec.i: pnm/pnm_dec.c.i
 
 # target to preprocess a source file
 pnm/pnm_dec.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pnm/pnm_dec.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pnm/pnm_dec.c.i
 .PHONY : pnm/pnm_dec.c.i
 
 pnm/pnm_dec.s: pnm/pnm_dec.c.s
@@ -1277,7 +1277,7 @@ pnm/pnm_dec.s: pnm/pnm_dec.c.s
 
 # target to generate assembly for a file
 pnm/pnm_dec.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pnm/pnm_dec.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pnm/pnm_dec.c.s
 .PHONY : pnm/pnm_dec.c.s
 
 pnm/pnm_enc.o: pnm/pnm_enc.c.o
@@ -1285,7 +1285,7 @@ pnm/pnm_enc.o: pnm/pnm_enc.c.o
 
 # target to build an object file
 pnm/pnm_enc.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pnm/pnm_enc.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pnm/pnm_enc.c.o
 .PHONY : pnm/pnm_enc.c.o
 
 pnm/pnm_enc.i: pnm/pnm_enc.c.i
@@ -1293,7 +1293,7 @@ pnm/pnm_enc.i: pnm/pnm_enc.c.i
 
 # target to preprocess a source file
 pnm/pnm_enc.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pnm/pnm_enc.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pnm/pnm_enc.c.i
 .PHONY : pnm/pnm_enc.c.i
 
 pnm/pnm_enc.s: pnm/pnm_enc.c.s
@@ -1301,7 +1301,7 @@ pnm/pnm_enc.s: pnm/pnm_enc.c.s
 
 # target to generate assembly for a file
 pnm/pnm_enc.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pnm/pnm_enc.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/pnm/pnm_enc.c.s
 .PHONY : pnm/pnm_enc.c.s
 
 ras/ras_cod.o: ras/ras_cod.c.o
@@ -1309,7 +1309,7 @@ ras/ras_cod.o: ras/ras_cod.c.o
 
 # target to build an object file
 ras/ras_cod.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/ras/ras_cod.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/ras/ras_cod.c.o
 .PHONY : ras/ras_cod.c.o
 
 ras/ras_cod.i: ras/ras_cod.c.i
@@ -1317,7 +1317,7 @@ ras/ras_cod.i: ras/ras_cod.c.i
 
 # target to preprocess a source file
 ras/ras_cod.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/ras/ras_cod.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/ras/ras_cod.c.i
 .PHONY : ras/ras_cod.c.i
 
 ras/ras_cod.s: ras/ras_cod.c.s
@@ -1325,7 +1325,7 @@ ras/ras_cod.s: ras/ras_cod.c.s
 
 # target to generate assembly for a file
 ras/ras_cod.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/ras/ras_cod.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/ras/ras_cod.c.s
 .PHONY : ras/ras_cod.c.s
 
 ras/ras_dec.o: ras/ras_dec.c.o
@@ -1333,7 +1333,7 @@ ras/ras_dec.o: ras/ras_dec.c.o
 
 # target to build an object file
 ras/ras_dec.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/ras/ras_dec.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/ras/ras_dec.c.o
 .PHONY : ras/ras_dec.c.o
 
 ras/ras_dec.i: ras/ras_dec.c.i
@@ -1341,7 +1341,7 @@ ras/ras_dec.i: ras/ras_dec.c.i
 
 # target to preprocess a source file
 ras/ras_dec.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/ras/ras_dec.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/ras/ras_dec.c.i
 .PHONY : ras/ras_dec.c.i
 
 ras/ras_dec.s: ras/ras_dec.c.s
@@ -1349,7 +1349,7 @@ ras/ras_dec.s: ras/ras_dec.c.s
 
 # target to generate assembly for a file
 ras/ras_dec.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/ras/ras_dec.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/ras/ras_dec.c.s
 .PHONY : ras/ras_dec.c.s
 
 ras/ras_enc.o: ras/ras_enc.c.o
@@ -1357,7 +1357,7 @@ ras/ras_enc.o: ras/ras_enc.c.o
 
 # target to build an object file
 ras/ras_enc.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/ras/ras_enc.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/ras/ras_enc.c.o
 .PHONY : ras/ras_enc.c.o
 
 ras/ras_enc.i: ras/ras_enc.c.i
@@ -1365,7 +1365,7 @@ ras/ras_enc.i: ras/ras_enc.c.i
 
 # target to preprocess a source file
 ras/ras_enc.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/ras/ras_enc.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/ras/ras_enc.c.i
 .PHONY : ras/ras_enc.c.i
 
 ras/ras_enc.s: ras/ras_enc.c.s
@@ -1373,7 +1373,7 @@ ras/ras_enc.s: ras/ras_enc.c.s
 
 # target to generate assembly for a file
 ras/ras_enc.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/ras/ras_enc.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/build.make lib/cximage-6.0/jasper/CMakeFiles/cx_jasper.dir/ras/ras_enc.c.s
 .PHONY : ras/ras_enc.c.s
 
 # Help Target
@@ -1552,6 +1552,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /root/plex-home-theater && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

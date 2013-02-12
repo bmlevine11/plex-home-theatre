@@ -42,10 +42,10 @@ EQUALS = =
 CMAKE_EDIT_COMMAND = /usr/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999
+CMAKE_SOURCE_DIR = /root/plex-home-theater
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999
+CMAKE_BINARY_DIR = /root/plex-home-theater
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -104,7 +104,7 @@ list_install_components/fast: list_install_components
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /root/plex-home-theater && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -114,7 +114,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && /usr/bin/cpack --config ./CPackSourceConfig.cmake /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/CPackSourceConfig.cmake
+	cd /root/plex-home-theater && /usr/bin/cpack --config ./CPackSourceConfig.cmake /root/plex-home-theater/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -133,14 +133,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(CMAKE_COMMAND) -E cmake_progress_start /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/CMakeFiles /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/lib/libhts/CMakeFiles/progress.marks
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/libhts/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/CMakeFiles 0
+	cd /root/plex-home-theater && $(CMAKE_COMMAND) -E cmake_progress_start /root/plex-home-theater/CMakeFiles /root/plex-home-theater/lib/libhts/CMakeFiles/progress.marks
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/libhts/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/plex-home-theater/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/libhts/clean
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/libhts/clean
 .PHONY : clean
 
 # The main clean target
@@ -149,22 +149,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/libhts/preinstall
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/libhts/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/libhts/preinstall
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/libhts/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /root/plex-home-theater && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 lib/libhts/CMakeFiles/lib_hts.dir/rule:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/libhts/CMakeFiles/lib_hts.dir/rule
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/libhts/CMakeFiles/lib_hts.dir/rule
 .PHONY : lib/libhts/CMakeFiles/lib_hts.dir/rule
 
 # Convenience name for target.
@@ -173,7 +173,7 @@ lib_hts: lib/libhts/CMakeFiles/lib_hts.dir/rule
 
 # fast build rule for target.
 lib_hts/fast:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/build
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/build
 .PHONY : lib_hts/fast
 
 htsatomic.o: htsatomic.c.o
@@ -181,7 +181,7 @@ htsatomic.o: htsatomic.c.o
 
 # target to build an object file
 htsatomic.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsatomic.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsatomic.c.o
 .PHONY : htsatomic.c.o
 
 htsatomic.i: htsatomic.c.i
@@ -189,7 +189,7 @@ htsatomic.i: htsatomic.c.i
 
 # target to preprocess a source file
 htsatomic.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsatomic.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsatomic.c.i
 .PHONY : htsatomic.c.i
 
 htsatomic.s: htsatomic.c.s
@@ -197,7 +197,7 @@ htsatomic.s: htsatomic.c.s
 
 # target to generate assembly for a file
 htsatomic.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsatomic.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsatomic.c.s
 .PHONY : htsatomic.c.s
 
 htsbuf.o: htsbuf.c.o
@@ -205,7 +205,7 @@ htsbuf.o: htsbuf.c.o
 
 # target to build an object file
 htsbuf.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsbuf.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsbuf.c.o
 .PHONY : htsbuf.c.o
 
 htsbuf.i: htsbuf.c.i
@@ -213,7 +213,7 @@ htsbuf.i: htsbuf.c.i
 
 # target to preprocess a source file
 htsbuf.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsbuf.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsbuf.c.i
 .PHONY : htsbuf.c.i
 
 htsbuf.s: htsbuf.c.s
@@ -221,7 +221,7 @@ htsbuf.s: htsbuf.c.s
 
 # target to generate assembly for a file
 htsbuf.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsbuf.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsbuf.c.s
 .PHONY : htsbuf.c.s
 
 htsmsg.o: htsmsg.c.o
@@ -229,7 +229,7 @@ htsmsg.o: htsmsg.c.o
 
 # target to build an object file
 htsmsg.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsmsg.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsmsg.c.o
 .PHONY : htsmsg.c.o
 
 htsmsg.i: htsmsg.c.i
@@ -237,7 +237,7 @@ htsmsg.i: htsmsg.c.i
 
 # target to preprocess a source file
 htsmsg.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsmsg.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsmsg.c.i
 .PHONY : htsmsg.c.i
 
 htsmsg.s: htsmsg.c.s
@@ -245,7 +245,7 @@ htsmsg.s: htsmsg.c.s
 
 # target to generate assembly for a file
 htsmsg.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsmsg.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsmsg.c.s
 .PHONY : htsmsg.c.s
 
 htsmsg_binary.o: htsmsg_binary.c.o
@@ -253,7 +253,7 @@ htsmsg_binary.o: htsmsg_binary.c.o
 
 # target to build an object file
 htsmsg_binary.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsmsg_binary.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsmsg_binary.c.o
 .PHONY : htsmsg_binary.c.o
 
 htsmsg_binary.i: htsmsg_binary.c.i
@@ -261,7 +261,7 @@ htsmsg_binary.i: htsmsg_binary.c.i
 
 # target to preprocess a source file
 htsmsg_binary.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsmsg_binary.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsmsg_binary.c.i
 .PHONY : htsmsg_binary.c.i
 
 htsmsg_binary.s: htsmsg_binary.c.s
@@ -269,7 +269,7 @@ htsmsg_binary.s: htsmsg_binary.c.s
 
 # target to generate assembly for a file
 htsmsg_binary.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsmsg_binary.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsmsg_binary.c.s
 .PHONY : htsmsg_binary.c.s
 
 htsstr.o: htsstr.c.o
@@ -277,7 +277,7 @@ htsstr.o: htsstr.c.o
 
 # target to build an object file
 htsstr.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsstr.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsstr.c.o
 .PHONY : htsstr.c.o
 
 htsstr.i: htsstr.c.i
@@ -285,7 +285,7 @@ htsstr.i: htsstr.c.i
 
 # target to preprocess a source file
 htsstr.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsstr.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsstr.c.i
 .PHONY : htsstr.c.i
 
 htsstr.s: htsstr.c.s
@@ -293,7 +293,7 @@ htsstr.s: htsstr.c.s
 
 # target to generate assembly for a file
 htsstr.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsstr.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/htsstr.c.s
 .PHONY : htsstr.c.s
 
 net_posix.o: net_posix.c.o
@@ -301,7 +301,7 @@ net_posix.o: net_posix.c.o
 
 # target to build an object file
 net_posix.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/net_posix.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/net_posix.c.o
 .PHONY : net_posix.c.o
 
 net_posix.i: net_posix.c.i
@@ -309,7 +309,7 @@ net_posix.i: net_posix.c.i
 
 # target to preprocess a source file
 net_posix.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/net_posix.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/net_posix.c.i
 .PHONY : net_posix.c.i
 
 net_posix.s: net_posix.c.s
@@ -317,7 +317,7 @@ net_posix.s: net_posix.c.s
 
 # target to generate assembly for a file
 net_posix.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/net_posix.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/net_posix.c.s
 .PHONY : net_posix.c.s
 
 sha1.o: sha1.c.o
@@ -325,7 +325,7 @@ sha1.o: sha1.c.o
 
 # target to build an object file
 sha1.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/sha1.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/sha1.c.o
 .PHONY : sha1.c.o
 
 sha1.i: sha1.c.i
@@ -333,7 +333,7 @@ sha1.i: sha1.c.i
 
 # target to preprocess a source file
 sha1.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/sha1.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/sha1.c.i
 .PHONY : sha1.c.i
 
 sha1.s: sha1.c.s
@@ -341,7 +341,7 @@ sha1.s: sha1.c.s
 
 # target to generate assembly for a file
 sha1.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/sha1.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/libhts/CMakeFiles/lib_hts.dir/build.make lib/libhts/CMakeFiles/lib_hts.dir/sha1.c.s
 .PHONY : sha1.c.s
 
 # Help Target
@@ -391,6 +391,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /root/plex-home-theater && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

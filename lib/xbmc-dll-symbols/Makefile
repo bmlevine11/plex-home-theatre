@@ -42,10 +42,10 @@ EQUALS = =
 CMAKE_EDIT_COMMAND = /usr/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999
+CMAKE_SOURCE_DIR = /root/plex-home-theater
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999
+CMAKE_BINARY_DIR = /root/plex-home-theater
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -104,7 +104,7 @@ list_install_components/fast: list_install_components
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /root/plex-home-theater && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -114,7 +114,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && /usr/bin/cpack --config ./CPackSourceConfig.cmake /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/CPackSourceConfig.cmake
+	cd /root/plex-home-theater && /usr/bin/cpack --config ./CPackSourceConfig.cmake /root/plex-home-theater/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -133,14 +133,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(CMAKE_COMMAND) -E cmake_progress_start /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/CMakeFiles /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/lib/xbmc-dll-symbols/CMakeFiles/progress.marks
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/xbmc-dll-symbols/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999/CMakeFiles 0
+	cd /root/plex-home-theater && $(CMAKE_COMMAND) -E cmake_progress_start /root/plex-home-theater/CMakeFiles /root/plex-home-theater/lib/xbmc-dll-symbols/CMakeFiles/progress.marks
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/xbmc-dll-symbols/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/plex-home-theater/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/xbmc-dll-symbols/clean
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/xbmc-dll-symbols/clean
 .PHONY : clean
 
 # The main clean target
@@ -149,22 +149,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/xbmc-dll-symbols/preinstall
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/xbmc-dll-symbols/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/xbmc-dll-symbols/preinstall
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/xbmc-dll-symbols/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /root/plex-home-theater && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/rule:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f CMakeFiles/Makefile2 lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/rule
+	cd /root/plex-home-theater && $(MAKE) -f CMakeFiles/Makefile2 lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/rule
 .PHONY : lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/rule
 
 # Convenience name for target.
@@ -173,7 +173,7 @@ lib_dllsymbols: lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/rule
 
 # fast build rule for target.
 lib_dllsymbols/fast:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/build.make lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/build
+	cd /root/plex-home-theater && $(MAKE) -f lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/build.make lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/build
 .PHONY : lib_dllsymbols/fast
 
 DllAvFormat.o: DllAvFormat.c.o
@@ -181,7 +181,7 @@ DllAvFormat.o: DllAvFormat.c.o
 
 # target to build an object file
 DllAvFormat.c.o:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/build.make lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/DllAvFormat.c.o
+	cd /root/plex-home-theater && $(MAKE) -f lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/build.make lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/DllAvFormat.c.o
 .PHONY : DllAvFormat.c.o
 
 DllAvFormat.i: DllAvFormat.c.i
@@ -189,7 +189,7 @@ DllAvFormat.i: DllAvFormat.c.i
 
 # target to preprocess a source file
 DllAvFormat.c.i:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/build.make lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/DllAvFormat.c.i
+	cd /root/plex-home-theater && $(MAKE) -f lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/build.make lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/DllAvFormat.c.i
 .PHONY : DllAvFormat.c.i
 
 DllAvFormat.s: DllAvFormat.c.s
@@ -197,7 +197,7 @@ DllAvFormat.s: DllAvFormat.c.s
 
 # target to generate assembly for a file
 DllAvFormat.c.s:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(MAKE) -f lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/build.make lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/DllAvFormat.c.s
+	cd /root/plex-home-theater && $(MAKE) -f lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/build.make lib/xbmc-dll-symbols/CMakeFiles/lib_dllsymbols.dir/DllAvFormat.c.s
 .PHONY : DllAvFormat.c.s
 
 # Help Target
@@ -229,6 +229,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /var/tmp/portage/media-tv/plexht-9999/work/plexht-9999 && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /root/plex-home-theater && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

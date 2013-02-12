@@ -11,8 +11,6 @@ set(LINK_PKG
   JPEG
   SQLite3
   PCRE
-  SDL
-  SDL_image
   Lzo2
   FriBiDi
   Fontconfig
