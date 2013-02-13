@@ -10,7 +10,7 @@ set(CONFIG_INTERNAL_LIBS
   lib_upnp
 )
 
-OPTION(ENABLE_DVD_DRIVE "Enable the DVD drive" ON)
+#OPTION(ENABLE_DVD_DRIVE "Enable the DVD drive" ON)
 
 if(APPLE)
   include(CMakeConfigOSX)
