@@ -4580,14 +4580,14 @@ bool CDVDPlayer::PlexProcess(CStdString& stopURL)
       done = resolver->WaitForCompletion(100);
 
     // If we cancelled, stop it.
-    if (m_bAbortRequest == true && resolver->Success() == false)
+    if (m_bAbortRequest == true && resolver->success() == false)
     {
       resolver->Cancel();
       m_bAbortRequest = true;
       return false;
     }
 
-    if (resolver->Success() == true)
+    if (resolver->success() == true)
     {
       item = resolver->GetFinalItem();
       m_itemWithDetails = resolver->GetFinalItemPtr();
@@ -4607,7 +4607,7 @@ bool CDVDPlayer::PlexProcess(CStdString& stopURL)
       done = resolver->WaitForCompletion(100);
 
     // If we cancelled, stop it.
-    if (m_bAbortRequest == true && resolver->Success() == false)
+    if (m_bAbortRequest == true && resolver->success() == false)
     {
       resolver->Cancel();
       m_bAbortRequest = true;
