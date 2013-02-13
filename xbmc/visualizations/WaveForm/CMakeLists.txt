@@ -1,4 +1,5 @@
 set(TARGET_NAME waveform)
+add_definitions(-DHAS_SDL -DHAS_SDL_OPENGL)
 if(WIN32)
   set(TARGET_NAME waveform_win32)
 endif()

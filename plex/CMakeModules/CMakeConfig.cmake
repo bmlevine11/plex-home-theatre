@@ -18,7 +18,8 @@ if(APPLE)
 elseif(WIN32)
   include(CMakeConfigWin)
 elseif(UNIX)
-  include(CMakeConfigLinux)
+  #include(CMakeConfigLinux)
+  include(CMakeConfigRPi)
 endif()
 
 if(UNIX)
@@ -35,7 +36,7 @@ else()
 endif()
 
 include(CheckFFmpegIncludes)
-include(CheckCrystalHDInclude)
+#include(CheckCrystalHDInclude)
 include(CheckLibshairportConfig)
 
 if(DEFINED SDL_FOUND)
