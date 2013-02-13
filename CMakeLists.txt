@@ -87,10 +87,10 @@ if(WIN32)
 endif()
 
 # Build the texturepacker
-add_subdirectory(tools/TexturePacker)
+#add_subdirectory(tools/TexturePacker)
 
 # add our visualizations
-add_subdirectory(xbmc/visualizations)
+#add_subdirectory(xbmc/visualizations)
 
 # global includes
 include_directories(
@@ -98,6 +98,7 @@ include_directories(
   ${plexdir}/Utility
   ${plexdir}/Owned
 
+  ${root}/xbmc
   ${root}/xbmc/utils
   ${root}
   ${root}/xbmc/cores/dvdplayer
