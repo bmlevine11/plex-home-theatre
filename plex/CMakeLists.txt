@@ -74,35 +74,40 @@ endif(ENABLE_PYTHON)
 
 
 # find all image files in the skin
-file(GLOB MEDIA_IMAGES_MEDIASTREAM ${root}/addons/skin.mediastream/Media/*.png ${root}/addons/skin.mediastream/Media/*.gif)
 
-if(COMPRESS_TEXTURES)
-  # Build the packed textures
-  if(DEFINED USING_XCODE)
-    set(TEXTURE_PACKER_BIN ${CMAKE_BINARY_DIR}/tools/TexturePacker/Debug/TexturePacker)
-  else()
-    set(TEXTURE_PACKER_BIN ${CMAKE_BINARY_DIR}/tools/TexturePacker/TexturePacker)
-  endif()
-
-  if(WIN32)
-    set(WORKDIR ${root}/tools/TexturePacker)
-  else(WIN32)
-    set(WORKDIR ${CMAKE_CURRENT_BINARY_DIR})
-  endif(WIN32)
-
-  add_custom_command(
-    OUTPUT Textures_MediaStream.xbt
-    COMMAND ${TEXTURE_PACKER_BIN} -input ${root}/addons/skin.mediastream/Media -output ${CMAKE_CURRENT_BINARY_DIR}/Textures_MediaStream.xbt
-    MAIN_DEPENDENCY ${MEDIA_IMAGES_MEDIASTREAM}
-    DEPENDS TexturePacker
-    WORKING_DIRECTORY ${WORKDIR}
-  )
-
-  add_custom_target(CompressTextures ALL DEPENDS Textures_MediaStream.xbt)
-  set(EXCLUDE_TEXTURES skin.mediastream/Media/*)
-  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/Textures_MediaStream.xbt DESTINATION ${RESOURCEPATH}/addons/skin.mediastream/Media RENAME Textures.xbt COMPONENT RUNTIME)
+if(TARGET_RPI)
+    set(EXCLUDE_TEXTURES ^foo)
 else()
-  set(EXCLUDE_TEXTURES ^foo)
+    file(GLOB MEDIA_IMAGES_MEDIASTREAM ${root}/addons/skin.mediastream/Media/*.png ${root}/addons/skin.mediastream/Media/*.gif)
+
+    if(COMPRESS_TEXTURES)
+      # Build the packed textures
+      if(DEFINED USING_XCODE)
+        set(TEXTURE_PACKER_BIN ${CMAKE_BINARY_DIR}/tools/TexturePacker/Debug/TexturePacker)
+      else()
+        set(TEXTURE_PACKER_BIN ${CMAKE_BINARY_DIR}/tools/TexturePacker/TexturePacker)
+      endif()
+
+      if(WIN32)
+        set(WORKDIR ${root}/tools/TexturePacker)
+      else(WIN32)
+        set(WORKDIR ${CMAKE_CURRENT_BINARY_DIR})
+      endif(WIN32)
+
+      add_custom_command(
+        OUTPUT Textures_MediaStream.xbt
+        COMMAND ${TEXTURE_PACKER_BIN} -input ${root}/addons/skin.mediastream/Media -output ${CMAKE_CURRENT_BINARY_DIR}/Textures_MediaStream.xbt
+        MAIN_DEPENDENCY ${MEDIA_IMAGES_MEDIASTREAM}
+        DEPENDS TexturePacker
+        WORKING_DIRECTORY ${WORKDIR}
+      )
+
+      add_custom_target(CompressTextures ALL DEPENDS Textures_MediaStream.xbt)
+      set(EXCLUDE_TEXTURES skin.mediastream/Media/*)
+      install(FILES ${CMAKE_CURRENT_BINARY_DIR}/Textures_MediaStream.xbt DESTINATION ${RESOURCEPATH}/addons/skin.mediastream/Media RENAME Textures.xbt COMPONENT RUNTIME)
+    else()
+      set(EXCLUDE_TEXTURES ^foo)
+    endif()
 endif()
 
 # Set some variables we need to configure the CMakeCompleteBundle file
