@@ -70,7 +70,7 @@ else()
 endif()
 
 include(CheckFFmpegIncludes)
-include(CheckCrystalHDInclude)
+#include(CheckCrystalHDInclude)
 include(CheckLibshairportConfig)
 
 if(DEFINED SDL_FOUND)
