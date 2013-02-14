@@ -1,5 +1,7 @@
 # vim: setlocal syntax=cmake:
 
+set(EXTRA_CFLAGS "-fPIC -DPIC")
+
 if(UNIX)
   set(CMAKE_REQUIRED_FLAGS "-D__LINUX_USER__")
 endif()
@@ -160,6 +162,7 @@ plex_find_library(vchiq_arm 0 0  /opt/vc/lib 1)
 set(CMAKE_C_FLAGS " -isystem/usr/include -isystem/opt/vc/include -isystem/opt/vc/include/interface/vcos/pthreads -isystem/opt/vc -isystem/opt/vc/include/interface/vmcs_host/linux/ -isystem/opt/vc/include/EGL -isystem/opt/vc/include/GLES -isystem/opt/vc/include/GLES2 -isystem/opt/vc/include/KHR -isystem/opt/vc/include/VG -L/lib -L/usr/lib -L/opt/vc/lib -Wl,-rpath-link,/lib -Wl,-rpath-link,/lib -Wl,-rpath-link,/usr/lib -Wl,-rpath-link,/opt/vc/ -fPIC -pipe -mcpu=arm1176jzf-s -mtune=arm1176jzf-s -mfloat-abi=hard -mfpu=vfp -mabi=aapcs-linux -Wno-psabi -Wa,-mno-warn-deprecated -Wno-deprecated-declarations -g -pg")
 
 set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS})
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -g -pg")
 
 set(LIBPATH bin)
 set(BINPATH bin)
