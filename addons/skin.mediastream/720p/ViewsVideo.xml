@@ -109,8 +109,7 @@
 				<onleft>Skin.ToggleSetting(HideNowPlayingMusicInfo)</onleft>
 				<onright>9009</onright>
 				<onup>57</onup>
-				<ondown>57</ondown>	
-				<preloaditems>4</preloaditems>
+				<ondown>57</ondown>
 				<include>TVSeasonsListAnim</include>
 				<itemlayout condition="!Container.Content(Seasons)" height="45" width="530">
 					<control type="image">
@@ -1087,7 +1086,6 @@
 				<onleft>51</onleft>
 				<onright>51</onright>
 				<onup>9009</onup>
-				<preloaditems>4</preloaditems>
 				<scrolltime>200</scrolltime>
 				<pagecontrol>-</pagecontrol>
 				<orientation>horizontal</orientation>

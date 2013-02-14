@@ -798,36 +798,8 @@
 		<control type="group">
 			<visible>![Control.IsVisible(53) + Window.IsMedia]</visible>
 			<control type="group">
-				<description>Videos Background Image</description>
-				<visible>[Window.IsActive(24) | Window.IsVisible(MyVideoPlaylist)] + ![Control.IsVisible(54) | Control.IsVisible(57)]</visible>
-				<visible>!Container.Content(movies)</visible>
-				<visible>Skin.HasSetting(ShowFanart)</visible>
-				<control type="largeimage">
-					<description>Fanart background</description>
-					<include>FullScreenBGImage</include>
-					<info background="true">ListItem.Art(fanart)</info>
-					<visible>!IsEmpty(ListItem.Art(fanart)) + !Container.Content(plugincontent)</visible>
-					<include>BackgroundFade</include>
-				</control>
-				<control type="largeimage">
-					<description>Fanart background (from directory)</description>
-					<include>FullScreenBGImage</include>
-					<visible>IsEmpty(ListItem.Art(fanart)) + !IsEmpty(FanArt.Image)</visible>
-					<info>FanArt.Image</info>
-					<include>BackgroundFade</include>
-				</control>
-				<control type="largeimage">
-					<description>Clip background</description>
-					<include>FullScreenBGImage</include>
-					<info background="true">ListItem.Art(thumb)</info>
-					<visible>Container.Content(clip)</visible>
-					<animation effect="fade" start="0" end="70" time="0" condition="true">Conditional</animation>
-				</control>
-			</control>
-			<control type="group">
 				<description>Movies Background Image</description>
-				<visible>Container.Content(movies)</visible>
-				<visible>Skin.HasSetting(ShowFanart)</visible>
+				<visible>!Window.IsVisible(MyPictures)</visible>
 				<control type="largeimage">
 					<description>Fanart background</description>
 					<aspectratio>scale</aspectratio>
@@ -839,53 +811,20 @@
 					<visible>!IsEmpty(ListItem.Art(fanart))</visible>
 					<fadetime>100</fadetime>
 				</control>
-			</control>
-			<control type="group">
-				<description>TV Shows Background Image</description>
-				<visible>Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)</visible>
-				<visible>Skin.HasSetting(ShowFanart)</visible>
-				<control type="image">
-					<description>Fanart background</description>
-					<include>FullScreenBGImage</include>
-					<info>FanArt.Image</info>
-					<visible>IsEmpty(ListItem.Art(fanart)) + !IsEmpty(FanArt.Image)</visible>
-					<include>BackgroundFade</include>
-				</control>
-				<control type="multiimage">
-					<description>Fanart background</description>
-					<include>FullScreenBGImage</include>
-					<info background="true">ListItem.Art(fanart)</info>
-					<visible>!IsEmpty(ListItem.Art(fanart))</visible>
-					<fadetime>100</fadetime>
-					<include>BackgroundFade</include>
-				</control>
-			</control>
-			<control type="group">
-				<description>Music Background Image</description>
-				<visible>Window.IsVisible(MyMusicFiles) | Window.IsVisible(MyMusicLibrary) | Window.IsVisible(MyMusicPlaylist) | Window.IsVisible(MyMusicPlaylistEditor)</visible>
-				<visible>Skin.HasSetting(ShowFanart)</visible>
 				<control type="largeimage">
-					<description>Fanart background</description>
+					<description>Clip background</description>
 					<include>FullScreenBGImage</include>
-					<info>ListItem.Art(fanart)</info>
-					<visible>!IsEmpty(ListItem.Art(fanart))</visible>
-					<include>BackgroundFade</include>
-				</control>
-				<control type="multiimage">
-					<description>Fanart background (from directory)</description>
-					<include>FullScreenBGImage</include>
-					<visible>IsEmpty(ListItem.Art(fanart)) + !IsEmpty(FanArt.Image)</visible>
-					<info background="true">FanArt.Image</info>
-					<fadetime>300</fadetime>
-					<include>BackgroundFade</include>
+					<info background="true">ListItem.Art(thumb)</info>
+					<visible>IsEmpty(ListItem.Art(fanart)) + Container.Content(clip)</visible>
+					<animation effect="fade" start="0" end="70" time="0" condition="true">Conditional</animation>
 				</control>
 			</control>
+			<!-- photos -->
 			<control type="group">
 				<description>Pictures Background Image</description>
 				<visible>Window.IsVisible(MyPictures)</visible>
 				<control type="group">
 					<visible>IsEmpty(ListItem.Art(fanart)) + IsEmpty(FanArt.Image)</visible>
-					<visible>Skin.HasSetting(ShowFanart)</visible>
 					<include>BackgroundFade</include>
 					<control type="group">
 						<include>PicturesBGVisible</include>
@@ -905,7 +844,6 @@
 					<!--<include>CustomPicturesBackground</include>-->
 				</control>
 				<control type="largeimage">
-					<visible>Skin.HasSetting(ShowFanart)</visible>
 					<description>Fanart background</description>
 					<include>FullScreenBGImage</include>
 					<info>ListItem.Art(fanart)</info>
@@ -913,51 +851,10 @@
 					<include>BackgroundFade</include>
 				</control>
 				<control type="largeimage">
-					<visible>Skin.HasSetting(ShowFanart)</visible>
 					<description>Fanart background (from directory)</description>
 					<include>FullScreenBGImage</include>
 					<visible>IsEmpty(ListItem.Art(fanart)) + !IsEmpty(FanArt.Image)</visible>
 					<info>FanArt.Image</info>
-					<include>BackgroundFade</include>
-				</control>
-			</control>
-			<control type="group">
-				<description>Programs Background Image</description>
-				<visible>Window.IsVisible(MyPrograms)</visible>
-				<control type="largeimage">
-					<visible>Skin.HasSetting(ShowFanart)</visible>
-					<description>Fanart background</description>
-					<include>FullScreenBGImage</include>
-					<info>ListItem.Art(fanart)</info>
-					<visible>!IsEmpty(ListItem.Art(fanart))</visible>
-					<include>BackgroundFade</include>
-				</control>
-				<control type="largeimage">
-					<visible>Skin.HasSetting(ShowFanart)</visible>
-					<description>Fanart background (from directory)</description>
-					<include>FullScreenBGImage</include>
-					<visible>IsEmpty(ListItem.Art(fanart)) + !IsEmpty(FanArt.Image)</visible>
-					<info>FanArt.Image</info>
-					<include>BackgroundFade</include>
-				</control>
-			</control>
-			<control type="group">
-				<description>Plugins Background Image</description>
-				<visible>Window.IsVisible(plugins)</visible>
-				<control type="largeimage">
-					<visible>Skin.HasSetting(ShowFanart)</visible>
-					<description>Fanart background</description>
-					<include>FullScreenBGImage</include>
-					<info>ListItem.Art(fanart)</info>
-					<include>BackgroundFade</include>
-				</control>
-				<control type="largeimage">
-					<visible>Skin.HasSetting(ShowFanart)</visible>
-					<description>Fanart background (from directory)</description>
-					<include>FullScreenBGImage</include>
-					<visible>IsEmpty(ListItem.Art(fanart)) + !IsEmpty(FanArt.Image)</visible>
-					<info background="true">FanArt.Image</info>
-					<fadetime>200</fadetime>
 					<include>BackgroundFade</include>
 				</control>
 			</control>
@@ -2360,7 +2257,6 @@
 		</control>
 		<!-- new "transparency" overlay for fanart -->
 		<control type="largeimage">
-			<visible>Skin.HasSetting(ShowFanart)</visible>
 			<visible>!Window.IsVisible(2)</visible>
 			<posy>0</posy>
 			<posx>0</posx>
@@ -2374,7 +2270,6 @@
 		<!-- photos overlay -->
 		<control type="largeimage">
 			<visible>Window.IsVisible(2) + Container.Content(Plugins)</visible>
-			<visible>Skin.HasSetting(ShowFanart)</visible>
 			<posy>0</posy>
 			<posx>0</posx>
 			<width>1280</width>
@@ -2385,7 +2280,6 @@
 			<animation effect="fade" start="0" end="5" time="0" condition="true">Conditional</animation>
 		</control>
 		<control type="largeimage">
-			<visible>Skin.HasSetting(ShowFanart)</visible>
 			<visible>Window.IsVisible(2) + !Container.Content(Plugins)</visible>
 			<posy>0</posy>
 			<posx>0</posx>
