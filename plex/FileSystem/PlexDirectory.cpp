@@ -512,8 +512,8 @@ string CPlexDirectory::BuildImageURL(const string& parentURL, const string& imag
   // Pick the sizes.
 
   #ifdef TARGET_RASPBERRY_PI
-    CStdString width = "320";
-    CStdString height = "180";
+    CStdString width = "640";
+    CStdString height = "360";
   #else
     CStdString width = "1280";
     CStdString height = "720";
@@ -527,13 +527,8 @@ string CPlexDirectory::BuildImageURL(const string& parentURL, const string& imag
   else if (strstr(imageURL.c_str(), "banner"))
   {
 
-  #ifdef TARGET_RASPBERRY_PI
-    width = "400";
-    height = "100";
-  #else
     width = "800";
     height = "200";
-  #endif
 
   }
   
