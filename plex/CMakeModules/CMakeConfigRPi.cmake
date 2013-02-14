@@ -9,8 +9,6 @@ set(LINK_PKG
   Freetype
   ZLIB
   JPEG
-  SDL
-  SDL_image
   SQLite3
   PCRE
   Lzo2
