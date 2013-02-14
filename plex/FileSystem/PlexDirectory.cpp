@@ -510,8 +510,14 @@ string CPlexDirectory::BuildImageURL(const string& parentURL, const string& imag
   CURL::Encode(encodedUrl);
 
   // Pick the sizes.
-  CStdString width = "1280";
-  CStdString height = "720";
+
+  #ifdef TARGET_RASPBERRY_PI
+    CStdString width = "320";
+    CStdString height = "180";
+  #else
+    CStdString width = "1280";
+    CStdString height = "720";
+  #endif
 
   if (strstr(imageURL.c_str(), "poster") || strstr(imageURL.c_str(), "thumb"))
   {
@@ -520,8 +526,15 @@ string CPlexDirectory::BuildImageURL(const string& parentURL, const string& imag
   }
   else if (strstr(imageURL.c_str(), "banner"))
   {
+
+  #ifdef TARGET_RASPBERRY_PI
+    width = "400";
+    height = "100";
+  #else
     width = "800";
     height = "200";
+  #endif
+
   }
   
   if (url.GetProtocol() == "plex")
