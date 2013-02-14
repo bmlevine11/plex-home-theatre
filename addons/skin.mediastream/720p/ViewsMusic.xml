@@ -91,7 +91,8 @@
 				<onright>9009</onright>
 				<onleft>Skin.ToggleSetting(HideNowPlayingMusicInfo)</onleft>
 				<onup>57</onup>
-				<ondown>57</ondown>
+				<ondown>57</ondown>	
+				<preloaditems>4</preloaditems>
 				<itemlayout height="42" width="640">
 					<control type="image">
 						<include>MediaItemBG</include>

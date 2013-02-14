@@ -43,6 +43,7 @@
 					<ondown>561</ondown>
 					<onleft>Skin.ToggleSetting(HideNowPlayingMusicInfo)</onleft>
 					<onright>9009</onright>
+					<preloaditems>4</preloaditems>
 					<orientation>vertical</orientation>
 					<itemlayout width="114" height="110">
 						<control type="image">
@@ -279,6 +280,7 @@
 					<onright>57</onright>
 					<onup>9009</onup>
 					<ondown>-</ondown>
+					<preloaditems>4</preloaditems>
 					<scrolltime>200</scrolltime>
 					<pagecontrol>-</pagecontrol>
 					<orientation>horizontal</orientation>
@@ -382,6 +384,7 @@
 					<onright>9009</onright>
 					<onup>56</onup>
 					<ondown>56</ondown>
+					<preloaditems>4</preloaditems>
 					<itemlayout height="45" width="530">
 						<!-- horiz separator -->
 						<control type="image">
@@ -599,6 +602,7 @@
 					<ondown>591</ondown>
 					<onleft>591</onleft>
 					<onright>591</onright>
+					<preloaditems>4</preloaditems>
 					<orientation>vertical</orientation>
 					<posx>10</posx>
 					<posy>34</posy>
