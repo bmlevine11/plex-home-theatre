@@ -1376,9 +1376,9 @@ bool CApplication::Initialize()
     g_windowManager.Add(new CGUIWindowLoginScreen);
     g_windowManager.Add(new CGUIWindowSettingsProfile);
     g_windowManager.Add(new CGUIWindow(WINDOW_SKIN_SETTINGS, "SkinSettings.xml"));
-#ifndef __PLEX__
+
     g_windowManager.Add(new CGUIWindowAddonBrowser);
-#endif
+
     g_windowManager.Add(new CGUIWindowScreensaverDim);
     g_windowManager.Add(new CGUIWindowDebugInfo);
     g_windowManager.Add(new CGUIWindowPointer);
@@ -3629,9 +3629,9 @@ bool CApplication::Cleanup()
     g_windowManager.Remove(WINDOW_DIALOG_VOLUME_BAR);
 
 
-#ifndef __PLEX__
-    CAddonMgr::Get().DeInit();
 
+    CAddonMgr::Get().DeInit();
+#ifndef __PLEX__
 #if defined(HAS_LIRC) || defined(HAS_IRSERVERSUITE)
     CLog::Log(LOGNOTICE, "closing down remote control service");
     g_RemoteControl.Disconnect();
