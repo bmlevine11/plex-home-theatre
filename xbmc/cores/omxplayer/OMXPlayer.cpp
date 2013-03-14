@@ -723,10 +723,7 @@ retry:
           CStdString path = "special://temp/subtitle.plex." + boost::lexical_cast<string>(idxStream->id) + "." + stream->codec;
           CLog::Log(LOGINFO, "Considering caching Plex subtitle locally for stream %d (codec: %s) to %s (exists: %d)", stream->id, stream->codec.c_str(), path.c_str(), CFile::Exists(path));
 
-
-          CURL newUrl(stream->key);
-          newUrl.SetOption("encoding", "utf-8");
-                                                                                                   if (CFile::Exists(path) || CFile::Cache(newUrl.Get(), path))  
+          if (CFile::Exists(path) || CFile::Cache(stream->key, path))
           {
             s.filename = path;
             m_SelectionStreams.Update(s);
@@ -740,14 +737,8 @@ retry:
             {
               CLog::Log(LOGINFO, "Caching Plex subtitle locally for stream %d to %s", stream->id, path.c_str());
               CFile::Cache(stream->key + ".sub", path);
-
-              CURL subUrl(stream->key); 
-              subUrl.SetFileName(subUrl.GetFileName() + ".sub");
-              subUrl.SetOption("encoding", "utf-8");
-              CFile::Cache(subUrl.Get(), path);     
-
-
             }
+
             // Remember the last IDX stream.
             lastIdxStream = stream;
             lastIdxSource = s.source;
