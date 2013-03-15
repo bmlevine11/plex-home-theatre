@@ -4736,7 +4736,7 @@ bool COMXPlayer::PlexProcess(CStdString& stopURL)
     else if (g_guiSettings.GetBool("plexmediaserver.forcelocaltranscode") == true && 
              usingLocalPath == false &&
              NetworkInterface::IsLocalAddress(mediaURL.GetHostName()) == false)  
-
+    {
       // This is a forced local transcode.
       transcode = true;
       quality = g_guiSettings.GetInt("plexmediaserver.localtranscodequality");
