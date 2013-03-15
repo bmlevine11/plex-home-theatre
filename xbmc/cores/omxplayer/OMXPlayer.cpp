@@ -723,7 +723,10 @@ retry:
           CStdString path = "special://temp/subtitle.plex." + boost::lexical_cast<string>(idxStream->id) + "." + stream->codec;
           CLog::Log(LOGINFO, "Considering caching Plex subtitle locally for stream %d (codec: %s) to %s (exists: %d)", stream->id, stream->codec.c_str(), path.c_str(), CFile::Exists(path));
 
-          if (CFile::Exists(path) || CFile::Cache(stream->key, path))
+
+          CURL newUrl(stream->key);
+          newUrl.SetOption("encoding", "utf-8");
+                                                                                                   if (CFile::Exists(path) || CFile::Cache(newUrl.Get(), path))  
           {
             s.filename = path;
             m_SelectionStreams.Update(s);
@@ -737,8 +740,14 @@ retry:
             {
               CLog::Log(LOGINFO, "Caching Plex subtitle locally for stream %d to %s", stream->id, path.c_str());
               CFile::Cache(stream->key + ".sub", path);
-            }
 
+              CURL subUrl(stream->key); 
+              subUrl.SetFileName(subUrl.GetFileName() + ".sub");
+              subUrl.SetOption("encoding", "utf-8");
+              CFile::Cache(subUrl.Get(), path);     
+
+
+            }
             // Remember the last IDX stream.
             lastIdxStream = stream;
             lastIdxSource = s.source;
@@ -4688,7 +4697,7 @@ bool COMXPlayer::PlexProcess(CStdString& stopURL)
     // If we ended up with a webkit URL which is local, restart the player. This
     // will be the case if we're resolving an indirect.
     //
-    if (Cocoa_IsHostLocal(serverHost) == true)
+    if (NetworkInterface::IsLocalAddress(serverHost) == true)    
     {
       CApplicationMessenger::Get().RestartWithNewPlayer(0, item.GetPath());
       return false;
@@ -4724,8 +4733,10 @@ bool COMXPlayer::PlexProcess(CStdString& stopURL)
       transcode = true;
       quality = g_guiSettings.GetInt("myplex.remoteplexquality");
     }
-    else if (g_guiSettings.GetBool("plexmediaserver.forcelocaltranscode") == true && usingLocalPath == false && Cocoa_IsHostLocal(mediaURL.GetHostName()) == false)
-    {
+    else if (g_guiSettings.GetBool("plexmediaserver.forcelocaltranscode") == true && 
+             usingLocalPath == false &&
+             NetworkInterface::IsLocalAddress(mediaURL.GetHostName()) == false)  
+
       // This is a forced local transcode.
       transcode = true;
       quality = g_guiSettings.GetInt("plexmediaserver.localtranscodequality");
