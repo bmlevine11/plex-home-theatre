@@ -274,10 +274,16 @@
 							<onclick>XBMC.ActivateWindow(4)</onclick>
 						</item>
 						<item id="101">
-                       					<description>Addons Button</description>
-                      					<label>Rasplex Settings</label>
-                       					<onclick>RunAddon(os.openelec.settings)</onclick>
+                                <description>Addons Button</description>
+                                <label> RasPlex Settings</label>
+                                <onclick>RunAddon(os.openelec.settings)</onclick>
                         </item>
+                        <item id="102">
+                                <description>Update button Button</description>
+                                <label> Update RasPlex</label>
+                                <onclick>RunAddon(script.rasplex.update)</onclick>
+                        </item>
+
 					</content>
 				</control>
 			</control>
