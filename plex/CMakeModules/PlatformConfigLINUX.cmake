@@ -59,7 +59,6 @@ set(INSTALL_LIB
   RTMP
   PLIST
   ShairPort
-  CEC
   VAAPI
   VDPAU
 )
