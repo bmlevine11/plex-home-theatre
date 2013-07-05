@@ -58,11 +58,6 @@ class PlexAsyncUrlResolver
     return m_finalPath;
   }
 
-  CFileItem& GetFinalItem()
-  {
-    return *(m_finalItem.get());
-  }
-
   CFileItemPtr GetFinalItemPtr()
   {
     return m_finalItem;
@@ -93,7 +88,7 @@ class PlexAsyncUrlResolver
     if (m_bStop == false)
     {
       CFileItemList list;
-      CPlexDirectory dir(true, false);
+      XFILE::CPlexDirectory dir;
 
       if (dir.GetDirectory(url, list))
       {
@@ -115,7 +110,7 @@ class PlexAsyncUrlResolver
   void Process(PlexAsyncUrlResolverPtr me)
   {
     CStdString body;
-    CStdString url = m_item.GetPath();
+    CStdString url = m_item.m_mediaParts[0]->GetPath();
     CLog::Log(LOGNOTICE, "Resolving indirect URL: %s", url.c_str());
 
     // See if we need to send data to resolve the indirect.
@@ -125,7 +120,7 @@ class PlexAsyncUrlResolver
       // FIXME, we should look at postHeaders as well.
       //
       CLog::Log(LOGNOTICE, "Found a POST URL, going to fetch %s", m_item.GetProperty("postURL").c_str());
-      CCurlFile curl;
+      XFILE::CCurlFile curl;
       curl.ClearCookies();
       if (curl.Get(m_item.GetProperty("postURL").asString(), body))
       {
@@ -148,7 +143,7 @@ class PlexAsyncUrlResolver
     if (m_bStop == false)
     {
       CFileItemList  fileItems;
-      CPlexDirectory plexDir(true, false);
+      XFILE::CPlexDirectory plexDir;
 
       plexDir.SetBody(body);
       if (plexDir.GetDirectory(url, fileItems))
@@ -159,6 +154,7 @@ class PlexAsyncUrlResolver
           {
             CFileItemPtr finalFile = fileItems.Get(0);
 
+#if 0
             // See if we ran smack into another indirect item.
             if (finalFile->GetProperty("indirect").asInteger() == 1)
             {
@@ -172,6 +168,8 @@ class PlexAsyncUrlResolver
 
             // Set the final path, by reference.
             m_finalPath = finalFile->GetPath();
+#endif
+            m_finalItem = finalFile;
             m_bSuccess = true;
           }
         }

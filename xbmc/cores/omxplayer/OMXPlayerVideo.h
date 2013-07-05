@@ -38,6 +38,7 @@
 #include "DVDMessageQueue.h"
 #include "utils/BitstreamStats.h"
 #include "linux/DllBCM.h"
+#include "cores/VideoRenderers/RenderManager.h"
 
 using namespace std;
 
@@ -82,7 +83,6 @@ protected:
   int                       m_view_mode;
 
   DllBcmHost                m_DllBcmHost;
-  bool                      m_send_eos;
 
   CDVDOverlayContainer  *m_pOverlayContainer;
   CDVDMessageQueue      &m_messageParent;
@@ -109,7 +109,7 @@ public:
   void WaitForBuffers()                             { m_messageQueue.WaitUntilEmpty(); }
   int  GetLevel() const                             { return m_messageQueue.GetLevel(); }
   bool IsStalled()                                  { return m_stalled;  }
-  bool IsEOS()                                      { return m_send_eos; };
+  bool IsEOS();
   bool CloseStream(bool bWaitForBuffers);
   void Output(int iGroupId, double pts, bool bDropPacket);
   void Flush();
@@ -118,7 +118,8 @@ public:
   int  GetDecoderFreeSpace();
   double GetCurrentPTS() { return m_iCurrentPts; };
   double GetFPS() { return m_fFrameRate; };
-  void  WaitCompletion();
+  void  SubmitEOS();
+  bool SubmittedEOS();
   void SetDelay(double delay) { m_iVideoDelay = delay; }
   double GetDelay() { return m_iVideoDelay; }
   void SetSpeed(int iSpeed);
@@ -130,6 +131,7 @@ public:
   void EnableSubtitle(bool bEnable)                 { m_bRenderSubs = bEnable; }
   bool IsSubtitleEnabled()                          { return m_bRenderSubs; }
   void EnableFullscreen(bool bEnable)               { m_bAllowFullscreen = bEnable; }
+  float GetAspectRatio()                            { return g_renderManager.GetAspectRatio(); }
   void SetFlags(unsigned flags)                     { m_flags = flags; };
   int GetFreeSpace();
   void  SetVideoRect(const CRect &SrcRect, const CRect &DestRect);
