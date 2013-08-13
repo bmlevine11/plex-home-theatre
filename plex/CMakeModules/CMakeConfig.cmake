@@ -10,10 +10,15 @@ set(CONFIG_INTERNAL_LIBS
   lib_upnp
 )
 
-#OPTION(ENABLE_DVD_DRIVE "Enable the DVD drive" ON)
+OPTION(ENABLE_DVD_DRIVE "Enable the DVD drive" OFF)
 OPTION(ENABLE_PYTHON "Enable Python addon support" OFF)
 OPTION(CREATE_BUNDLE "Create the finished bundle" ON)
 OPTION(COMPRESS_TEXTURES "If we should compress the textures or not" ON)
+OPTION(ENABLE_NEW_SKIN "Enable the new Plex skin" OFF)
+
+if(ENABLE_NEW_SKIN)
+  add_definitions(-DPLEX_NEW_SKIN=1)
+endif(ENABLE_NEW_SKIN)
 
 if(NOT DEFINED TARGET_PLATFORM)
   if(APPLE)
@@ -82,7 +87,6 @@ if(ENABLE_PYTHON)
 endif()
 
 set(USE_UPNP 1)
-set(HAS_LIBRTMP 1)
 
 if(ENABLE_DVD_DRIVE)
   set(HAS_DVD_DRIVE 1)

@@ -12,10 +12,9 @@
 #include <SystemConfiguration/SystemConfiguration.h>
 #endif
 
-#include "log.h"
 #include "NetworkInterface.h"
 
-#if defined(__APPLE__) || defined(__linux__)
+#if defined(__APPLE__) || defined(__linux__) || defined(__FreeBSD__)
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <ifaddrs.h>

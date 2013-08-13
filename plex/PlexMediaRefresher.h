@@ -3,12 +3,13 @@
 
 #include "FileSystem/PlexDirectory.h"
 #include "PlexTypes.h"
+#include <string>
 
 class PlexMediaRefresher : public CThread
 {
 public:
 
-  PlexMediaRefresher(const string& path)
+  PlexMediaRefresher(const std::string& path)
   : CThread("PlexMediaRefreshener")
   , m_path(path)
   , m_doneLoading(false)
@@ -20,7 +21,7 @@ public:
   virtual void Process()
   {
     // Execute the request.
-    CPlexDirectory plexDir(true, false);
+    XFILE::CPlexDirectory plexDir;
     plexDir.GetDirectory(m_path, m_itemList);
     m_doneLoading = true;
 
@@ -35,7 +36,7 @@ public:
 
 private:
 
-  string        m_path;
+  std::string        m_path;
   CFileItemList m_itemList;
   volatile bool m_doneLoading;
   volatile bool m_canDie;

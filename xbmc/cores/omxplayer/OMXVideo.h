@@ -56,7 +56,9 @@ public:
   std::string GetDecoderName() { return m_video_codec_name; };
   void SetVideoRect(const CRect& SrcRect, const CRect& DestRect);
   int GetInputBufferSize();
-  void WaitCompletion();
+  void SubmitEOS();
+  bool IsEOS();
+  bool SubmittedEOS() { return m_submitted_eos; }
   bool BadState() { return m_omx_decoder.BadState(); };
 protected:
   // Video format
@@ -91,7 +93,9 @@ protected:
   bool              m_hdmi_clock_sync;
   bool              m_first_frame;
   uint32_t          m_history_valid_pts;
-
+  ResolutionUpdateCallBackFn m_res_callback;
+  void              *m_res_ctx;
+  bool              m_submitted_eos;
   bool NaluFormatStartCodes(enum CodecID codec, uint8_t *in_extradata, int in_extrasize);
 };
 

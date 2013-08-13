@@ -61,6 +61,8 @@
 #include "Util.h"
 #include "GUIInfoManager.h"
 #include "PlexUtils.h"
+#include "Client/MyPlex/MyPlexManager.h"
+#include "Client/PlexServerManager.h"
 
 
 using namespace std;
@@ -419,23 +421,13 @@ void CGUISettings::Initialize()
 
   AddString(0, "myplex.token", 99999, "", EDIT_CONTROL_INPUT);
   AddString(myPlex, "myplex.status", 15000, "", EDIT_CONTROL_INPUT, true);
-  SetString("myplex.status", g_localizeStrings.Get(GetString("myplex.token").empty() ? 44010 : 44011));
-  AddSeparator(NULL,"myplex.separator");
-  // Button.
-  AddString(myPlex, "myplex.pinsignin", GetString("myplex.token").empty() ? 44002 : 44003, "", BUTTON_CONTROL_STANDARD);
-
-  AddBool(myPlex, "myplex.manualsignin", 44013, false);
-  AddString(myPlex, "myplex.email", 44000, "", EDIT_CONTROL_INPUT, true, 44000);
-  AddString(myPlex, "myplex.password", 44001, "", EDIT_CONTROL_HIDDEN_INPUT, true, 44001);
-  AddString(myPlex, "myplex.dosignin", GetString("myplex.token").empty() ? 44004 : 44003, "", BUTTON_CONTROL_STANDARD);
-
-  //   -> Remote myPlex library quality.
-  map<int,int> transcodeQualityMap;
-  for (int i=-1; i<=9; i++)
-    transcodeQualityMap.insert(make_pair(43000+i,i));
-
-  AddInt(myPlex, "myplex.remoteplexquality", 13149, -1, transcodeQualityMap, SPIN_CONTROL_TEXT);
+  SetString("myplex.status", g_localizeStrings.Get(g_myplexManager.IsSignedIn() ? 44011 : 44010));
+  AddString(myPlex, "myplex.signin", g_myplexManager.IsSignedIn() ? 44002 : 44100, "", BUTTON_CONTROL_STANDARD);
   AddBool(myPlex, "myplex.searchsharedlibraries", 13143, true);
+  
+  AddSeparator(myPlex, "myplex.sep1");
+  
+  AddBool(myPlex, "myplex.enablequeueandrec", 52210, true);  
 
   CSettingsCategory* vs = AddCategory(SETTINGS_SYSTEM, "videoscreen", 21373);
 
@@ -941,12 +933,11 @@ void CGUISettings::Initialize()
   CSettingsCategory* pms = AddCategory(6, "plexmediaserver", 40210);
   AddBool(pms, "plexmediaserver.manualaddress", 40211, false);
   AddString(pms, "plexmediaserver.address", 40212, "0.0.0.0", EDIT_CONTROL_IP_INPUT);
-
-  AddBool(pms, "plexmediaserver.forcelocaltranscode", 40213, false);
-
-  transcodeQualityMap.erase(43000-1);
-  AddInt(pms, "plexmediaserver.localtranscodequality", 40214, -1, transcodeQualityMap, SPIN_CONTROL_TEXT);
-
+  AddString(pms, "plexmediaserver.localqualitystr", 52201, g_localizeStrings.Get(42999), BUTTON_CONTROL_MISC_INPUT);
+  AddInt(NULL, "plexmediaserver.localquality", 52201, 0, 0, 1, INT_MAX, SPIN_CONTROL_INT);
+  AddString(pms, "plexmediaserver.remotequalitystr", 52202, g_localizeStrings.Get(42999), BUTTON_CONTROL_MISC_INPUT);
+  AddInt(NULL, "plexmediaserver.remotequality", 52201, 0, 0, 1, INT_MAX, SPIN_CONTROL_INT);
+  
   // appearance settings
   AddGroup(SETTINGS_APPEARANCE, 480);
   CSettingsCategory* laf = AddCategory(SETTINGS_APPEARANCE,"lookandfeel", 166);

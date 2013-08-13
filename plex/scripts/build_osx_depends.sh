@@ -71,7 +71,7 @@ fi
 config="$config --disable-libvorbis"
 config="$config --enable-gpl --enable-postproc --enable-static --enable-pthreads"
 config="$config --enable-muxer=spdif --enable-muxer=adts --enable-encoder=ac3 --enable-encoder=aac"
-config="$config --enable-protocol=http --enable-runtime-cpudetect"
+config="$config --enable-protocol=http --enable-runtime-cpudetect --enable-gnutls"
 config="$config --prefix=$ROOT/plex/Dependencies/xbmc-depends/ffmpeg-$outputdir"
 
 case $CC in
@@ -82,6 +82,9 @@ case $CC in
 esac
 
 extra_cflags="$extra_cflags -I$outputpath/include"
+
+#GNUTLS only uses pkg-config, we need to export this for it to work
+export PKG_CONFIG_PATH="$outputpath/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 #echo $config
 echo ./configure $config --as="$AS" --extra-cflags="$extra_cflags" --extra-ldflags="-arch $arch -L$outputpath/lib"
@@ -95,11 +98,16 @@ make || exit 1
 ar d libavcodec/libavcodec.a inverse.o
 make install || exit 1
 
-cd $ROOT/plex/Dependencies/xbmc-depends
-rm -f $ROOT/plex/Dependencies/*tar.xz
+DEPDIR=$ROOT/plex/Dependencies
+
+cd $DEPDIR/xbmc-depends
+rm -f $DEPDIR/output
+mkdir -p $DEPDIR/built-depends
 
 echo "Packing xbmc-depends"
-gtar --xz -cf $ROOT/plex/Dependencies/$outputdir-xbmc-$DEPEND_HASH.tar.xz $outputdir
+echo gtar --xz -cf $DEPDIR/built-depends/$outputdir-xbmc-$DEPEND_HASH.tar.xz $outputdir
+gtar --xz -cf $DEPDIR/built-depends/$outputdir-xbmc-$DEPEND_HASH.tar.xz $outputdir
 
 echo "Packing ffmpeg"
-gtar --xz -cf $ROOT/plex/Dependencies/$outputdir-ffmpeg-$FFMPEG_HASH.tar.xz ffmpeg-$outputdir
+echo gtar --xz -cf $DEPDIR/built-depends/$outputdir-ffmpeg-$FFMPEG_HASH.tar.xz ffmpeg-$outputdir
+gtar --xz -cf $DEPDIR/built-depends/$outputdir-ffmpeg-$FFMPEG_HASH.tar.xz ffmpeg-$outputdir

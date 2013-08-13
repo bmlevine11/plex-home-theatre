@@ -21,7 +21,6 @@
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
 
-#include "plex/PlexLog.h"
 #include "NetworkInterface.h"
 
 using namespace boost;

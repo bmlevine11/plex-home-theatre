@@ -285,14 +285,14 @@ bool CCurlFile::CReadState::Seek(int64_t pos)
 void CCurlFile::CReadState::SetResume(void)
 {
   /*
-   * Use RANGE method for resuming. We used to use RESUME_FROM_LARGE for this but some http servers
-   * require us to always send the range request header. If we don't the server may provide different
-   * content causing seeking to fail. Note that internally Curl will automatically handle this for FTP
-   * so we don't need to worry about that here.
+   * Explicitly set RANGE header when filepos=0 as some http servers require us to always send the range
+   * request header. If we don't the server may provide different content causing seeking to fail.
+   * This only affects HTTP-like items, for FTP it's a null operation.
    */
-  char str[21];
-  sprintf(str, "%"PRId64"-", m_filePos);
-  g_curlInterface.easy_setopt(m_easyHandle, CURLOPT_RANGE, str);
+  if (m_filePos == 0)
+    g_curlInterface.easy_setopt(m_easyHandle, CURLOPT_RANGE, "0-");
+
+  g_curlInterface.easy_setopt(m_easyHandle, CURLOPT_RESUME_FROM_LARGE, m_filePos);
 }
 
 long CCurlFile::CReadState::Connect(unsigned int size)
@@ -596,20 +596,6 @@ void CCurlFile::SetCommonOptions(CReadState* state)
 
   // Set the lowspeed time very low as it seems Curl takes much longer to detect a lowspeed condition
   g_curlInterface.easy_setopt(h, CURLOPT_LOW_SPEED_TIME, m_lowspeedtime);
-
-  /* PLEX */
-  // See if we need to add any options from the FileItem.
-  if (g_application.CurrentFileItem().GetPath() == m_url)
-  {
-    CStdString cookies = g_application.CurrentFileItem().GetProperty("httpCookies").asString();
-    if (cookies.size() > 0)
-      g_curlInterface.easy_setopt(h, CURLOPT_COOKIE, cookies.c_str());
-
-    CStdString userAgent = g_application.CurrentFileItem().GetProperty("userAgent").asString();
-    if (userAgent.size() > 0)
-      g_curlInterface.easy_setopt(h, CURLOPT_USERAGENT, userAgent.c_str());
-  }
-  /* END PLEX */
 
   if (m_skipshout)
     // For shoutcast file, content-length should not be set, and in libcurl there is a bug, if the
@@ -976,7 +962,11 @@ bool CCurlFile::Open(const CURL& url)
      || !m_state->m_httpheader.GetValue("icy-br").IsEmpty()) && !m_skipshout)
   {
     CLog::Log(LOGDEBUG,"CurlFile - file <%s> is a shoutcast stream. re-opening", m_url.c_str());
+#ifndef __PLEX__
     throw new CRedirectException(new CShoutcastFile);
+#else
+    throw new CRedirectException(new CShoutcastFile, new CURL(m_url));
+#endif
   }
 
   /* PLEX */
