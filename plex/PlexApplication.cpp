@@ -88,6 +88,9 @@ PlexApplication::Start()
     }
   }
 
+  if (g_guiSettings.GetBool("advanced.collectanalytics"))
+    analytics->startLogging();
+
   myPlexManager->Create();
 }
 
@@ -303,6 +306,7 @@ void PlexApplication::Announce(ANNOUNCEMENT::AnnouncementFlag flag, const char *
     OnTimeout();
     
     delete remoteSubscriberManager;
+    remoteSubscriberManager = NULL;
     
 //    backgroundMusicPlayer->Die();
 //    delete backgroundMusicPlayer;
