@@ -40,6 +40,8 @@ public:
 
   CPlexServer() {}
 
+  CPlexServer(CPlexConnectionPtr connection);
+
   bool CollectDataFromRoot(const CStdString xmlData);
   CStdString toString() const;
 
@@ -76,6 +78,9 @@ public:
   CURL BuildPlexURL(const CStdString& path) const;
   void AddConnection(CPlexConnectionPtr connection);
 
+  void SetUUID(const CStdString &uuid) { m_uuid = uuid; }
+  void SetName(const CStdString &name) { m_name = name; }
+  void SetOwned(bool owned) { m_owned = owned; }
   void SetOwner(const CStdString &owner) { m_owner = owner; }
   void SetVersion(const CStdString& version) { m_version = version; }
   void SetSupportsVideoTranscoding(bool support) { m_supportsVideoTranscoding = support; }
