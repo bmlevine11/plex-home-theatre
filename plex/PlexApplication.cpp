@@ -284,8 +284,11 @@ void PlexApplication::Announce(ANNOUNCEMENT::AnnouncementFlag flag, const char *
 
     themeMusicPlayer->stop();
     
-    m_serviceListener->Stop();
-    m_serviceListener.reset();
+    if (m_serviceListener)
+    {
+      m_serviceListener->Stop();
+      m_serviceListener.reset();
+    }
     
     myPlexManager->Stop();
     delete myPlexManager;
