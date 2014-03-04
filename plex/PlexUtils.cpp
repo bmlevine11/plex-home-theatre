@@ -572,3 +572,14 @@ void PlexUtils::LogStackTrace(char *FuncName)
    }
 }
 #endif
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+void PlexUtils::DebugLogItem(const CFileItem &item)
+{
+  std::pair<CStdString,CVariant> p;
+  CLog::Log(LOGDEBUG,"%25s   %s","Property","Value");
+  BOOST_FOREACH(p, item.GetAllProperties())
+  {
+    CLog::Log(LOGDEBUG,"%25s = %s",p.first.c_str(),p.second.asString().c_str());
+  }
+}

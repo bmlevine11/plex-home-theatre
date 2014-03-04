@@ -49,6 +49,8 @@ namespace PlexUtils
 
   unsigned long GetFastHash(CStdString Data);
 
+  void DebugLogItem(const CFileItem &item);
+
 #if defined(HAVE_EXECINFO_H)
   void LogStackTrace(char *FuncName);
 #else
