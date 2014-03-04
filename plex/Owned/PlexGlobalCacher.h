@@ -5,6 +5,7 @@
 #include "VideoThumbLoader.h"
 #include "threads/Thread.h"
 #include "threads/Event.h"
+#include "dialogs/GUIDialogProgress.h"
 
 class CPlexGlobalCacher : public CPlexThumbCacher, public CThread
 {
@@ -20,6 +21,7 @@ private:
 	CPlexGlobalCacher();
     static CPlexGlobalCacher* m_globalCacher;
     bool m_continue;
+    CGUIDialogProgress *m_dlgProgress;
 
 };
 
