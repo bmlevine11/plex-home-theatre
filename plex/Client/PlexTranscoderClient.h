@@ -26,6 +26,7 @@ public:
   static int SelectATranscoderQuality(CPlexServerPtr server, int currentQuality = 0);
   static std::string GetPrettyBitrate(int br);
   static bool ShouldTranscode(CPlexServerPtr server, const CFileItem& item);
+  static bool ShouldTranscodeRPi(CPlexServerPtr server, const CFileItem& item);
   static CURL GetTranscodeURL(CPlexServerPtr server, const CFileItem& item);
   static std::string GetCurrentBitrate(bool local);
   static std::string GetCurrentSession();
