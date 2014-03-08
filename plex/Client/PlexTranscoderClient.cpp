@@ -22,7 +22,7 @@
 #include "Client/PlexServerManager.h"
 #include "Client/PlexServer.h"
 #include "PlexMediaDecisionEngine.h"
-
+#include "Client/PlexTranscoderClientRPi.h"
 #include "log.h"
 
 #include <map>
@@ -37,6 +37,7 @@ static str2str _qualities = boost::assign::list_of<std::pair<std::string, std::s
   ("64", "10") ("96", "20") ("208", "30") ("320", "30") ("720", "40") ("1500", "60") ("2000", "60")
   ("3000", "75") ("4000", "100") ("8000", "60") ("10000", "75") ("12000", "90") ("20000", "100");
 
+CPlexTranscoderClient *CPlexTranscoderClient::_Instance = NULL;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 PlexIntStringMap CPlexTranscoderClient::getOnlineQualties()
@@ -172,64 +173,6 @@ std::string CPlexTranscoderClient::GetPrettyBitrate(int rawbitrate)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-bool CPlexTranscoderClient::ShouldTranscodeRPi(CPlexServerPtr server, const CFileItem& item)
-{
-  bool bShouldTranscode = false;
-  CStdString ReasonWhy;
-
-  static std::set<std::string> knownVideoCodecs = boost::assign::list_of<std::string>  ("h264") ("mpeg4");
-  static std::set<std::string> knownAudioCodecs = boost::assign::list_of<std::string>  ("aac") ("ac3") ("mp3") ("mp2") ("dca");
-
-  //PlexUtils::DebugLogItem(item);
-
-  // Dump The Video information
-  CLog::Log(LOGDEBUG,"----------- Video information for '%s' in '%s' -----------",item.GetProperty("title").asString().c_str(),item.GetPath().c_str());
-  CLog::Log(LOGDEBUG,"-%16s(%d) : %10s", "container",item.HasProperty("container"),item.GetProperty("container").asString().c_str());
-  CLog::Log(LOGDEBUG,"-%16s(%d) : %10s", "videoCodec",item.HasProperty("mediaTag-videoCodec"),item.GetProperty("mediaTag-videoCodec").asString().c_str());
-  CLog::Log(LOGDEBUG,"-%16s(%d) : %10s", "videoResolution",item.HasProperty("mediaTag-videoResolution"),item.GetProperty("mediaTag-videoResolution").asString().c_str());
-  CLog::Log(LOGDEBUG,"-%16s(%d) : %10s", "videoFrameRate",item.HasProperty("mediaTag-videoFrameRate"),item.GetProperty("mediaTag-videoFrameRate").asString().c_str());
-  CLog::Log(LOGDEBUG,"-%16s(%d) : %10s", "bitrate",item.HasProperty("bitrate"),item.GetProperty("bitrate").asString().c_str());
-  CLog::Log(LOGDEBUG,"-%16s(%d) : %10s", "width",item.HasProperty("width"),item.GetProperty("width").asString().c_str());
-  CLog::Log(LOGDEBUG,"-%16s(%d) : %10s", "height",item.HasProperty("height"),item.GetProperty("height").asString().c_str());
-  CLog::Log(LOGDEBUG,"-%16s(%d) : %10s", "aspectRatio",item.HasProperty("mediaTag-aspectRatio"),item.GetProperty("mediaTag-aspectRatio").asString().c_str());
-  CLog::Log(LOGDEBUG,"----------- Audio information -----------");
-  CLog::Log(LOGDEBUG,"-%16s(%d) : %10s", "audioCodec",item.HasProperty("mediaTag-audioCodec"),item.GetProperty("mediaTag-audioCodec").asString().c_str());
-  CLog::Log(LOGDEBUG,"-%16s(%d) : %10s", "audioChannels",item.HasProperty("mediaTag-audioChannels"),item.GetProperty("mediaTag-audioChannels").asString().c_str());
-
-
-  // first we check the Video Codec
-  if (knownVideoCodecs.find(item.GetProperty("mediaTag-videoCodec").asString()) == knownVideoCodecs.end())
-  {
-    bShouldTranscode = true;
-    ReasonWhy.Format("Unknown video codec :%s",item.GetProperty("mediaTag-videoCodec").asString());
-  }
-
-  // Then we check the Audio Codec
-  if (!bShouldTranscode)
-  {
-    if (knownAudioCodecs.find(item.GetProperty("mediaTag-audioCodec").asString()) == knownAudioCodecs.end())
-    {
-      bShouldTranscode = true;
-      ReasonWhy.Format("Unknown audio codec :%s",item.GetProperty("mediaTag-audioCodec").asString());
-    }
-  }
-
-  //bShouldTranscode = true;
-
-  // we also need to check to maximum bitrate
-
-  // we need to check tha maximum fps
-
-  if (bShouldTranscode)
-    CLog::Log(LOGDEBUG,"RPi ShouldTranscode decided to transcode, Reason : %s",ReasonWhy.c_str());
-  else
-    CLog::Log(LOGDEBUG,"RPi ShouldTranscode decided not to transcode");
-
-  //PlexUtils::LogFileItem(item);
-  return bShouldTranscode;
-}
-
-///////////////////////////////////////////////////////////////////////////////
 bool CPlexTranscoderClient::ShouldTranscode(CPlexServerPtr server, const CFileItem& item)
 {
   if (!item.IsVideo())
@@ -237,12 +180,6 @@ bool CPlexTranscoderClient::ShouldTranscode(CPlexServerPtr server, const CFileIt
 
   if (!server || !server->GetActiveConnection())
     return false;
-  
-  CFileItemPtr selectedItem = CPlexMediaDecisionEngine::getSelectedMediaItem((item));
-
-#if defined(TARGET_RASPBERRY_PI)
-  return ShouldTranscodeRPi(server,*selectedItem);
-#endif
 
   if (server->GetActiveConnection()->IsLocal())
     return g_guiSettings.GetInt("plexmediaserver.localquality") != 0;
@@ -282,7 +219,7 @@ CURL CPlexTranscoderClient::GetTranscodeURL(CPlexServerPtr server, const CFileIt
   }*/
   tURL.SetOption("fastSeek", "1");
   
-  std::string bitrate = GetCurrentBitrate(isLocal);
+  std::string bitrate = GetInstance()->GetCurrentBitrate(isLocal);
   tURL.SetOption("maxVideoBitrate", bitrate);
   tURL.SetOption("videoQuality", _qualities[bitrate]);
   tURL.SetOption("videoResolution", _resolutions[bitrate]);
@@ -335,4 +272,25 @@ CURL CPlexTranscoderClient::GetTranscodeURL(CPlexServerPtr server, const CFileIt
 std::string CPlexTranscoderClient::GetCurrentSession()
 {
   return g_guiSettings.GetString("system.uuid");
+}
+
+///////////////////////////////////////////////////////////////////////////////
+CPlexTranscoderClient *CPlexTranscoderClient::GetInstance()
+{
+   if (!_Instance)
+  {
+#if defined(TARGET_RASPBERRY_PI)
+    _Instance = new CPlexTranscoderClientRPi();
+#else
+    _Instance = new CPlexTranscoderClient();
+#endif
+  }
+  return _Instance;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void CPlexTranscoderClient::DeleteInstance()
+{
+  if (_Instance)
+    delete _Instance;
 }

@@ -32,6 +32,7 @@
 #include "dialogs/GUIDialogVideoOSD.h"
 #include "GUIWindowManager.h"
 #include "Utility/PlexProfiler.h"
+#include "Client/PlexTranscoderClient.h"
 
 #include "network/UdpClient.h"
 #include "DNSNameCache.h"
@@ -310,6 +311,8 @@ void PlexApplication::Announce(ANNOUNCEMENT::AnnouncementFlag flag, const char *
 
     filterManager->saveFiltersToDisk();
     filterManager.reset();
+
+    CPlexTranscoderClient::DeleteInstance();
 
     OnTimeout();
     
