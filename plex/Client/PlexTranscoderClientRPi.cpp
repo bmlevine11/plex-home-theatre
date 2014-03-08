@@ -107,12 +107,12 @@ bool CPlexTranscoderClientRPi::ShouldTranscode(CPlexServerPtr server, const CFil
   CFileItemPtr mediaPart = selectedItem->m_mediaParts.at(0);
   if (mediaPart)
   {
-    if (audioStream = PlexUtils::GetSelectedStreamOfType(mediaPart, PLEX_STREAM_AUDIO))
+    if ((audioStream = PlexUtils::GetSelectedStreamOfType(mediaPart, PLEX_STREAM_AUDIO)))
       audioBitRate = audioStream->GetProperty("bitrate").asInteger();
     else
       CLog::Log(LOGERROR,"CPlexTranscoderClient::ShouldTranscodeRPi - AudioStream is empty");
 
-    if (videoStream = PlexUtils::GetSelectedStreamOfType(mediaPart, PLEX_STREAM_VIDEO))
+    if ((videoStream = PlexUtils::GetSelectedStreamOfType(mediaPart, PLEX_STREAM_VIDEO)))
       videoFrameRate = videoStream->GetProperty("frameRate").asFloat();
     else
       CLog::Log(LOGERROR,"CPlexTranscoderClient::ShouldTranscodeRPi - VideoStream is empty");

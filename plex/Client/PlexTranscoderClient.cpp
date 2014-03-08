@@ -188,7 +188,7 @@ bool CPlexTranscoderClient::ShouldTranscode(CPlexServerPtr server, const CFileIt
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-typedef std::pair<std::string, std::  string> stringPair;
+typedef std::pair<std::string, std::string> stringPair;
 CURL CPlexTranscoderClient::GetTranscodeURL(CPlexServerPtr server, const CFileItem& item)
 {
   bool isLocal = server->GetActiveConnection()->IsLocal();
