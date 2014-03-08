@@ -25,7 +25,7 @@ private:
     static CPlexTranscoderClient *_Instance;
 
 public:
-  CPlexTranscoderClient();
+  CPlexTranscoderClient() {}
   static CPlexTranscoderClient *GetInstance();
   static void DeleteInstance();
   static int SelectATranscoderQuality(CPlexServerPtr server, int currentQuality = 0);
