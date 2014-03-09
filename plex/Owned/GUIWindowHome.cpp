@@ -157,6 +157,7 @@ void CPlexSectionFanout::Refresh()
     delete p.second;
   
   m_fileLists.clear();
+
   m_LocalCache.clear();
   CLog::Log(LOGDEBUG, "GUIWindowHome:SectionFanout:Refresh for %s", m_url.Get().c_str());
 
@@ -266,11 +267,12 @@ void CPlexSectionFanout::OnJobComplete(unsigned int jobID, bool success, CJob *j
 
   m_age.restart();
 
-#if defined(TARGET_RASPBERRY_PI)
-  // Add the Section URL to local cache
-  CLog::Log(LOGDEBUG,"LocalCache : OnJobComplete adding to cache hash=%d, %s",load->m_dir.GetURLHash(),load->m_url.Get().c_str());
-  m_LocalCache[load->m_dir.GetURLHash()] = load->m_url.Get();
-#endif
+  // add the Section URL to local cache
+  if (load->m_dir.GetHash())
+  {
+    CLog::Log(LOGDEBUG,"LocalCache : OnJobComplete adding to cache hash=%d, %s",load->m_dir.GetHash(),load->m_url.Get().c_str());
+    m_LocalCache[load->m_dir.GetHash()] = load->m_url.Get();
+  }
 
   vector<int>::iterator it = std::find(m_outstandingJobs.begin(), m_outstandingJobs.end(), jobID);
   if (it != m_outstandingJobs.end())
@@ -311,7 +313,39 @@ void CPlexSectionFanout::Show()
 //////////////////////////////////////////////////////////////////////////////
 bool CPlexSectionFanout::NeedsRefresh()
 {
-  CSingleLock lk(m_critical);
+  /*if (m_needsRefresh)
+  {
+    CLog::Log(LOGDEBUG,"LocalCache : NeedRefresh flagged, exiting");
+    m_needsRefresh = false;
+    return true;
+  }*/
+  
+  // we check here if the url content has changed
+  CPlexFile File;
+  CStdString strData;
+  bool httpSuccess, bChanged = true;
+  unsigned long NewHash;
+
+  for (std::map<unsigned long,CStdString>::iterator it=m_LocalCache.begin(); it!=m_LocalCache.end(); ++it)
+  {
+    httpSuccess = File.Get(it->second, strData);
+    if (httpSuccess)
+    {
+      NewHash = CPlexDirectory::ComputeHash(strData);
+
+      if (NewHash!=it->first)
+      {
+        bChanged = true;
+        break;
+      }
+      else
+      {
+        bChanged = false;
+      }
+    }
+  }
+
+  if (!bChanged) return false;
 
   int refreshTime = 5;
   if (m_sectionType == SECTION_TYPE_ALBUM ||
@@ -322,28 +356,7 @@ bool CPlexSectionFanout::NeedsRefresh()
   if (m_sectionType == SECTION_TYPE_GLOBAL_FANART)
     refreshTime = 3600;
 
-#if defined(TARGET_RASPBERRY_PI)
-  if (m_age.elapsed() > refreshTime)
-  {
-    // on RPi, Url xml processing is costly, so we check if URL content has changed before reprocessing it
-    BOOST_FOREACH(cacheURLPair cachePair, m_LocalCache)
-    {
-      CPlexFile File;
-      CStdString strData;
-
-      if (File.Get(cachePair.second,strData))
-      {
-        // if the hash of content is different, content has changed, then refresh
-        if (PlexUtils::GetFastHash(strData) != cachePair.first) return true;
-      }
-      else return true;
-    }
-  }
-
-  return false;
-#else
   return m_age.elapsed() > refreshTime;
-#endif
 }
 
 //////////////////////////////////////////////////////////////////////////////
