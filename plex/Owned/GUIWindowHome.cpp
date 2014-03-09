@@ -158,7 +158,6 @@ void CPlexSectionFanout::Refresh()
   
   m_fileLists.clear();
 
-  m_LocalCache.clear();
   CLog::Log(LOGDEBUG, "GUIWindowHome:SectionFanout:Refresh for %s", m_url.Get().c_str());
 
   CURL trueUrl(m_url);
@@ -211,7 +210,6 @@ void CPlexSectionFanout::Refresh()
 
       PlexUtils::AppendPathToURL(trueUrl, "recentlyAdded");
       
-      trueUrl.SetOption("LocalCache","true");
       m_outstandingJobs.push_back(LoadSection(trueUrl.Get(), CONTENT_LIST_RECENTLY_ADDED));
 
       if (m_sectionType == SECTION_TYPE_MOVIE || m_sectionType == SECTION_TYPE_SHOW ||
@@ -219,7 +217,6 @@ void CPlexSectionFanout::Refresh()
       {
         trueUrl = CURL(m_url);
         PlexUtils::AppendPathToURL(trueUrl, "onDeck");
-        trueUrl.SetOption("LocalCache","true");
         m_outstandingJobs.push_back(LoadSection(trueUrl.Get(), CONTENT_LIST_ON_DECK));
       }
     }
@@ -267,13 +264,6 @@ void CPlexSectionFanout::OnJobComplete(unsigned int jobID, bool success, CJob *j
 
   m_age.restart();
 
-  // add the Section URL to local cache
-  if (load->m_dir.GetHash())
-  {
-    CLog::Log(LOGDEBUG,"LocalCache : OnJobComplete adding to cache hash=%d, %s",load->m_dir.GetHash(),load->m_url.Get().c_str());
-    m_LocalCache[load->m_dir.GetHash()] = load->m_url.Get();
-  }
-
   vector<int>::iterator it = std::find(m_outstandingJobs.begin(), m_outstandingJobs.end(), jobID);
   if (it != m_outstandingJobs.end())
     m_outstandingJobs.erase(it);
@@ -313,40 +303,12 @@ void CPlexSectionFanout::Show()
 //////////////////////////////////////////////////////////////////////////////
 bool CPlexSectionFanout::NeedsRefresh()
 {
-  /*if (m_needsRefresh)
+  if (m_needsRefresh)
   {
-    CLog::Log(LOGDEBUG,"LocalCache : NeedRefresh flagged, exiting");
     m_needsRefresh = false;
     return true;
-  }*/
-  
-  // we check here if the url content has changed
-  CPlexFile File;
-  CStdString strData;
-  bool httpSuccess, bChanged = true;
-  unsigned long NewHash;
-
-  for (std::map<unsigned long,CStdString>::iterator it=m_LocalCache.begin(); it!=m_LocalCache.end(); ++it)
-  {
-    httpSuccess = File.Get(it->second, strData);
-    if (httpSuccess)
-    {
-      NewHash = CPlexDirectory::ComputeHash(strData);
-
-      if (NewHash!=it->first)
-      {
-        bChanged = true;
-        break;
-      }
-      else
-      {
-        bChanged = false;
-      }
-    }
   }
-
-  if (!bChanged) return false;
-
+  
   int refreshTime = 5;
   if (m_sectionType == SECTION_TYPE_ALBUM ||
       m_sectionType == SECTION_TYPE_QUEUE ||

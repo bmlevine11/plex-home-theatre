@@ -32,32 +32,12 @@ using namespace rapidxml;
 
 namespace XFILE
 {
-  class CLocalCachedDirectory
-  {
-  public:
-      ~CLocalCachedDirectory()
-      {
-           for (int i=0;i<Items.Size();i++)
-           {
-               //delete &Items[i];
-           }
-
-           Items.Clear();
-      }
-
-      CFileItemList Items;
-      unsigned long Hash;
-  };
-
   class CPlexDirectory : public IDirectory
   {
     public:
 
 
       CPlexDirectory() {}
-
-      static unsigned long ComputeHash(CStdString Data);
-      inline unsigned long GetHash() { return m_Hash; };
 
       bool GetDirectory(const CURL& url, CFileItemList& items);
 
@@ -109,7 +89,6 @@ namespace XFILE
       CURL m_url;
 
       CPlexFile m_file;
-      unsigned long m_Hash;
 
   };
 }
