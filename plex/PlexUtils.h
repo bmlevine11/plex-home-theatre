@@ -47,13 +47,17 @@ namespace PlexUtils
 
   CStdString GetXMLString(const CXBMCTinyXML &document);
 
-  unsigned long GetFastHash(CStdString Data);
+  bool MakeWakeupPipe(SOCKET *pipe);
 
-#if defined(HAVE_EXECINFO_H)
   void LogStackTrace(char *FuncName);
-#else
-  void LogStackTrace(char *FuncName) {}
-#endif
+
+  ePlexMediaType GetMediaTypeFromItem(CFileItemPtr item);
+  std::string GetMediaTypeString(ePlexMediaType type);
+  ePlexMediaType GetMediaTypeFromString(const std::string &typeString);
+  ePlexMediaState GetMediaStateFromString(const std::string &statestring);
+  std::string GetMediaStateString(ePlexMediaState state);
+
+  unsigned long GetFastHash(std::string Data);
 }
 
 #if defined(HAVE_EXECINFO_H)

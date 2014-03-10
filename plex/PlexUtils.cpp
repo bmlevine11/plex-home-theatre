@@ -539,17 +539,66 @@ CStdString PlexUtils::GetXMLString(const CXBMCTinyXML &document)
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-unsigned long PlexUtils::GetFastHash(CStdString Data)
+bool PlexUtils::MakeWakeupPipe(SOCKET *pipe)
 {
-  // DJB2 FastHash Method (http://www.cse.yorku.ca/~oz/hash.html)
-  unsigned long hash = 5381;
-  int c;
-  const char* str = Data.c_str();
+#ifdef TARGET_POSIX
+  if (::pipe(pipe) != 0)
+  {
+    CLog::Log(LOGWARNING, "PlexUtils::MakeWakeupPipe failed to create a POSIX pipe");
+    return false;
+  }
+#else
+  pipe[0] = ::socket(AF_INET, SOCK_DGRAM, 0);
+  if (pipe[0] == -1)
+  {
+    CLog::Log(LOGWARNING, "PlexUtils::MakeWakeupPipe failed to create UDP socket");
+    return false;
+  }
 
-  while (c = *str++)
-    hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+  struct sockaddr_in inAddr;
+  struct sockaddr addr;
 
-  return hash;
+  memset((char*)&inAddr, 0, sizeof(inAddr));
+  memset((char*)&addr, 0, sizeof(addr));
+
+  inAddr.sin_family = AF_INET;
+  inAddr.sin_port = htons(0);
+  inAddr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+
+  int y = 1;
+  if (::setsockopt(pipe[0], SOL_SOCKET, SO_REUSEADDR, (const char*)&y, sizeof(y)) == -1)
+  {
+    CLog::Log(LOGWARNING, "PlexUtils::MakeWakeupPipe failed to set socket options");
+    return false;
+  }
+
+  if (::bind(pipe[0], (struct sockaddr *)&inAddr, sizeof(inAddr)) == -1)
+  {
+    CLog::Log(LOGWARNING, "PlexUtils::MakeWakeupPipe failed to bind socket!");
+    return false;
+  }
+
+  int len = sizeof(addr);
+  if (::getsockname(pipe[0], &addr, &len) != 0)
+  {
+    CLog::Log(LOGWARNING, "PlexUtils::MakeWakeupPipe failed to getsockname on socket");
+    return false;
+  }
+
+  pipe[1] = ::socket(AF_INET, SOCK_DGRAM, 0);
+  if (pipe[1] == -1)
+  {
+    CLog::Log(LOGWARNING, "PlexUtils::MakeWakeupPipe failed to create other end of UDP pipe");
+    return false;
+  }
+
+  if (connect(pipe[1], &addr, len) != 0)
+  {
+    CLog::Log(LOGWARNING, "PlexUtils::MakeWakeupPipe failed to connect UDP pipe.");
+    return false;
+  }
+#endif
+  return true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -571,4 +620,107 @@ void PlexUtils::LogStackTrace(char *FuncName)
      free(strings);
    }
 }
+#else
+void PlexUtils::LogStackTrace(char *FuncName) {}
 #endif
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+ePlexMediaType PlexUtils::GetMediaTypeFromItem(CFileItemPtr item)
+{
+  EPlexDirectoryType plexType = item->GetPlexDirectoryType();
+
+  switch(plexType)
+  {
+    case PLEX_DIR_TYPE_TRACK:
+      return PLEX_MEDIA_TYPE_MUSIC;
+    case PLEX_DIR_TYPE_VIDEO:
+    case PLEX_DIR_TYPE_EPISODE:
+    case PLEX_DIR_TYPE_CLIP:
+    case PLEX_DIR_TYPE_MOVIE:
+      return PLEX_MEDIA_TYPE_VIDEO;
+    case PLEX_DIR_TYPE_IMAGE:
+    case PLEX_DIR_TYPE_PHOTO:
+    case PLEX_DIR_TYPE_PHOTOALBUM:
+      return PLEX_MEDIA_TYPE_PHOTO;
+    default:
+      return PLEX_MEDIA_TYPE_UNKNOWN;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+std::string PlexUtils::GetMediaTypeString(ePlexMediaType type)
+{
+  switch(type)
+  {
+    case PLEX_MEDIA_TYPE_MUSIC:
+      return "music";
+    case PLEX_MEDIA_TYPE_PHOTO:
+      return "photo";
+    case PLEX_MEDIA_TYPE_VIDEO:
+      return "video";
+    default:
+      return "unknown";
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+ePlexMediaType PlexUtils::GetMediaTypeFromString(const std::string &typestr)
+{
+  if (typestr == "music")
+    return PLEX_MEDIA_TYPE_MUSIC;
+  if (typestr == "photo")
+    return PLEX_MEDIA_TYPE_PHOTO;
+  if (typestr == "video")
+    return PLEX_MEDIA_TYPE_VIDEO;
+  return PLEX_MEDIA_TYPE_UNKNOWN;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
+std::string PlexUtils::GetMediaStateString(ePlexMediaState state)
+{
+  CStdString strstate;
+  switch (state) {
+    case PLEX_MEDIA_STATE_STOPPED:
+      strstate = "stopped";
+      break;
+    case PLEX_MEDIA_STATE_BUFFERING:
+      strstate = "buffering";
+      break;
+    case PLEX_MEDIA_STATE_PLAYING:
+      strstate = "playing";
+      break;
+    case PLEX_MEDIA_STATE_PAUSED:
+      strstate = "paused";
+      break;
+  }
+  return strstate;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+ePlexMediaState PlexUtils::GetMediaStateFromString(const std::string& statestr)
+{
+  if (statestr == "stopped")
+    return PLEX_MEDIA_STATE_STOPPED;
+  else if (statestr == "buffering")
+    return PLEX_MEDIA_STATE_BUFFERING;
+  else if (statestr == "playing")
+    return PLEX_MEDIA_STATE_PLAYING;
+  else if (statestr == "paused")
+    return PLEX_MEDIA_STATE_PAUSED;
+
+  return PLEX_MEDIA_STATE_STOPPED;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+unsigned long PlexUtils::GetFastHash(std::string Data)
+{
+  // DJB2 FastHash Method (http://www.cse.yorku.ca/~oz/hash.html)
+  unsigned long hash = 5381;
+  int c;
+  const char* str = Data.c_str();
+
+  while ((c = *str++))
+    hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+
+  return hash;
+}
