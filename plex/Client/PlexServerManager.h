@@ -36,7 +36,6 @@ public:
   void ClearBestServer();
 
   CPlexServerPtr FindByUUID(const CStdString &uuid);
-  CPlexServerPtr FindByHostAndPort(const CStdString &host, int port);
   CPlexServerPtr FindFromItem(CFileItemPtr item);
 
   PlexServerList GetAllServers(CPlexServerOwnedModifier modifier = SERVER_ALL) const;
@@ -44,7 +43,7 @@ public:
   void UpdateFromConnectionType(PlexServerList servers, int connectionType);
   void UpdateFromDiscovery(CPlexServerPtr server);
   void MarkServersAsRefreshing();
-  void MergeServer(CPlexServerPtr server);
+  CPlexServerPtr MergeServer(CPlexServerPtr server);
   void ServerRefreshComplete(int connectionType);
   void UpdateReachability(bool force = false);
 

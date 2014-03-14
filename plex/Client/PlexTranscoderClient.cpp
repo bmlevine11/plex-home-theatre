@@ -22,7 +22,7 @@
 #include "Client/PlexServerManager.h"
 #include "Client/PlexServer.h"
 #include "PlexMediaDecisionEngine.h"
-#include "Client/PlexTranscoderClientRPi.h"
+
 #include "log.h"
 
 #include <map>
@@ -37,7 +37,6 @@ static str2str _qualities = boost::assign::list_of<std::pair<std::string, std::s
   ("64", "10") ("96", "20") ("208", "30") ("320", "30") ("720", "40") ("1500", "60") ("2000", "60")
   ("3000", "75") ("4000", "100") ("8000", "60") ("10000", "75") ("12000", "90") ("20000", "100");
 
-CPlexTranscoderClient *CPlexTranscoderClient::_Instance = NULL;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 PlexIntStringMap CPlexTranscoderClient::getOnlineQualties()
@@ -180,7 +179,7 @@ bool CPlexTranscoderClient::ShouldTranscode(CPlexServerPtr server, const CFileIt
 
   if (!server || !server->GetActiveConnection())
     return false;
-
+  
   if (server->GetActiveConnection()->IsLocal())
     return g_guiSettings.GetInt("plexmediaserver.localquality") != 0;
   else
@@ -203,6 +202,13 @@ CURL CPlexTranscoderClient::GetTranscodeURL(CPlexServerPtr server, const CFileIt
   tURL.SetOption("protocol", "hls");
   tURL.SetOption("directPlay", "0");
   tURL.SetOption("directStream", "1");
+
+  CFileItemPtr mediaItem = CPlexMediaDecisionEngine::getSelectedMediaItem(item);
+  if (mediaItem)
+    tURL.SetOption("mediaIndex", mediaItem->GetProperty("mediaIndex").asString());
+
+  if (mediaItem->m_selectedMediaPart)
+    tURL.SetOption("partIndex", mediaItem->m_selectedMediaPart->GetProperty("partIndex").asString());
   
   /*
   if (item.HasProperty("viewOffset"))
@@ -212,7 +218,7 @@ CURL CPlexTranscoderClient::GetTranscodeURL(CPlexServerPtr server, const CFileIt
   }*/
   tURL.SetOption("fastSeek", "1");
   
-  std::string bitrate = GetInstance()->GetCurrentBitrate(isLocal);
+  std::string bitrate = GetCurrentBitrate(isLocal);
   tURL.SetOption("maxVideoBitrate", bitrate);
   tURL.SetOption("videoQuality", _qualities[bitrate]);
   tURL.SetOption("videoResolution", _resolutions[bitrate]);
@@ -265,25 +271,4 @@ CURL CPlexTranscoderClient::GetTranscodeURL(CPlexServerPtr server, const CFileIt
 std::string CPlexTranscoderClient::GetCurrentSession()
 {
   return g_guiSettings.GetString("system.uuid");
-}
-
-///////////////////////////////////////////////////////////////////////////////
-CPlexTranscoderClient *CPlexTranscoderClient::GetInstance()
-{
-   if (!_Instance)
-  {
-#if defined(TARGET_RASPBERRY_PI)
-    _Instance = new CPlexTranscoderClientRPi();
-#else
-    _Instance = new CPlexTranscoderClient();
-#endif
-  }
-  return _Instance;
-}
-
-///////////////////////////////////////////////////////////////////////////////
-void CPlexTranscoderClient::DeleteInstance()
-{
-  if (_Instance)
-    delete _Instance;
 }

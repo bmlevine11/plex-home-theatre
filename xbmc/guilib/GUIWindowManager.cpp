@@ -776,7 +776,6 @@ int CGUIWindowManager::GetTopMostModalDialogID(bool ignoreClosing /*= false*/) c
   return WINDOW_INVALID;
 }
 
-/* PLEX */
 int CGUIWindowManager::RemoveThreadMessageByMessageIds(int *pMessageIDList)
 {
   CSingleLock lock(m_critSection);
@@ -801,7 +800,6 @@ int CGUIWindowManager::RemoveThreadMessageByMessageIds(int *pMessageIDList)
   }
   return removedMsgCount;
 }
-/* END PLEX */
 
 void CGUIWindowManager::SendThreadMessage(CGUIMessage& message)
 {

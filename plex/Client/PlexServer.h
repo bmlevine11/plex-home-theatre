@@ -36,9 +36,11 @@ class CPlexServer : public boost::enable_shared_from_this<CPlexServer>
 {
 public:
   CPlexServer(const CStdString& uuid, const CStdString& name, bool owned, bool synced = false)
-    : m_owned(owned), m_uuid(uuid), m_name(name), m_synced(synced) {}
+    : m_owned(owned), m_uuid(uuid), m_name(name), m_synced(synced), m_lastRefreshed(0) {}
 
   CPlexServer() {}
+
+  CPlexServer(CPlexConnectionPtr connection);
 
   bool CollectDataFromRoot(const CStdString xmlData);
   CStdString toString() const;
@@ -50,6 +52,9 @@ public:
   void Merge(CPlexServerPtr otherServer);
 
   bool UpdateReachability();
+  void CancelReachabilityTests();
+
+  CStdString GetAccessToken() const;
 
   CStdString GetName() const { return m_name; }
   CStdString GetUUID() const { return m_uuid; }
@@ -76,6 +81,9 @@ public:
   CURL BuildPlexURL(const CStdString& path) const;
   void AddConnection(CPlexConnectionPtr connection);
 
+  void SetUUID(const CStdString &uuid) { m_uuid = uuid; }
+  void SetName(const CStdString &name) { m_name = name; }
+  void SetOwned(bool owned) { m_owned = owned; }
   void SetOwner(const CStdString &owner) { m_owner = owner; }
   void SetVersion(const CStdString& version) { m_version = version; }
   void SetSupportsVideoTranscoding(bool support) { m_supportsVideoTranscoding = support; }
@@ -98,6 +106,9 @@ public:
   std::string GetAnyToken() const;
     
   void SetActiveConnection(CPlexConnectionPtr connection) { m_activeConnection = connection; }
+
+  uint64_t GetLastRefreshed() const { return m_lastRefreshed; }
+  void DidRefresh() { m_lastRefreshed = XbmcThreads::SystemClockMillis(); }
 
 private:
   bool m_owned;
@@ -132,4 +143,6 @@ private:
 
   CCriticalSection m_connTestThreadLock;
   std::vector<CPlexServerConnTestThread*> m_connTestThreads;
+
+  uint64_t m_lastRefreshed;
 };

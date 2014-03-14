@@ -55,24 +55,6 @@ CPlexServerManager::CPlexServerManager() : m_stopped(false)
 
 }
 
-CPlexServerPtr CPlexServerManager::FindByHostAndPort(const CStdString &host, int port)
-{
-  CSingleLock lk(m_serverManagerLock);
-
-  BOOST_FOREACH(PlexServerPair p, m_serverMap)
-  {
-    vector<CPlexConnectionPtr> connections;
-    p.second->GetConnections(connections);
-    BOOST_FOREACH(CPlexConnectionPtr conn, connections)
-    {
-      if (conn->GetAddress().GetHostName().Equals(host) &&
-          conn->GetAddress().GetPort() == port)
-        return p.second;
-    }
-  }
-  return CPlexServerPtr();
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CPlexServerPtr CPlexServerManager::FindFromItem(CFileItemPtr item)
 {
@@ -175,12 +157,12 @@ CPlexServerManager::UpdateFromDiscovery(CPlexServerPtr server)
   
   CSingleLock lk(m_serverManagerLock);
 
-  MergeServer(server);
-  NotifyAboutServer(server);
-  SetBestServer(server, false);
+  CPlexServerPtr mergedServer = MergeServer(server);
+  NotifyAboutServer(mergedServer);
+  SetBestServer(mergedServer, false);
 }
 
-void
+CPlexServerPtr
 CPlexServerManager::MergeServer(CPlexServerPtr server)
 {
   CSingleLock lk(m_serverManagerLock);
@@ -192,11 +174,13 @@ CPlexServerManager::MergeServer(CPlexServerPtr server)
     CLog::Log(LOGDEBUG, "CPlexServerManager::MergeServer Merged %s with %d connection, now we have %d total connections.",
               server->GetName().c_str(), server->GetNumConnections(),
               existingServer->GetNumConnections());
+    return existingServer;
   }
   else
   {
     m_serverMap[server->GetUUID()] = server;
     CLog::Log(LOGDEBUG, "CPlexServerManager::MergeServer Added a new server %s with %d connections", server->GetName().c_str(), server->GetNumConnections());
+    return server;
   }
 }
 
@@ -251,11 +235,15 @@ CPlexServerManager::SetBestServer(CPlexServerPtr server, bool force)
   if (!m_bestServer || force || m_bestServer == server)
   {
     CLog::Log(LOGDEBUG, "CPlexServerManager::SetBestServer bestServer updated to %s", server->toString().c_str());
-    m_bestServer = server;
 
-    CGUIMessage msg(GUI_MSG_PLEX_BEST_SERVER_UPDATED, 0, 0);
-    msg.SetStringParam(server->GetUUID());
-    g_windowManager.SendThreadMessage(msg);
+    if (m_bestServer != server)
+    {
+      CGUIMessage msg(GUI_MSG_PLEX_BEST_SERVER_UPDATED, 0, 0);
+      msg.SetStringParam(server->GetUUID());
+      g_windowManager.SendThreadMessage(msg);
+    }
+
+    m_bestServer = server;
   }
 }
 
@@ -268,8 +256,6 @@ CPlexServerManager::ClearBestServer()
 
 void CPlexServerManager::ServerReachabilityDone(CPlexServerPtr server, bool success)
 {
-  if (m_stopped) return;
-
   int reachThreads = 0;
 
   {
@@ -362,8 +348,22 @@ void CPlexServerManager::Stop()
   m_stopped = true;
   save();
 
+  CLog::Log(LOGDEBUG, "CPlexServerManager::Stop asked to stop...");
+
+  CSingleLock lk(m_serverManagerLock);
+
   if (IsRunningReachabilityTests())
   {
+    CLog::Log(LOGDEBUG, "CPlexServerManager::Stop still running reachability tests...");
+    std::pair<std::string, CPlexServerReachabilityThread*> p;
+    BOOST_FOREACH(p, m_reachabilityThreads)
+    {
+      CLog::Log(LOGDEBUG, "CPlexServerManager::Stop canceling reachtests for server %s", p.second->m_server->GetName().c_str());
+      p.second->m_server->CancelReachabilityTests();
+    }
+
+    lk.unlock();
+
     if (!m_reachabilityTestEvent.WaitMSec(10 * 1000))
     {
       CLog::Log(LOGWARNING, "CPlexServerManager::Stop waited 10 seconds for the reachability stuff to finish, will just kill and move on.");

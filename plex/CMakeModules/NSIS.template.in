@@ -46,6 +46,9 @@
 
   !include Sections.nsh
 
+  ;include things required to check installation OS
+  !include "WinVer.nsh"
+
 ;--- Component support macros: ---
 ; The code for the add/remove functionality is from:
 ;   http://nsis.sourceforge.net/Add/Remove_Functionality
@@ -766,34 +769,8 @@ Function un.onInit
     ;Get installation folder from registry if available
 
   done:
+
   
-  ; Detect Media Center
-  ; 4.0 - Media Center 2005 with Update Rollup 2
-  ; 5.0 - Media Center on Windows Vista
-  ; 6.0 - Media Center on Windows 7
-  StrCpy $0 "0"
-  ReadRegStr $0 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Media Center" "Ident"
-  DetailPrint "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Media Center\Ident is $0"
-
-  ${If} $0 < 4.0
-    DetailPrint "No MCE detected, or unsupported MCE version"
-    SectionSetFlags ${UnSecMCE} ${SF_RO}
-    SectionSetText ${UnSecMCE} ""
-    StrCpy $SupportedMCEDetected "0"
-  ${Else}
-    DetailPrint "Detected supported MCE version"
-    StrCpy $SupportedMCEDetected "1"
-
-    ${If} $0 == 4.0
-      StrCpy $MCERegistrationFile "plex-mce-registration-xp.xml"
-    ${ElseIf} $0 == 5.0
-      StrCpy $MCERegistrationFile "plex-mce-registration-vista.xml"
-    ${Else}
-      StrCpy $MCERegistrationFile "plex-mce-registration-7.xml"
-    ${EndIf}
-
-  ${EndIf}
-
 FunctionEnd
 
 ;--- Add/Remove callback functions: ---
@@ -932,6 +909,12 @@ SectionEnd
 ; "Program Files" for AllUsers, "My Documents" for JustMe...
 
 Function .onInit
+
+  ${IfNot} ${AtLeastWinVista}
+    MessageBox MB_OK|MB_ICONSTOP|MB_TOPMOST|MB_SETFOREGROUND "Windows Vista or above required.$\nThis program can not be run on Windows XP"
+    Quit
+  ${EndIf}
+
   StrCmp "@CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL@" "ON" 0 inst
 
   ReadRegStr $0 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\@CPACK_PACKAGE_INSTALL_REGISTRY_KEY@" "UninstallString"

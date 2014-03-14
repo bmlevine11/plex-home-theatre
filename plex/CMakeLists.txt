@@ -15,7 +15,7 @@ include_directories(
 	${root}/plex/Network
 	${root}/plex/Remote
 	${root}/plex/Filters
-	${root}/plex/AutoUpdate
+  ${root}/plex/Third-Party/rapidxml
   ${CONFIG_INCLUDE_PATH_SPARKLE}
 )
 
@@ -59,7 +59,6 @@ add_subdirectory(Utility)
 add_subdirectory(Remote)
 add_subdirectory(Filters)
 add_subdirectory(Windows)
-add_subdirectory(AutoUpdate)
 
 include(BreakpadSymbols)
 
@@ -229,15 +228,6 @@ install(DIRECTORY ${root}/addons DESTINATION ${RESOURCEPATH} COMPONENT RUNTIME
         PATTERN xbmc.python EXCLUDE
 )
 
-if(ENABLE_PYTHON AND TARGET_OSX)
-  install(DIRECTORY /usr/lib/python${PYTHON_VERSION} DESTINATION ${LIBPATH}/lib/ COMPONENT RUNTIME 
-    PATTERN python${PYTHON_VERSION}/test EXCLUDE
-    REGEX .*\\.pyc$ EXCLUDE
-    REGEX .*\\.pyo$ EXCLUDE
-  )
-  install(FILES ${PYTHON_INCLUDE_DIRS}/pyconfig.h DESTINATION "${LIBPATH}/include/python${PYTHON_VERSION}" COMPONENT RUNTIME)
-endif()
-
 if(NOT DEFINED PLEX_SPLASH)
   if(TARGET_RPI)
     set(PLEX_SPLASH Splash-RPI.png)
@@ -251,6 +241,7 @@ install(FILES ${plexdir}/Resources/${PLEX_SPLASH} DESTINATION ${RESOURCEPATH}/me
 install(DIRECTORY ${plexdir}/addons DESTINATION DESTINATION ${RESOURCEPATH} COMPONENT RUNTIME)
 install(FILES ${plexdir}/Resources/plex-icon-120.png DESTINATION ${RESOURCEPATH}/media COMPONENT RUNTIME)
 install(FILES ${plexdir}/Resources/plex-icon-256.png DESTINATION ${RESOURCEPATH}/media COMPONENT RUNTIME)
+install(FILES ${plexdir}/Resources/SlideshowOverlay.png DESTINATION ${RESOURCEPATH}/media COMPONENT RUNTIME)
 install(FILES ${plexdir}/Resources/peripherals.xml ${plexdir}/Resources/playercorefactory.xml DESTINATION ${RESOURCEPATH}/system COMPONENT RUNTIME)
 
 if(TARGET_OSX)

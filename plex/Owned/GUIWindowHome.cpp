@@ -81,8 +81,6 @@
 #include "DirectoryCache.h"
 #include "GUI/GUIPlexMediaWindow.h"
 
-#include "Owned/PlexGlobalCacher.h"
-
 using namespace std;
 using namespace XFILE;
 using namespace boost;
@@ -102,12 +100,11 @@ using namespace boost;
 
 #define SLIDESHOW_MULTIIMAGE 10101
 
-
 typedef std::pair<CStdString, CPlexSectionFanout*> nameSectionPair;
 
 //////////////////////////////////////////////////////////////////////////////
-CPlexSectionFanout::CPlexSectionFanout(const CStdString &url, SectionTypes sectionType)
-  : m_sectionType(sectionType), m_needsRefresh(false), m_url(url)
+CPlexSectionFanout::CPlexSectionFanout(const CStdString &url, SectionTypes sectionType, bool useGlobalSlideshow)
+  : m_sectionType(sectionType), m_needsRefresh(false), m_url(url), m_useGlobalSlideshow(useGlobalSlideshow)
 {
   Refresh();
 }
@@ -153,6 +150,11 @@ void CPlexSectionFanout::Refresh()
 
   CSingleLock lk(m_critical);
   
+  BOOST_FOREACH(contentListPair p, m_fileLists)
+    delete p.second;
+  
+  m_fileLists.clear();
+
   CLog::Log(LOGDEBUG, "GUIWindowHome:SectionFanout:Refresh for %s", m_url.Get().c_str());
 
   CURL trueUrl(m_url);
@@ -220,7 +222,12 @@ void CPlexSectionFanout::Refresh()
     if (g_guiSettings.GetBool("lookandfeel.enableglobalslideshow"))
     {
       CURL artsUrl(m_url);
-      PlexUtils::AppendPathToURL(artsUrl, "arts");
+
+      if (m_useGlobalSlideshow)
+        artsUrl = GetBestServerUrl("library/arts");
+      else
+        PlexUtils::AppendPathToURL(artsUrl, "arts");
+
       LoadSection(artsUrl, CONTENT_LIST_FANART);
     }
   }
@@ -233,33 +240,28 @@ void CPlexSectionFanout::OnJobComplete(unsigned int jobID, bool success, CJob *j
   if (success)
   {
     CSingleLock lk(m_critical);
+    int type = load->m_contentType;
+    if (m_fileLists.find(type) != m_fileLists.end() && m_fileLists[type] != NULL)
+      delete m_fileLists[type];
+    
+    CFileItemList* newList = new CFileItemList;
+    newList->Assign(load->m_items, false);
 
-    // check if the section content has changed
-    if (load->DirectoryChanged())
+    /* HACK HACK HACK */
+    if (m_sectionType == SECTION_TYPE_HOME_MOVIE)
     {
-      int type = load->m_contentType;
-      if (m_fileLists.find(type) != m_fileLists.end() && m_fileLists[type] != NULL)
-        delete m_fileLists[type];
-
-      CFileItemList* newList = new CFileItemList;
-      newList->Assign(load->m_items, false);
-
-      /* HACK HACK HACK */
-      if (m_sectionType == SECTION_TYPE_HOME_MOVIE)
+      for (int i = 0; i < newList->Size(); i ++)
       {
-        for (int i = 0; i < newList->Size(); i ++)
-        {
-          newList->Get(i)->SetProperty("type", "clip");
-          newList->Get(i)->SetPlexDirectoryType(PLEX_DIR_TYPE_CLIP);
-        }
+        newList->Get(i)->SetProperty("type", "clip");
+        newList->Get(i)->SetPlexDirectoryType(PLEX_DIR_TYPE_CLIP);
       }
-
-      m_fileLists[type] = newList;
-
-      /* Pre-cache stuff */
-      if (type != CONTENT_LIST_FANART)
-        g_plexApplication.thumbCacher->Load(*newList);
     }
+
+    m_fileLists[type] = newList;
+    
+    /* Pre-cache stuff */
+    if (type != CONTENT_LIST_FANART)
+      g_plexApplication.thumbCacher->Load(*newList);
   }
 
   m_age.restart();
@@ -325,32 +327,7 @@ bool CPlexSectionFanout::NeedsRefresh()
 CGUIWindowHome::CGUIWindowHome(void) : CGUIWindow(WINDOW_HOME, "Home.xml"), m_globalArt(false), m_lastSelectedItem("Search")
 {
   m_loadType = LOAD_ON_GUI_INIT;
-  AddSection("global://art/", SECTION_TYPE_GLOBAL_FANART);
-  
-  // Here we start the global cacher
-  // it will request all the section data and try to cache them locally
-  // it will create a plex.cached in userdata directory when it has been done at least once in order not to reprocess at every start
-
-  // first Check if we have already completed the global cache	
-  /*
-  if (XFILE::CFile::Exists("special://masterprofile/plex.cached")) 
-  {
-  	CLog::Log(LOGNOTICE,"Global Cache : Will skip, global caching already done.");
-  	return;
-  }else
-  {
-      CFile CacheFile;
-      if (CacheFile.OpenForWrite("special://masterprofile/plex.cached"))
-      {
-          CacheFile.Close();
-          CPlexGlobalCacher* pg_Cacher = CPlexGlobalCacher::getGlobalCacher();
-          pg_Cacher->Start();
-      }
-      else CLog::Log(LOGERROR,"Global Cache : Cannot Create %s","special://masterprofile/plex.cached");
-  }
-  */
-
-
+  AddSection("global://art/", SECTION_TYPE_GLOBAL_FANART, true);
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -791,8 +768,10 @@ CGUIStaticItemPtr CGUIWindowHome::ItemToSection(CFileItemPtr item)
   newItem->SetPlexDirectoryType(item->GetPlexDirectoryType());
   newItem->m_bIsFolder = true;
 
+  bool useGlobalSlideshow = item->HasProperty("pref_includeInGlobal") ? !item->GetProperty("pref_includeInGlobal").asBoolean() : false;
+
   AddSection(item->GetPath(),
-             CGUIWindowHome::GetSectionTypeFromDirectoryType(item->GetPlexDirectoryType()));
+             CGUIWindowHome::GetSectionTypeFromDirectoryType(item->GetPlexDirectoryType()), useGlobalSlideshow);
 
   return newItem;
 }
@@ -929,7 +908,7 @@ void CGUIWindowHome::UpdateSections()
     newList.push_back(item);
     listUpdated = true;
 
-    AddSection("plexserver://channels/", SECTION_TYPE_CHANNELS);
+    AddSection("plexserver://channels/", SECTION_TYPE_CHANNELS, false);
   }
 
 
@@ -967,12 +946,12 @@ void CGUIWindowHome::HideAllLists()
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void CGUIWindowHome::AddSection(const CStdString &url, SectionTypes type)
+void CGUIWindowHome::AddSection(const CStdString &url, SectionTypes type, bool useGlobalSlideshow)
 {
   if (m_sections.find(url) == m_sections.end())
   {
     CLog::Log(LOG_LEVEL_DEBUG, "CGUIWindowHome::AddSection Adding section %s", url.c_str());
-    CPlexSectionFanout* fan = new CPlexSectionFanout(url, type);
+    CPlexSectionFanout* fan = new CPlexSectionFanout(url, type, useGlobalSlideshow);
     m_sections[url] = fan;
   }
 }
@@ -1076,7 +1055,7 @@ void CGUIWindowHome::RefreshSection(const CStdString &url, SectionTypes type)
     return section->Refresh();
   }
   else
-    AddSection(url, type);
+    AddSection(url, type, false);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

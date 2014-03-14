@@ -34,6 +34,9 @@
 #include "Settings.h"
 
 #include "GUIWindowSlideShow.h"
+#include "PlexNavigationHelper.h"
+
+#include "ViewDatabase.h"
 
 #define LEGACY 1
 
@@ -108,6 +111,8 @@ int CPlexHTTPRemoteHandler::HandleHTTPRequest(const HTTPRequest &request)
     pausePlay(argumentMap);
   else if (path.Equals("/player/playback/play"))
     pausePlay(argumentMap);
+  else if (path.Equals("/player/mirror/details"))
+    showDetails(argumentMap);
   else if (boost::starts_with(path, "/player/navigation"))
     navigation(path, argumentMap);
   else if (path.Equals("/player/timeline/subscribe"))
@@ -120,7 +125,7 @@ int CPlexHTTPRemoteHandler::HandleHTTPRequest(const HTTPRequest &request)
     sendString(argumentMap);
 
 
-#if defined(LEGACY) or defined(TARGET_RASPBERRY_PI)
+#ifdef LEGACY
   else if (path.Equals("/player/application/sendString"))
     sendString(argumentMap);
   else if (path.Equals("/player/application/sendVirtualKey") ||
@@ -156,7 +161,6 @@ size_t CPlexHTTPRemoteHandler::GetHTTPResonseDataLength() const
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void CPlexHTTPRemoteHandler::updateCommandID(const HTTPRequest &request, const ArgMap &arguments)
 {
-  CLog::Log(LOGINFO, "CPlexHTTPRemoteHandler::updateCommandID no commandID sent to this request!");
   if (arguments.find("commandID") == arguments.end())
   {
     CLog::Log(LOGWARNING, "CPlexHTTPRemoteHandler::updateCommandID no commandID sent to this request!");
@@ -180,73 +184,75 @@ void CPlexHTTPRemoteHandler::updateCommandID(const HTTPRequest &request, const A
     sub->setCommandID(commandID);
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+CPlexServerPtr CPlexHTTPRemoteHandler::getServerFromArguments(const ArgMap &arguments)
+{
+  CPlexServerPtr server;
+
+  if (arguments.find("machineIdentifier") != arguments.end())
+  {
+    std::string uuid = arguments.find("machineIdentifier")->second;
+    server = g_plexApplication.serverManager->FindByUUID(uuid);
+    if (server)
+      return server;
+
+    CLog::Log(LOGWARNING, "CPlexHTTPRemoteHandler::getServerFromArguments request had machineIdentifier but that server is not found.");
+  }
+
+  /* no machineIdentfier or server not found, at this point we need to synthesize the server instead */
+  std::string address, token, portStr, schema;
+  int port;
+
+  if (arguments.find("address") != arguments.end())
+    address = arguments.find("address")->second;
+
+  if (arguments.find("token") != arguments.end())
+    token = arguments.find("token")->second;
+
+  if (arguments.find("protocol") != arguments.end())
+    schema = arguments.find("protocol")->second;
+
+  if (schema.empty())
+    schema = "http";
+
+  if (arguments.find("port") != arguments.end())
+  {
+    portStr = arguments.find("port")->second;
+    if (!portStr.empty())
+    {
+      try { port = boost::lexical_cast<int>(portStr); }
+      catch (...)
+      {
+        port = 32400;
+        CLog::Log(LOGWARNING, "CPlexHTTPRemoteHandler::getServerFromArguments port was not parsable, just guessing here.");
+      }
+    }
+  }
+
+  if (address.empty())
+  {
+    CLog::Log(LOGERROR, "CPlexHTTPRemoteHandler::getServerFromArguments no address found! Can't synthesize server!");
+    return server;
+  }
+
+  CPlexConnectionPtr connection = CPlexConnectionPtr(new CPlexConnection(CPlexConnection::CONNECTION_DISCOVERED, address, port, schema, token));
+  server = CPlexServerPtr(new CPlexServer(connection));
+  return server;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////
 void CPlexHTTPRemoteHandler::playMedia(const ArgMap &arguments)
 {
   CPlexServerPtr server;
   CStdString key;
   std::string containerPath;
-  CUrlOptions containerOptions;
   
-  /* Protocol v2 allows for sending machineIndentifier. */
-  if (arguments.find("machineIdentifier") != arguments.end())
-  {
-    std::string uuid = arguments.find("machineIdentifier")->second;
-    server = g_plexApplication.serverManager->FindByUUID(uuid);
-  }
-
+  server = getServerFromArguments(arguments);
   if (!server)
   {
-    CURL serverURL;
-
-    /* old school path sent */
-    if (arguments.find("path") != arguments.end())
-    {
-      serverURL = CURL(arguments.find("path")->second);
-      containerPath = serverURL.GetFileName();
-      containerOptions = serverURL.GetOptions();
-
-      CLog::Log(LOGDEBUG, "CPlexHTTPRemoteHandler::playMedia setting containerPath = %s", containerPath.c_str());
-    }
-    else if (arguments.find("address") != arguments.end() &&
-             arguments.find("port") != arguments.end() &&
-             arguments.find("protocol") != arguments.end())
-    {
-      serverURL.SetProtocol(arguments.find("protocol")->second);
-      serverURL.SetHostName(arguments.find("address")->second);
-      serverURL.SetPort(boost::lexical_cast<int>(arguments.find("port")->second));
-    }
-    else
-    {
-      CLog::Log(LOGWARNING, "CPlexHTTPRemoteHandler::playMedia no machineId, no path, no protocol/address/port, how should I know what to play?");
-      setStandardResponse(500, "playmedia needs either machineId, path or protocol/address/port to figure out what server to play from.");
-      return;
-    }
-
-    if (serverURL.GetHostName().empty())
-    {
-      CLog::Log(LOGWARNING, "CPlexHTTPRemoteHandler::playMedia got something, but it's not a valid IP/Host.");
-      setStandardResponse(500, "Got a remote server URL but it was not a valid IP/Host.");
-      return;
-    }
-
-    /* look up via host and port, this is not super reliable, but it will probably work
-     * most of the time */
-    server = g_plexApplication.serverManager->FindByHostAndPort(serverURL.GetHostName(), serverURL.GetPort());
-
-    if (!server)
-    {
-      CLog::Log(LOGDEBUG, "CPlexHTTPRemoteHandler::playMedia synthesizing server based on URL: %s", serverURL.Get().c_str());
-
-      server = CPlexServerPtr(new CPlexServer());
-      CStdString token("");
-
-      if (serverURL.HasOption("X-Plex-Token"))
-        token = serverURL.GetOption("X-Plex-Token");
-
-      server->AddConnection(CPlexConnectionPtr(new CPlexConnection(CPlexConnection::CONNECTION_DISCOVERED,
-                                                                   serverURL.GetHostName(), serverURL.GetPort(), "http", token)));
-    }
+    CLog::Log(LOGERROR, "CPlexHTTPRemoteHandler::playMedia didn't get a valid server!");
+    setStandardResponse(500, "Did not find a server!");
+    return;
   }
 
   CLog::Log(LOGDEBUG, "CPlexHTTPRemoteHandler::playMedia got a valid server %s", server->toString().c_str());
@@ -279,24 +285,8 @@ void CPlexHTTPRemoteHandler::playMedia(const ArgMap &arguments)
       containerPath = key;
   }
 
-  CURL itemURL;
-  if (server->GetUUID().empty())
-    itemURL = server->BuildURL(containerPath);
-  else
-    itemURL = server->BuildPlexURL(containerPath);
+  CURL itemURL = server->BuildPlexURL(containerPath);
 
-  if (!containerOptions.GetOptionsString().empty())
-    itemURL.AddOptions(containerOptions);
-
-  if (arguments.find("protocol") != arguments.end())
-  {
-    if (arguments.find("protocol")->second == "https")
-    {
-      if (itemURL.GetProtocol() == "plexserver")
-        itemURL.SetProtocolOption("ssl", "1");
-    }
-  }
-  
   /* fetch the container */
   CFileItemList list;
   XFILE::CPlexDirectory dir;
@@ -476,6 +466,83 @@ void CPlexHTTPRemoteHandler::seekTo(const ArgMap &arguments)
     g_application.m_pPlayer->SeekTime(seekTo);
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+class NavigationTimeout : public IPlexGlobalTimeout
+{
+  public:
+    NavigationTimeout() {}
+    void OnTimeout()
+    {
+      CApplicationMessenger::Get().ActivateWindow(WINDOW_HOME, std::vector<CStdString>(), true);
+    }
+
+    CStdString TimerName() const { return "navigationTimeout"; }
+};
+
+static NavigationTimeout* navTimeout;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+void CPlexHTTPRemoteHandler::showDetails(const ArgMap &arguments)
+{
+  CPlexServerPtr server = getServerFromArguments(arguments);
+
+  if (!server)
+  {
+    CLog::Log(LOGERROR, "CPlexHTTPRemoteHandler::showDetails Can't find server.");
+    setStandardResponse(500, "Can't find server");
+    return;
+  }
+
+  std::string key;
+
+  if (arguments.find("key") != arguments.end())
+  {
+    key = arguments.find("key")->second;
+  }
+  else
+  {
+    CLog::Log(LOGERROR, "CPlexHTTPRemoteHandler::showDetails needs a key argument to show something");
+    setStandardResponse(500, "Need key argument");
+    return;
+  }
+
+  if (!PlexUtils::CurrentSkinHasPreplay() ||
+      g_application.IsPlayingFullScreenVideo() ||
+      g_application.IsVisualizerActive() ||
+      g_windowManager.GetActiveWindow() == WINDOW_SLIDESHOW)
+    return;
+
+  CURL u = server->BuildPlexURL(key);
+
+  XFILE::CPlexDirectory dir;
+  CFileItemList list;
+
+  if (dir.GetDirectory(u.Get(), list))
+  {
+    if (list.Size() == 1)
+    {
+      CFileItemPtr item = list.Get(0);
+
+      /* FIXME: the pre-play for Shows and Epsiodes are not really looking
+       * great yet, so let's skip them for now */
+      if (item->GetPlexDirectoryType() == PLEX_DIR_TYPE_ALBUM ||
+          item->GetPlexDirectoryType() == PLEX_DIR_TYPE_MOVIE ||
+          item->GetPlexDirectoryType() == PLEX_DIR_TYPE_ARTIST ||
+          item->GetPlexDirectoryType() == PLEX_DIR_TYPE_EPISODE)
+      {
+        CPlexNavigationHelper nav;
+        nav.navigateToItem(item, CURL(), WINDOW_HOME, true);
+
+        g_application.WakeUpScreenSaverAndDPMS();
+
+        if (!navTimeout)
+          navTimeout = new NavigationTimeout;
+        g_plexApplication.timer.RestartTimeout(5 * 60 * 1000, navTimeout);
+      }
+    }
+  }
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////
 void CPlexHTTPRemoteHandler::navigation(const CStdString &url, const ArgMap &arguments)
 {
@@ -517,7 +584,6 @@ void CPlexHTTPRemoteHandler::navigation(const CStdString &url, const ArgMap &arg
     else
       action = ACTION_NAV_BACK;
   }
-
 
 #ifdef LEGACY
   else if (navigation.Equals("contextMenu"))
@@ -691,8 +757,10 @@ void CPlexHTTPRemoteHandler::subscribe(const HTTPRequest &request, const ArgMap 
   CPlexRemoteSubscriberPtr sub = getSubFromRequest(request, arguments);
   if (sub && g_plexApplication.remoteSubscriberManager && g_plexApplication.timelineManager)
   {
-    g_plexApplication.remoteSubscriberManager->addSubscriber(sub);
-    g_plexApplication.timelineManager->SendTimelineToSubscriber(sub);
+    sub = g_plexApplication.remoteSubscriberManager->addSubscriber(sub);
+
+    if (sub)
+      g_plexApplication.timelineManager->SendCurrentTimelineToSubscriber(sub);
   }
 }
 
@@ -853,6 +921,12 @@ void CPlexHTTPRemoteHandler::poll(const HTTPRequest &request, const ArgMap &argu
   if (g_plexApplication.remoteSubscriberManager && g_plexApplication.timelineManager)
     pollSubscriber = g_plexApplication.remoteSubscriberManager->addSubscriber(pollSubscriber);
 
+  if (!pollSubscriber)
+  {
+    setStandardResponse(500, "We are going away!");
+    return;
+  }
+
   if (arguments.find("wait") != arguments.end())
   {
     if (arguments.find("wait")->second == "1" || arguments.find("wait")->second == "true")
@@ -860,9 +934,9 @@ void CPlexHTTPRemoteHandler::poll(const HTTPRequest &request, const ArgMap &argu
   }
 
   if (wait)
-    m_xmlOutput = g_plexApplication.timelineManager->WaitForTimeline(pollSubscriber);
+    m_xmlOutput = pollSubscriber->waitForTimeline();
   else
-    m_xmlOutput = g_plexApplication.timelineManager->GetCurrentTimeLinesXML(pollSubscriber);
+    m_xmlOutput = g_plexApplication.timelineManager->GetCurrentTimeLines()->getTimelinesXML(pollSubscriber->getCommandID());
 
   m_responseHeaderFields.insert(std::make_pair("Access-Control-Expose-Headers", "X-Plex-Client-Identifier"));
 }
@@ -955,7 +1029,7 @@ void CPlexHTTPRemoteHandler::resources()
   player->SetAttribute("title", g_guiSettings.GetString("services.devicename").c_str());
   player->SetAttribute("protocol", "plex");
   player->SetAttribute("protocolVersion", "1");
-  player->SetAttribute("protocolCapabilities", "navigation,playback,timeline");
+  player->SetAttribute("protocolCapabilities", "navigation,playback,timeline,mirror");
   player->SetAttribute("machineIdentifier", g_guiSettings.GetString("system.uuid").c_str());
   player->SetAttribute("product", "Plex Home Theater");
   player->SetAttribute("platform", PlexUtils::GetMachinePlatform());

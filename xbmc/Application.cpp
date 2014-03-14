@@ -360,6 +360,7 @@
 #include "plex/GUI/GUIWindowPlexStartupHelper.h"
 #include "plex/PlexThemeMusicPlayer.h"
 #include "video/dialogs/GUIDialogVideoOSD.h"
+#include "plex/GUI/GUIPlexScreenSaverPhoto.h"
 /* END PLEX */
 
 #if defined(TARGET_ANDROID)
@@ -534,27 +535,11 @@ bool CApplication::OnEvent(XBMC_Event& newEvent)
       if (!g_application.m_bInitializing &&
           !g_advancedSettings.m_fullScreen)
       {
-        /* PLEX */
-#ifdef __PLEX__
-        int width = newEvent.resize.w;
-        int height = newEvent.resize.h;
-
-        // Maintain 16:9 AR.
-        height = width * 9 / 16;
-
-        g_Windowing.SetWindowResolution(width, height);
-        g_graphicsContext.SetVideoResolution(RES_WINDOW, true);
-        g_guiSettings.SetInt("window.width", width);
-        g_guiSettings.SetInt("window.height", height);
-        g_settings.Save();
-#else
         g_Windowing.SetWindowResolution(newEvent.resize.w, newEvent.resize.h);
         g_graphicsContext.SetVideoResolution(RES_WINDOW, true);
         g_guiSettings.SetInt("window.width", newEvent.resize.w);
         g_guiSettings.SetInt("window.height", newEvent.resize.h);
         g_settings.Save();
-#endif
-        /* END PLEX */
       }
       break;
     case XBMC_VIDEOMOVE:
@@ -1529,6 +1514,7 @@ bool CApplication::Initialize()
     g_windowManager.Add(new CGUIDialogPlexSubtitlePicker);
     g_windowManager.Add(new CGUIWindowPlexStartupHelper);
     g_windowManager.Add(new CGUIPlexPictureWindow);
+    g_windowManager.Add(new CGUIPlexScreenSaverPhoto);
     /* END PLEX */
 
     /* window id's 3000 - 3100 are reserved for python */
@@ -2430,8 +2416,12 @@ float CApplication::GetDimScreenSaverLevel() const
   if (!m_bScreenSave || !m_screenSaver ||
       (m_screenSaver->ID() != "screensaver.xbmc.builtin.dim" &&
        m_screenSaver->ID() != "screensaver.xbmc.builtin.black" &&
+       m_screenSaver->ID() != "screensaver.xbmc.builtin.plexphotos" &&
        !m_screenSaver->ID().empty()))
     return 0;
+
+  if (m_screenSaver->ID() == "screensaver.xbmc.builtin.plexphotos")
+    return 0.042f;
 
   if (!m_screenSaver->GetSetting("level").IsEmpty())
     return 100.0f - (float)atof(m_screenSaver->GetSetting("level"));
@@ -3836,6 +3826,10 @@ void CApplication::Stop(int exitCode)
     StopServices();
     //Sleep(5000);
 
+    /* PLEX */
+    g_plexApplication.preShutdown();
+    /* END PLEX */
+
 #ifdef HAS_WEB_SERVER
   CWebServer::UnregisterRequestHandler(&m_httpImageHandler);
   CWebServer::UnregisterRequestHandler(&m_httpVfsHandler);
@@ -3851,6 +3845,10 @@ void CApplication::Stop(int exitCode)
   CWebServer::UnregisterRequestHandler(&m_httpWebinterfaceHandler);
 #endif
 #endif
+
+  /* PLEX */
+  g_plexApplication.Shutdown();
+  /* END PLEX */
 
     if (m_pPlayer)
     {
@@ -5040,6 +5038,9 @@ bool CApplication::WakeUpScreenSaver(bool bPowerOffKeyPressed /* = false */)
       if (g_settings.GetMasterProfile().getLockMode() != LOCK_MODE_EVERYONE &&
           (g_settings.UsingLoginScreen() || g_guiSettings.GetBool("masterlock.startuplock")) &&
           g_settings.GetCurrentProfile().getLockMode() != LOCK_MODE_EVERYONE &&
+          /* PLEX */
+          m_screenSaver->ID() != "screensaver.xbmc.builtin.plexphotos" &&
+          /* END PLEX */
           m_screenSaver->ID() != "screensaver.xbmc.builtin.dim" && m_screenSaver->ID() != "screensaver.xbmc.builtin.black" && !m_screenSaver->ID().empty() && m_screenSaver->ID() != "visualization")
       {
         m_iScreenSaveLock = 2;
@@ -5065,6 +5066,10 @@ bool CApplication::WakeUpScreenSaver(bool bPowerOffKeyPressed /* = false */)
       // we can just continue as usual from vis mode
       return false;
     }
+    /* PLEX */
+    else if (m_screenSaver->ID() == "screensaver.xbmc.builtin.plexphotos")
+      return true;
+    /* END PLEX */
     else if (m_screenSaver->ID() == "screensaver.xbmc.builtin.dim" || m_screenSaver->ID() == "screensaver.xbmc.builtin.black" || m_screenSaver->ID().empty())
       return true;
     else if (!m_screenSaver->ID().IsEmpty())
@@ -5181,6 +5186,10 @@ void CApplication::ActivateScreenSaver(bool forceType /*= false */)
     return;
   else if (m_screenSaver->ID() == "screensaver.xbmc.builtin.black")
     return;
+  /* PLEX */
+  else if (m_screenSaver->ID() == "screensaver.xbmc.builtin.plexphotos")
+    return;
+  /* END PLEX */
   else if (!m_screenSaver->ID().IsEmpty())
     g_windowManager.ActivateWindow(WINDOW_SCREENSAVER);
 }

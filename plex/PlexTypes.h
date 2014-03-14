@@ -5,6 +5,10 @@
 #include <map>
 
 #include <boost/shared_ptr.hpp>
+#include <boost/unordered_map.hpp>
+#include <boost/algorithm/string.hpp>
+#include "Variant.h"
+#include "StdString.h"
 
 enum EPlexDirectoryType
 {
@@ -88,6 +92,7 @@ enum ePlexMediaState {
 #define WINDOW_DIALOG_FILTER_SORT           10202
 #define WINDOW_DIALOG_PLEX_SUBTITLE_PICKER  10204
 #define WINDOW_DIALOG_PLEX_AUDIO_PICKER     10205
+#define WINDOW_DIALOG_PLEX_SS_PHOTOS        10206
 
 // Sent when the set of remote sources has changed
 #define GUI_MSG_UPDATE_REMOTE_SOURCES GUI_MSG_USER + 40
@@ -206,5 +211,8 @@ typedef std::map<std::string, CPlexServerPtr> PlexServerMap;
 typedef std::pair<std::string, CPlexServerPtr> PlexServerPair;
 
 #define PLEX_DEFAULT_PAGE_SIZE 50
+
+/* Property map definition */
+typedef boost::unordered_map<CStdString, CVariant> PropertyMap;
 
 #endif

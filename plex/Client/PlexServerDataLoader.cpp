@@ -13,7 +13,8 @@
 
 using namespace XFILE;
 
-#define SECTION_REFRESH_INTERVAL 30 * 1000
+#define SECTION_REFRESH_INTERVAL 5 * 60 * 1000
+#define SHARED_SERVER_REFRESH 10 * 60 * 1000
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CPlexServerDataLoader::CPlexServerDataLoader() : CJobQueue(false, 4, CJob::PRIORITY_NORMAL), m_stopped(false)
@@ -24,7 +25,7 @@ CPlexServerDataLoader::CPlexServerDataLoader() : CJobQueue(false, 4, CJob::PRIOR
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void CPlexServerDataLoader::LoadDataFromServer(const CPlexServerPtr &server)
 {
-  if (m_stopped)
+  if (m_stopped || !server)
     return;
 
   CSingleLock lk(m_serverLock);
@@ -98,6 +99,8 @@ void CPlexServerDataLoader::OnJobComplete(unsigned int jobID, bool success, CJob
       m_channelMap[j->m_server->GetUUID()]->SetProperty("serverName", j->m_server->GetName());
     }
 
+    j->m_server->DidRefresh();
+
     CGUIMessage msg(GUI_MSG_PLEX_SERVER_DATA_LOADED, PLEX_DATA_LOADER, 0);
     msg.SetStringParam(j->m_server->GetUUID());
     g_windowManager.SendThreadMessage(msg);
@@ -135,23 +138,67 @@ CFileItemListPtr CPlexServerDataLoader::GetChannelsForUUID(const CStdString &uui
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CFileItemListPtr CPlexServerDataLoaderJob::FetchList(const CStdString& path)
 {
-  CPlexDirectory dir;
   CURL url = m_server->BuildPlexURL(path);
-  CFileItemList* list = new CFileItemList;
+  CFileItemListPtr list = CFileItemListPtr(new CFileItemList);
 
-  if (dir.GetDirectory(url.Get(), *list))
-    return CFileItemListPtr(list);
+  if (m_dir.GetDirectory(url.Get(), *list))
+    return list;
 
-  delete list;
   return CFileItemListPtr();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 bool CPlexServerDataLoaderJob::DoWork()
 {
+  if (!m_server)
+    return false;
+
   if (m_server->GetUUID() != "myplex")
   {
     m_sectionList = FetchList("/library/sections");
+    if (!m_sectionList)
+      return false;
+
+    if (m_server->GetOwned())
+    {
+      for (int i = 0; i < m_sectionList->Size(); i++)
+      {
+        CFileItemPtr sectionItem = m_sectionList->Get(i);
+        if (sectionItem)
+        {
+          CURL u(sectionItem->GetPath());
+          PlexUtils::AppendPathToURL(u, "prefs");
+          CFileItemList prefsList;
+
+          if (m_dir.GetDirectory(u.Get(), prefsList))
+          {
+            if (prefsList.Size() > 0)
+            {
+              for (int y = 0; y < prefsList.Size(); y ++)
+              {
+                CFileItemPtr prefsItem = prefsList.Get(y);
+                if (!prefsItem)
+                  continue;
+
+                CStdString key("pref_");
+                key += prefsItem->GetProperty("id").asString();
+                CStdString value = prefsItem->GetProperty("value").asString();
+                CStdString type = prefsItem->GetProperty("type").asString();
+
+                CVariant realValue(value);
+
+                if (type == "bool")
+                  realValue = CVariant((bool)(value == "true"));
+                /* FIXME: handle more values */
+
+                sectionItem->SetProperty(key, realValue);
+              }
+            }
+          }
+        }
+      }
+    }
+
     if (m_server->GetOwned())
       m_channelList = FetchList("/channels/all");
   }
@@ -249,13 +296,19 @@ void CPlexServerDataLoader::OnTimeout()
 {
   CSingleLock lk(m_serverLock);
 
-  CLog::Log(LOGDEBUG, "CPlexServerDataLoader::OnTimeout Refreshing data for all servers...");
-
   std::pair<CStdString, CPlexServerPtr> p;
   BOOST_FOREACH(p, m_servers)
   {
+    if (!p.second) continue;
+
     if (p.second->GetUUID() != "myplex")
-      AddJob(new CPlexServerDataLoaderJob(p.second, shared_from_this()));
+    {
+      if (p.second->GetOwned() || p.second->GetLastRefreshed() > SHARED_SERVER_REFRESH)
+      {
+        CLog::Log(LOGDEBUG, "CPlexServerDataLoader::OnTimeout refreshing data for %s", p.second->GetName().c_str());
+        AddJob(new CPlexServerDataLoaderJob(p.second, shared_from_this()));
+      }
+    }
   }
 
   g_plexApplication.timer.SetTimeout(SECTION_REFRESH_INTERVAL, this);

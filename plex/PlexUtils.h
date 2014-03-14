@@ -56,8 +56,6 @@ namespace PlexUtils
   ePlexMediaType GetMediaTypeFromString(const std::string &typeString);
   ePlexMediaState GetMediaStateFromString(const std::string &statestring);
   std::string GetMediaStateString(ePlexMediaState state);
-
-  unsigned long GetFastHash(std::string Data);
 }
 
 #if defined(HAVE_EXECINFO_H)
@@ -85,6 +83,5 @@ static inline int _plex_private_gettimeofday( struct timeval *tv, void *tz )
 typedef unsigned int useconds_t;
 int usleep(useconds_t useconds);
 #endif
-
 
 #endif

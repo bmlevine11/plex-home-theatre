@@ -89,6 +89,8 @@ CPlexDirectoryTypeParserVideo::Process(CFileItem &item, CFileItem &mediaContaine
     if (videoTag.m_iEpisode == 0)
       item.SetProperty("allepisodes", 1);
     item.SetArt(PLEX_ART_POSTER, item.GetArt("parentThumb"));
+    item.SetArt(PLEX_ART_BANNER, mediaContainer.GetArt(PLEX_ART_BANNER));
+
   }
   else if (dirType == PLEX_DIR_TYPE_SEASON)
   {
@@ -159,6 +161,8 @@ void
 CPlexDirectoryTypeParserVideo::ParseMediaNodes(CFileItem &item, XML_ELEMENT *element)
 {
   int thumbIdx = 0;
+  int mediaIndex = 0;
+
 #ifndef USE_RAPIDXML
   for (XML_ELEMENT* media = element->FirstChildElement(); media; media = media->NextSiblingElement())
 #else
@@ -179,6 +183,7 @@ CPlexDirectoryTypeParserVideo::ParseMediaNodes(CFileItem &item, XML_ELEMENT *ele
     else if (mediaItem->GetPlexDirectoryType() == PLEX_DIR_TYPE_MEDIA)
     {
       mediaItem->SetPath(item.GetPath());
+      mediaItem->SetProperty("mediaIndex", mediaIndex ++);
 
       /* Parse children */
       ParseMediaParts(*mediaItem, media);
@@ -186,6 +191,10 @@ CPlexDirectoryTypeParserVideo::ParseMediaNodes(CFileItem &item, XML_ELEMENT *ele
       /* we want to make sure that the main <video> tag knows about indirect */
       if (mediaItem->HasProperty("indirect"))
         item.SetProperty("indirect", mediaItem->GetProperty("indirect"));
+
+      /* Also forward unavailable flag */
+      if (mediaItem->HasProperty("unavailable"))
+        item.SetProperty("unavailable", mediaItem->GetProperty("unavailable"));
 
       item.m_mediaItems.push_back(mediaItem);
     }
@@ -195,11 +204,17 @@ CPlexDirectoryTypeParserVideo::ParseMediaNodes(CFileItem &item, XML_ELEMENT *ele
     }
   }
 
+  if (item.m_mediaItems.size() == 0)
+    item.SetProperty("isSynthesized", true);
+  else
+    item.SetProperty("isSynthesized", false);
+
   SetTagsAsProperties(item);
 }
 
 void CPlexDirectoryTypeParserVideo::ParseMediaParts(CFileItem &mediaItem, XML_ELEMENT* element)
 {
+  int partIndex = 0;
 #ifndef USE_RAPIDXML
   for (XML_ELEMENT* part = element->FirstChildElement(); part; part = part->NextSiblingElement())
 #else
@@ -207,6 +222,7 @@ void CPlexDirectoryTypeParserVideo::ParseMediaParts(CFileItem &mediaItem, XML_EL
 #endif
   {
     CFileItemPtr mediaPart = CPlexDirectory::NewPlexElement(part, mediaItem, mediaItem.GetPath());
+    mediaPart->SetProperty("partIndex", partIndex ++);
 
     ParseMediaStreams(*mediaPart, part);
     
