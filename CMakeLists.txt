@@ -30,8 +30,8 @@ else()
 endif()
 
 set(PLEX_VERSION_MAJOR 1)
-set(PLEX_VERSION_MINOR 0)
-set(PLEX_VERSION_PATCH 13)
+set(PLEX_VERSION_MINOR 1)
+set(PLEX_VERSION_PATCH 0)
 if(DEFINED ENV{BUILD_NUMBER})
   set(PLEX_VERSION_BUILD "$ENV{BUILD_NUMBER}")
   set(PLEX_VERSION_BUILD_NR "$ENV{BUILD_NUMBER}")
@@ -127,6 +127,7 @@ include_directories(
   ${plexdir}
   ${plexdir}/Utility
   ${plexdir}/Owned
+
   ${root}/xbmc/utils
   ${root}
   ${root}/xbmc/cores/dvdplayer

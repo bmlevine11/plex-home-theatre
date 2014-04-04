@@ -97,10 +97,12 @@ CPlexDirectory::GetDirectory(const CURL& url, CFileItemList& fileItems)
   CStopWatch httpTimer;
   httpTimer.StartZero();
 
-  if (m_body.empty())
-    httpSuccess = m_file.Get(m_url.Get(), m_data);
-  else
+  if (m_verb == "POST" || !m_body.empty())
     httpSuccess = m_file.Post(m_url.Get(), m_body, m_data);
+  else if (m_verb == "GET")
+    httpSuccess = m_file.Get(m_url.Get(), m_data);
+  else if (m_verb == "PUT")
+    httpSuccess = m_file.Put(m_url.Get(), m_data);
 
   if (!httpSuccess)
   {
@@ -251,6 +253,11 @@ static AttributeMap g_attributeMap = boost::assign::list_of<AttributePair>
                                      ("dialogNorm", g_parserInt)
                                      ("viewMode", g_parserInt)
                                      ("autoRefresh", g_parserInt)
+                                     ("playQueueID", g_parserInt)
+                                     ("playQueueSelectedItemID", g_parserInt)
+                                     ("playQueueSelectedItemOffset", g_parserInt)
+                                     ("playQueueTotalCount", g_parserInt)
+                                     ("playQueueVersion", g_parserInt)
 
                                      ("filters", g_parserBool)
                                      ("refreshing", g_parserBool)
@@ -458,6 +465,12 @@ CPlexDirectory::ReadChildren(XML_ELEMENT* root, CFileItemList& container)
 
     if (!item->HasArt(PLEX_ART_THUMB) && container.HasArt(PLEX_ART_THUMB))
       item->SetArt(PLEX_ART_THUMB, container.GetArt(PLEX_ART_THUMB));
+
+    if (container.HasProperty("librarySectionUUID"))
+      item->SetProperty("librarySectionUUID", container.GetProperty("librarySectionUUID"));
+
+    if (container.HasProperty("playQueueID"))
+      item->SetProperty("playQueueID", container.GetProperty("playQueueID"));
     
     item->m_bIsFolder = IsFolder(item, element);
 
