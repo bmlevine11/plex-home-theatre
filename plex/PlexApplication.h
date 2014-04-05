@@ -67,6 +67,9 @@ class CPlexExtraInfoLoader;
 class CPlayQueueManager;
 typedef boost::shared_ptr<CPlayQueueManager> CPlayQueueManagerPtr;
 
+class CPlexDirectoryCache;
+typedef boost::shared_ptr<CPlexDirectoryCache> CPlexDirectoryCachePtr;
+
 ///
 /// The hub of all Plex goodness.
 ///
@@ -117,6 +120,7 @@ public:
   CPlexGlobalTimerPtr timer;
   CPlexExtraInfoLoader* extraInfo;
   CPlayQueueManagerPtr playQueueManager;
+  CPlexDirectoryCachePtr directoryCache;
 
   void setNetworkLogging(bool);
   void OnTimeout();
