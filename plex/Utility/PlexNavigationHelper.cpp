@@ -27,9 +27,10 @@ bool CPlexNavigationHelper::CacheUrl(const std::string& url, bool& cancel, bool 
 
   int id = CJobManager::GetInstance().AddJob(new CPlexDirectoryFetchJob(CURL(url)), this, CJob::PRIORITY_HIGH);
 
-  if (!m_cacheEvent.WaitMSec(UINT_MAX)) // obvious sentinal value
+  CGUIDialogBusy *busy = (CGUIDialogBusy*)g_windowManager.GetWindow(WINDOW_DIALOG_BUSY);
+
+  if (!m_cacheEvent.WaitMSec(300))
   {
-    CGUIDialogBusy *busy = (CGUIDialogBusy*)g_windowManager.GetWindow(WINDOW_DIALOG_BUSY);
     cancel = false;
 
     if (busy)
@@ -54,6 +55,9 @@ bool CPlexNavigationHelper::CacheUrl(const std::string& url, bool& cancel, bool 
         busy->Close();
     }
   }
+  else
+    if (closeDialog)
+      busy->Close();
 
   return m_cacheSuccess;
 }
@@ -197,6 +201,7 @@ void CPlexNavigationHelper::OnJobComplete(unsigned int jobID, bool success, CJob
     g_directoryCache.SetDirectory(fjob->m_url.Get(), fjob->m_items, XFILE::DIR_CACHE_ALWAYS);
 
   m_cacheSuccess = success;
+  CLog::Log(LOGDEBUG,"CPlexNavigationHelper::OnJobComplete setting event");
   m_cacheEvent.Set();
 
 }
