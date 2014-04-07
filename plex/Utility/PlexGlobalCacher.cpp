@@ -1,5 +1,3 @@
-
-
 #include "Utility/PlexGlobalCacher.h"
 #include "FileSystem/PlexDirectory.h"
 #include "Client/PlexServerDataLoader.h"
@@ -31,14 +29,7 @@ CPlexGlobalCacher::CPlexGlobalCacher() : CThread("Plex Global Cacher")
   {
     m_dlgProgress->SetHeading(2);
   }
-
 }
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-CPlexGlobalCacher::~CPlexGlobalCacher()
-{
-}
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CPlexGlobalCacher* CPlexGlobalCacher::GetInstance()
@@ -48,6 +39,7 @@ CPlexGlobalCacher* CPlexGlobalCacher::GetInstance()
   return m_globalCacher;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 void CPlexGlobalCacher::DeleteInstance()
 {
   if (m_globalCacher)
@@ -73,12 +65,12 @@ void controlGlobalCache()
 {
   CPlexGlobalCacher* cacher = CPlexGlobalCacher::GetInstance();
 
-  if ( ! cacher->IsRunning() )
+  if (!cacher->IsRunning())
   {
     cacher->Continue(true);
     cacher->Start();
   }
-  else if ( cacher ->IsRunning() )
+  else if (cacher ->IsRunning())
   {
     bool ok = CGUIDialogYesNo::ShowAndGetInput("Stop global caching?",
                                                "A reboot is recommended after stopping ",
@@ -86,7 +78,7 @@ void controlGlobalCache()
                                                "Stopping may not occur right away.",
                                                "No!", "Yes");
 
-    if ( ok )
+    if (ok)
     {
       CLog::Log(LOGNOTICE,"Global Cache : Cacher thread stopped by user");
       cacher -> Continue(false);
@@ -139,7 +131,6 @@ void CPlexGlobalCacher::Process()
 
   CLog::Log(LOGNOTICE,"Global Cache : found %d Regular Sections",pAllSections->Size());
 
-
   CFileItemList items;
   std::set<CStdString> servers;
 
@@ -170,7 +161,7 @@ void CPlexGlobalCacher::Process()
   dialog->DoModal();
   CFileItemList* selectedSections = new CFileItemList();
 
-  if ( dialog->IsButtonPressed())
+  if (dialog->IsButtonPressed())
   {
     // switch to the addons browser.
     const CFileItemList& selectedItems = dialog->GetSelectedItems();
@@ -274,7 +265,6 @@ void CPlexGlobalCacher::Process()
 
           message.Format(g_localizeStrings.Get(41007) + " : %2d%%",i*100 / list.Size());
           m_dlgProgress->SetLine(2,message);
-
 
           BOOST_FOREACH(CStdString artKey, art)
           {
