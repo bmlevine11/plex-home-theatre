@@ -24,10 +24,8 @@
 #include "PlexMediaDecisionEngine.h"
 #include "Client/PlexServerVersion.h"
 #include "dialogs/GUIDialogKaiToast.h"
-#include "PlexTranscoderClientRPi.h"
-#include "Client/PlexTranscoderClientRPi.h"
 #include "AdvancedSettings.h"
-
+#include "Client/PlexTranscoderClientRPi.h"
 #include "log.h"
 
 #include <map>
