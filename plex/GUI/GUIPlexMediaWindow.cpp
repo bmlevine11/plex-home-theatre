@@ -612,13 +612,6 @@ bool CGUIPlexMediaWindow::GetDirectory(const CStdString &strDirectory, CFileItem
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void CGUIPlexMediaWindow::LoadPage(int start, int numberOfItems)
 {
-  // avoid Load page multiple calls with same parameters
-  static int m_LastStart = -1;
-  static int m_LastnumberOfItems = -1;
-  if ((start==m_LastStart)&&(numberOfItems==m_LastnumberOfItems)) return;
-  m_LastStart = start;
-  m_LastnumberOfItems = numberOfItems;
-
   if (start >= m_vecItems->GetProperty("totalSize").asInteger())
     return;
   if (m_currentJobId != -1)
