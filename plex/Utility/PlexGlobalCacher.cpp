@@ -22,7 +22,7 @@ using namespace XFILE;
 CPlexGlobalCacher* CPlexGlobalCacher::m_globalCacher = NULL;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-CPlexGlobalCacher::CPlexGlobalCacher() : CPlexThumbCacher() , CThread("Plex Global Cacher")
+CPlexGlobalCacher::CPlexGlobalCacher() : CThread("Plex Global Cacher")
 {
   m_continue = true;
 
@@ -106,6 +106,20 @@ void CPlexGlobalCacher::Process()
   CStdString message;
   CStdString heading;
   int totalsize =0;
+
+  // list the arts we want to cache
+  CStdStringArray art;
+  art.push_back("smallThumb");
+  art.push_back("thumb");
+  art.push_back("bigthumb"); //*
+  art.push_back("smallPoster");
+  art.push_back("poster");
+  art.push_back("bigPoster");//*
+  art.push_back("smallGrandparentThumb");
+  art.push_back("grandparentThumb");
+  art.push_back("bigGrandparentThumb");
+  art.push_back("fanart");
+  art.push_back("banner");
 
   CGUIDialogSelect *dialog = (CGUIDialogSelect*)g_windowManager.GetWindow(WINDOW_DIALOG_SELECT);
   if (!dialog)
@@ -261,15 +275,6 @@ void CPlexGlobalCacher::Process()
           message.Format(g_localizeStrings.Get(41007) + " : %2d%%",i*100 / list.Size());
           m_dlgProgress->SetLine(2,message);
 
-          // list the arts we want to cache
-          CStdStringArray art;
-          art.push_back("smallThumb");
-          art.push_back("smallPoster");
-          art.push_back("smallGrandparentThumb");
-          art.push_back("fanart");
-          art.push_back("banner");
-          art.push_back("thumb");
-          art.push_back("poster");
 
           BOOST_FOREACH(CStdString artKey, art)
           {
@@ -288,11 +293,12 @@ void CPlexGlobalCacher::Process()
 
         m_dlgProgress->Progress();
       }
-
       CLog::Log(LOGNOTICE,"Global Cache : Processing section %s took %f",Section->GetLabel().c_str(), timer.GetElapsedSeconds());
     }
+
     CLog::Log(LOGNOTICE,"Global Cache : Full operation took %f",timer.GetElapsedSeconds());
   }
+
   if (!dialog->IsConfirmed())
     return ;
 }

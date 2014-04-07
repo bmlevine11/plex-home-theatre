@@ -7,7 +7,7 @@
 #include "threads/Event.h"
 #include "dialogs/GUIDialogProgress.h"
 
-class CPlexGlobalCacher : public CPlexThumbCacher, public CThread
+class CPlexGlobalCacher : public CThread
 {
 public :
     static CPlexGlobalCacher* GetInstance();
