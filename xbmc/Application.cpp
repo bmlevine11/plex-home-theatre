@@ -2462,11 +2462,7 @@ bool CApplication::WaitFrame(unsigned int timeout)
 void CApplication::NewFrame()
 {
   /* PLEX */
-#if !defined(TARGET_RASPBERRY_PI)
-  // on RPi, with OMX player, there is a race condition, causing this function to deadlock on Graphic context
-  // when player is flipping page
   HideBusyIndicator();
-#endif
   /* END PLEX */
 
   // We just posted another frame. Keep track and notify.
