@@ -364,6 +364,7 @@
 #include "plex/PlexThemeMusicPlayer.h"
 #include "video/dialogs/GUIDialogVideoOSD.h"
 #include "plex/GUI/GUIPlexScreenSaverPhoto.h"
+#include "plex/Client/PlexTranscoderClient.h"
 /* END PLEX */
 
 #if defined(TARGET_ANDROID)
