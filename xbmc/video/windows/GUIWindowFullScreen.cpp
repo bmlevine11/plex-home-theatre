@@ -677,12 +677,6 @@ void CGUIWindowFullScreen::OnWindowLoaded()
   FillInTVGroups();
 }
 
-bool CGUIWindowFullScreen::OnBack(int actionID)
-{
-  g_application.StopPlaying();
-  return true;
-}
-
 bool CGUIWindowFullScreen::OnMessage(CGUIMessage& message)
 {
   switch (message.GetMessage())
