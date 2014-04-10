@@ -69,6 +69,7 @@ add_subdirectory(Filters)
 add_subdirectory(Playlists)
 add_subdirectory(Windows)
 add_subdirectory(AutoUpdate)
+add_subdirectory(Tests)
 
 include(BreakpadSymbols)
 
@@ -110,7 +111,7 @@ if(ENABLE_TESTING)
     message(STATUS "Adding test case ${cases}")
     list(APPEND TEST_CASES_OBJS $<TARGET_OBJECTS:${cases}>)
   endforeach(cases ${TEST_CASES})
-  add_executable(PlexHomeTheaterTests ${TEST_CASES_OBJS} $<TARGET_OBJECTS:xbmctest> $<TARGET_OBJECTS:PlexMain>)
+  add_executable(PlexHomeTheaterTests ${TEST_CASES_OBJS} $<TARGET_OBJECTS:xbmctest> $<TARGET_OBJECTS:PlexMain> $<TARGET_OBJECTS:PlexTestingUtils>)
   target_link_libraries(PlexHomeTheaterTests xbmc pcre gtest ${CONFIG_INTERNAL_LIBS} ${CONFIG_PLEX_LINK_LIBRARIES})
   add_test(PlexHomeTheaterTests ${EXECUTABLE_OUTPUT_PATH}/PlexHomeTheaterTests --gtest_output=xml:${CMAKE_CURRENT_BINARY_DIR}/PlexHomeTheaterTests.xml --gtest_color=yes)
 
