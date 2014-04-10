@@ -34,9 +34,7 @@ public:
   virtual ~CGUIWindowFullScreen(void);
   virtual bool OnMessage(CGUIMessage& message);
   virtual bool OnAction(const CAction &action);
-  /* PLEX */
   virtual bool OnBack(int actionID);
-  /* END PLEX */
   virtual void FrameMove();
   virtual void Process(unsigned int currentTime, CDirtyRegionList &dirtyregion);
   virtual void Render();

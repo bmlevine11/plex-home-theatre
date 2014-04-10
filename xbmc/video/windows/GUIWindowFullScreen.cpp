@@ -677,15 +677,11 @@ void CGUIWindowFullScreen::OnWindowLoaded()
   FillInTVGroups();
 }
 
-/* PLEX */
 bool CGUIWindowFullScreen::OnBack(int actionID)
 {
-  // Stop the player if we get to the previous window
-  // happens with previous menu action on FullScreen Window
   g_application.StopPlaying();
   return true;
 }
-/* END PLEX */
 
 bool CGUIWindowFullScreen::OnMessage(CGUIMessage& message)
 {
