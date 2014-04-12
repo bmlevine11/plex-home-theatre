@@ -93,6 +93,7 @@ bool CTextureCacheJob::CacheTexture(CBaseTexture **out_texture)
   XFILE::CFile inputFile, outputFile;
   int bytesRead, bufferSize = 131072;
   char buffer[bufferSize];
+  bool outputFileOpenned = false;
 
   // check that file is a picture
   CFileItem file(image, false);
@@ -102,28 +103,39 @@ bool CTextureCacheJob::CacheTexture(CBaseTexture **out_texture)
     CLog::Log(LOGERROR,"CTextureCacheJob::CacheTexture file %s is not a picture",image.c_str());
     return false;
   }
-  // build destination file
-  m_details.file = m_cachePath + ".jpg";
 
   if (inputFile.Open(image,READ_NO_CACHE))
   {
-    if (outputFile.OpenForWrite(CTextureCache::GetCachedPath(m_details.file),true))
+    while (bytesRead = inputFile.Read(buffer,bufferSize))
     {
-      while (bytesRead = inputFile.Read(buffer,bufferSize))
+      // eventually open output file depending upon filetype
+      if (!outputFileOpenned)
       {
-        outputFile.Write(buffer,bytesRead);
+        // we need to check if its a jpg or png
+        if ((buffer[0]==0xFF) && (buffer[1]==0xD8))
+          m_details.file = m_cachePath + ".jpg";
+        else
+          m_details.file = m_cachePath + ".png";
+
+        // now open the file
+        if (outputFile.OpenForWrite(CTextureCache::GetCachedPath(m_details.file),true))
+        {
+          outputFileOpenned = true;
+        }
+        else
+        {
+          inputFile.Close();
+          CLog::Log(LOGERROR,"CTextureCacheJob::CacheTexture unable to open output file %s",CTextureCache::GetCachedPath(m_details.file).c_str());
+          return false;
+        }
       }
 
-      inputFile.Close();
-      outputFile.Close();
-      return true;
+      outputFile.Write(buffer,bytesRead);
     }
-    else
-    {
-      inputFile.Close();
-      CLog::Log(LOGERROR,"CTextureCacheJob::CacheTexture unable to open output file %s",CTextureCache::GetCachedPath(m_details.file).c_str());
-      return false;
-    }
+
+    inputFile.Close();
+    outputFile.Close();
+    return true;
   }
   else
   {
