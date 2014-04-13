@@ -47,10 +47,18 @@ if [ ! -d $INSTALLPATH ]; then
 	mkdir -p $INSTALLPATH
 fi
 
-notify 'Updating...' 'Beginning extraction, this will take a few minutes.' 10000
+notify 'Updating...' 'Beginning extraction, this will take a few minutes.'
 
 # untar both SYSTEM and KERNEL into extraction directory
-tar -xf $UPDATEFILE -C $EXTRACTPATH
+tar -xf $UPDATEFILE -C $EXTRACTPATH &
+tarpid=$!
+while [ -n "`ps | grep $tarpid | grep -v 'grep'`" ];do
+  sleep 5
+  notify 'Updating...' 'Extraction in progress... please wait.'
+done
+
+notify 'Updating...' 'Extraction complete, performing checks.'
+
 CONTENTS=`find $EXTRACTPATH`
 
 # Grab KERNEL and SYSTEM 
