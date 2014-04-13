@@ -98,8 +98,12 @@ void CPlexAutoUpdate::CheckInstalledVersion()
     {
       if (version != currentVersion)
       {
-        CLog::Log(LOGDEBUG, "CPlexAutoUpdate::CheckInstalledVersion Seems like we failed to upgrade from %s to %s, will NOT try this version again.", fromVersion.c_str(), currentVersion.c_str());
-        success = false;
+        #ifndef TARGET_RASPBERRY_PI
+          CLog::Log(LOGDEBUG, "CPlexAutoUpdate::CheckInstalledVersion Seems like we failed to upgrade from %s to %s, will NOT try this version again.", fromVersion.c_str(), currentVersion.c_str());
+          success = false;
+        #else
+          success = true;
+        #endif
       }
       else
       {

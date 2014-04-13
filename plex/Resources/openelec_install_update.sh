@@ -4,6 +4,7 @@
 set -ex
 
 UPDATEFILE=$1
+EXTRACTPATH=/storage/.update/tmp
 INSTALLPATH=/storage/.update
 POST_UPDATE_PATH=/storage/.post_update.sh
 TTL=5000 # how long to show notifications
@@ -18,51 +19,58 @@ post_update()
 
 notify()
 {
-  /usr/bin/xbmc-send --port 9778 --action="Notification('$1', '$2', $TTL)"
+  if [ -n "$3" ];then
+    ttl=$3
+  else
+    ttl=$TTL
+  fi
+  /usr/bin/xbmc-send --port 9778 --action="Notification('$1', '$2', $ttl)"
 }
 
 abort()
 {
   notify 'Update Aborted!' $1
-  exit
+  exit 1
 }
 
-trap 'abort "Update script bug : ("' SIGHUP SIGINT SIGTERM # Notify if aborted
+trap abort 1 2 3 6
 
 
-
-notify 'Updating...' 'Update has started, system will reboot soon.'
 
 # first we make sure to create the update path:
+
+if [ ! -d $EXTRACTPATH ]; then
+	mkdir -p $EXTRACTPATH
+fi
+
 if [ ! -d $INSTALLPATH ]; then
 	mkdir -p $INSTALLPATH
 fi
 
-notify 'Updating...' 'Checking archive integrity...'
+notify 'Updating...' 'Beginning extraction, this will take a few minutes.' 10000
 
-# Grab KERNEL and SYSTEM path within tarball
-CONTENTS=$(tar -tf $UPDATEFILE)
+# untar both SYSTEM and KERNEL into extraction directory
+tar -xf $UPDATEFILE -C $EXTRACTPATH
+CONTENTS=`find $EXTRACTPATH`
+
+# Grab KERNEL and SYSTEM 
 KERNEL=$(echo $CONTENTS | tr " " "\n" | grep KERNEL$)
 SYSTEM=$(echo $CONTENTS | tr " " "\n" | grep SYSTEM$)
 KERNELMD5=$(echo $CONTENTS | tr " " "\n"  | grep KERNEL.md5)
 SYSTEMMD5=$(echo $CONTENTS | tr " " "\n" | grep SYSTEM.md5)
+set +e
 POST_UPDATE=$(echo $CONTENTS | tr " " "\n" | grep post_update.sh)
+set -e
 
 [ -z "$KERNEL" ] && abort 'Invalid archive - no kernel.'
 [ -z "$KERNELMD5" ] && abort 'Invalid archive - no kernel check.'
 [ -z "$SYSTEM" ] && abort 'Invalid archive - no system.'
 [ -z "$SYSTEMMD5" ] && abort 'Invalid archive - no system check.'
-
-notify 'Updating...' 'Beginning extraction.'
-
-# untar both SYSTEM and KERNEL into installation directory
-tar -xf $UPDATEFILE -C $INSTALLPATH  $KERNEL $SYSTEM $KERNELMD5 $SYSTEMMD5 $POST_UPDATE
-
 cd $INSTALLPATH
 
 notify 'Updating...' 'Finished extraction, validating checksums.'
 
-if [ -f "$POST_UPDATE" ];then
+if [ -n $POST_UPDATE ] && [-f "$POST_UPDATE" ];then
   notify 'Running post update script'
   cp $POST_UPDATE $POST_UPDATE_PATH
   post_update

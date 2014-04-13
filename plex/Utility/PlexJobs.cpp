@@ -219,7 +219,7 @@ bool CPlexUpdaterJob::DoWork()
   // run the script redirecting stderr to stdin so that we can grab script errors and log them
   CStdString command = "/bin/sh " + updaterPath + " " + CSpecialProtocol::TranslatePath(m_localBinary) + " 2>&1";
   CLog::Log(LOGDEBUG,"CPlexAutoUpdate::UpdateAndRestart : Executing '%s'", command.c_str());
-  CGUIDialogKaiToast::QueueNotification(CGUIDialogKaiToast::Info, "Launching updater", "Progress will be reported.", 10000, false);
+  CGUIDialogKaiToast::QueueNotification(CGUIDialogKaiToast::Info, "Launching updater", "Progress will be reported. Please be patient", 10000, false);
 
   //http://www.sw-at.com/blog/2011/03/23/popen-execute-shell-command-from-cc/ should replace with streaming execution, so we can see the output of the script in the log
   FILE* fp = popen(command.c_str(), "r");
@@ -228,13 +228,16 @@ bool CPlexUpdaterJob::DoWork()
     // we grab script output in case we would have an error
     char output[1000];
     CStdString commandOutput;
-    if (fgets(output, sizeof(output)-1, fp))
+
+    while(fgets(output, sizeof(output), fp)!=NULL){
       commandOutput = CStdString(output);
+      CLog::Log(LOGINFO, "CPlexAutoUpdate::UpdateAndRestart: %s",commandOutput.c_str());
+    }
 
     int retcode = fclose(fp);
     if (retcode)
     {
-      CLog::Log(LOGERROR,"CPlexAutoUpdate::UpdateAndRestart: error %d while running install script : %s", retcode, commandOutput.c_str());
+      CLog::Log(LOGERROR,"CPlexAutoUpdate::UpdateAndRestart: error %d while running install", retcode);
       return false;
     }
   }
